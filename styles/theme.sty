@@ -1,0 +1,90 @@
+\ProvidesPackage{beamerthemeMyColor}
+
+% --------- Colors ---------
+% Define custom colors
+    \definecolor{primary}{RGB}{36, 123, 160}
+    \definecolor{secondary}{RGB}{242, 95, 92}
+    \definecolor{neutral}{RGB}{80, 81, 79}
+    \definecolor{background}{RGB}{255, 255, 255}
+    \definecolor{background-light}{RGB}{200, 200, 200}
+    \definecolor{dark}{RGB}{0, 0, 0}
+
+    \definecolor{negative}{RGB}{242, 95, 92}
+    \definecolor{positive}{RGB}{30, 168, 160}
+    
+% Set colors for elements
+    \setbeamercolor{title}{fg=background, bg=primary}
+    \setbeamercolor{frametitle}{bg=primary, fg=background}
+    \setbeamercolor{itemize item}{fg=primary}
+    \setbeamercolor{block title}{fg=background, bg=neutral}
+    \setbeamercolor{block body}{fg=dark, bg=background-light}
+
+% Set hyperlink colors
+    \hypersetup{
+        colorlinks=true,
+        linkcolor=black,
+        citecolor=green,
+        urlcolor=cyan
+    }
+    
+% --------- Core Formatting ---------
+\RequirePackage[utf8]{inputenc}  % Allows input of special characters (e.g., accented characters)
+\RequirePackage{array}            % Improved array and tabular environments
+\RequirePackage{booktabs}         % Better table formatting
+\RequirePackage{caption}          % Customizing captions
+\usepackage[T1]{fontenc}
+
+% --------- Mathematics ---------
+\RequirePackage{amsmath}  % Advanced math typesetting
+\RequirePackage{amssymb}  % Additional math symbols
+
+% --------- Graphics & Visualization ---------
+\RequirePackage{graphicx}     % Include graphics
+\RequirePackage{tikz}         % Drawing and graphing package
+\usetikzlibrary{positioning, shapes.geometric}
+\usetikzlibrary{trees}       % Tree structures in TikZ
+\RequirePackage{pgfplots}     % Create plots in LaTeX
+\pgfplotsset{compat=1.18}  % set version
+
+% --------- Code listing ---------
+\usepackage{listings}     % For code listing
+\lstset{language=matlab, basicstyle=\ttfamily}
+\usepackage{matlab-prettifier}
+\lstset{
+    style=Matlab-editor, % If you want to base it on the Matlab-editor style
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!8}, % Light grey background
+}
+
+
+% --------- Hyperlinking ---------
+\RequirePackage{hyperref}  % Hyperlinks in the document
+
+% --------- Miscellaneous ---------
+\RequirePackage{verbatim}  % Include code and text verbatim
+
+% Beamer styling commands
+\setbeamertemplate{itemize subitem}[square]
+\setbeamercolor{itemize subitem}{fg=neutral}
+
+% Custom itemize spacing
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+  \olditemize
+  \setlength{\itemsep}{0.4em}
+}
+
+% Custom section frame
+\AtBeginSection[]{
+  {
+    \hypersetup{linkcolor=white}  % Change the link color to white
+    \begin{frame}
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\insertsectionhead\par%
+    \end{beamercolorbox}
+    \vfill
+    \end{frame}
+  }  % End of the group
+}

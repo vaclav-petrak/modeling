@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+    % Outer rectangle
+    \node[draw, rectangle, minimum width=2.5cm, minimum height=3cm] (outer) at (0,0) {};
+    
+    % Inner rectangle with rounded corners
+    \node[draw, rectangle, rounded corners=5pt, minimum width=2cm, minimum height=1.2cm] (inner) at (0,0.6) {};
+
+
+     \node[draw, rectangle, minimum width=2.5cm, minimum height=2.5cm] (x_y) at (6,0) {};
+\end{tikzpicture}
+\end{document}

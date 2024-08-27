@@ -1,0 +1,60 @@
+\documentclass[border=1cm]{standalone}
+
+\usepackage{mathtools}
+\usepackage{mathdots}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{automata}
+\usetikzlibrary{arrows}
+\tikzset{pics/.cd,
+myinput/.style args={#1#2#3#4#5#6#7}{
+code={% #1=color, #2=x1, #3=y1, #4=edge style #5=x2,#6=y2, #7=label
+\draw[color=#1]  (input)  +(#2,#3) edge[#4] +(#5,#6);
+\draw[](input)  +(-9pt,-12pt) -- +(-9pt,12pt);
+\draw[rotate=90]  (input)  +(-9pt,-12pt) --node[below=0.3cm,midway](){#7} +(-9pt,12pt);}}
+ }
+\begin{document}
+\tikzstyle{colorful} = [fill=gray!10]
+\tikzstyle{block} = [draw, colorful, rectangle, minimum height=3em, minimum width=3em]
+\tikzstyle{ramp}=[block,pin={below:Ramp}]
+\tikzstyle{sum} = [draw, colorful, circle, node distance=1cm]
+\tikzstyle{gain} = [draw, colorful, regular polygon, regular polygon sides=3, shape border rotate=30]
+\tikzstyle{integrator} = [block, right=of gain, pin={below:Integrator}]%, node contents = $\frac{1}{s}$]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{node} = [coordinate]
+\tikzset{every pin/.style={pin distance = 1mm}}
+\tikzset{every pin edge/.style={draw=none}}
+
+\begin{tikzpicture}[auto, node distance=1cm,>=latex']
+    \node [block] at (0,0) (input) {};
+    \node [block, right=of input] (prod) {$\times$};
+    \node [gain, right=of prod] (gain) {$-1$};
+    \node [integrator] (system) {$\frac{1}{s}$};
+    \node [output, right=of system] (output) {};
+    \draw [draw,->] (gain) -- node [name=dy] {$\dot{y}$} (system);
+    \draw [draw,->] (system) -- node [name=y] {$y$} (output);
+    \draw [draw,->] (input) -- node {$t$} (prod);
+    \draw [draw,->] (prod) -- node {} (gain);
+
+    \node [node, below=of y] (node1) {};
+    \node [node, below=of prod] (node2) {};
+    \draw [->] (y) |- (node1) |- (node2) -- (prod);
+
+       % Initial value for integrator
+    \node [above=0.5cm of system] (init) {$x_0$};
+    \draw [->] (init) -- (system);
+
+
+    % ramp function
+    \pic {myinput={red}{-9pt}{-9pt}{out=45,in=225}{12pt}{12pt}{}};
+    % step function
+    \pic {myinput={blue}{-9pt}{5pt}{out=0,in=180}{12pt}{5pt}{}};
+    % parabolic function
+    \pic  {myinput={cyan}{-9pt}{-9pt}{out=0,in=-110}{12pt}{12pt}{}};
+\end{tikzpicture}
+\end{document}

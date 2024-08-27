@@ -1,0 +1,25 @@
+
+Projects
+Population modeling
+- Allee effect
+- Stochastic
+- Matrix-model
+- Logistic fit for different thing that population 
+- Malthusian model - what country fits tje best:
+
+Predator-prey
+- Agent based (1,2)
+- Predator prey with disease
+
+
+Cellular automata
+- Nagel-Schreckenberg model to simulate traffic flow. 
+- Rock-paper-scissors celular automata
+- Modelling the spread of covid-19 
+- Forrest fire
+- Game level
+
+Disease modelling:
+- Zombie apocalypse (Compartment Model)
+- COVID model
+- Agent-bases (1,2)
