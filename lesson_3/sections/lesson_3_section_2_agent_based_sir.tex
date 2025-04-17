@@ -1,0 +1,147 @@
+\section{Agent based models}
+
+\begin{frame}{Introduction to Agent-Based Models}
+\begin{itemize}
+
+\item \textbf{Definition} Agent-based modeling (ABM) is a methodology used to build formal models of real-world systems that are made up by individual units (such as e.g. people, cells, animals,  or institutions) which repeatedly interact among themselves or with their environment.
+    \pause
+\item ABM approach establishes a direct a correspondence between the individual units in the system to be modeled and the model the agents and their interactions
+\item In other words: Two persons meeting in real world are modeled as meeting of two agents in the model
+    \pause
+\item This approach contrasts with  equation-based modeling, where modeled system may be represented via average properties.
+    \pause
+\item Applications: Epidemiology, social sciences, economics, and more.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Differences between ABMs and Differential Equation Models}
+\begin{itemize}
+    \item \textbf{Granularity}: ABMs simulate individual agents, differential equations models represent populations as continuous variables.
+    \pause
+    \item \textbf{Stochasticity}: ABMs usually include randomness in agents' actions, differential equations models are deterministic (but randomness can be also added).
+        \pause
+    \item \textbf{Spatial Structure}: ABMs typycally incorporate spatial structures and movement, differential equations models  assume well-mixed populations.
+        \pause
+    \item \textbf{Complexity}: ABMs handle complex interactions and adaptations, differential equations models focus on average rates of change.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Advantages of Agent-Based Models}
+\begin{itemize}
+    \item \textbf{Emergence}: Emergence occurs when a complex entity has properties or behaviors that its parts do not have on their own, and emerge only when they interact in a wider whole. Think of snow flakes or ant colonies. In ABMs, higher-level system properties may emerge from the interactions of lower-level agents.
+        \pause
+    \item \textbf{Detail}: Ability to model systems at the level of individual agents allows for detailed exploration of wide range of behavior. 
+        \pause
+    \item \textbf{Adaptability}: Agents can be programmed to adapt their behaviors in response to changing  conditions or rules.
+        \pause
+    \item \textbf{Customization}: Models can be easily tailored to specific situations by altering rules, behaviors, and interactions of agents.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Disadvantages of Agent-Based Models}
+\begin{itemize}
+    \item \textbf{Computational Demands}: High complexity and detail level can lead to significant computational costs.
+        \pause
+    \item \textbf{Data Requirements}: Developing realistic models often requires detailed empirical data, which may not always be available.
+        \pause
+    \item \textbf{Analysis Complexity}: The richness of the output can make analysis and interpretation challenging.
+        \pause
+    \item \textbf{Reproducibility Issues}: Due to stochastic elements, reproducing results can be difficult.
+        \pause
+    \item \textbf{Validation Challenges}: Validating the model against real-world outcomes can be complicated due to the complexity of the models.
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Applications of Agent-Based Models - Specific Examples}
+\only<1>{
+\footnotesize
+\textbf{Epidemiology}: Modeling the spread of COVID-19 to evaluate the effectiveness of social distancing measures in various communities. Agent-based model \textit{Coves} was developed to help policymakers make decisions based on the best available data, while taking into account the large uncertainties in terms of COVID-19 transmission dynamics, disease progression, and other aspects.
+\vfill
+\includegraphics[scale = 0.3]{lesson_3/images/agent_covasim.png}
+}
+    
+\only<2>{
+ \textbf{Ecology}: Simulation of agent-based model of collective nest choice by the ant. Helps in testing the effects and importance of alternative parameter values and decision rules on colonial decision making.
+}
+
+\only<3>{
+    \textbf{Economics}: Analyzing consumer behavior in online stores to predict reactions to changes in price or product availability. May be used for optimizing pricing strategies.
+ }
+
+ \only<4>{
+   \textbf{Urban Planning}: Planning public transportation systems by simulating the movement patterns of individuals within a city. Helps in making public transport more efficient and accessible.
+ }   
+
+ \only<5>{
+ \textbf{Social Sciences}: Studying the spread of information and misinformation through social networks to understand the dynamics of public opinion formation. 
+ } 
+
+\only<6>{
+\textbf{Military}: An agent-based computational model for the Battle of Trafalgar. Help to decide what outcomes were possible or what environmental factors has affected the results. }
+\end{frame}
+
+
+\begin{frame}{Basics of an Agent-Based SIR Model}
+\begin{itemize}
+    \item \textbf{Agents}: Represent individuals in a population.
+    \item \textbf{States}: Susceptible, Infected, Recovered.
+    \pause
+    \item \textbf{Rules of Transition}:
+    \begin{itemize}
+        \item Susceptible to Infected: Based on proximity to infected agents and a probability of transmission.
+        \item Infected to Recovered: After a certain period or based on individual health dynamics.
+    \end{itemize}
+        \pause
+    \item \textbf{Simulation}: Runs iterative, updating the state of each agent based on rules, until a steady state is reached or for a set number of steps.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Advantages of ABMs in Epidemic Modeling}
+\begin{itemize}
+    \item \textbf{Flexibility}: Can model complex behaviors and interventions (e.g., social distancing, quarantine).
+        \pause
+    \item \textbf{Heterogeneity}: May account for individual differences in susceptibility, immunity and mobility.
+        \pause
+    \item \textbf{Spatial Dynamics}: Models how the disease spreads in physical space, including community structures.
+        \pause
+    \item \textbf{Data Integration}: Can incorporate empirical data at the individual level to calibrate or validate the model.
+\end{itemize}
+
+
+
+\end{frame}
+
+
+\begin{frame}{Simulation Loop in an Agentic SIR Model}
+\footnotesize
+\begin{itemize}
+
+    \item \textbf{Update States:}
+    \begin{itemize}
+    \footnotesize
+        \item For each susceptible agent, check proximity to infected agents.
+        \item Use a random draw with the infection probability to transition from susceptible to infected.
+        \item For each infected agent, use a random draw with the recovery probability to transition to recovered.
+    \end{itemize}
+    \item \textbf{Record Results:}
+    \begin{itemize}
+    \footnotesize
+        \item Count the number of susceptible, infected, and recovered individuals and store these counts for visualization.
+    \end{itemize}
+    \item \textbf{Visualization:}
+    \begin{itemize}
+    \footnotesize
+        \item Update  plots showing current positions and a time-series plot tracking S, I, and R dynamics.
+    \end{itemize}
+    \item \textbf{Update Positions:}
+    \begin{itemize}
+    \footnotesize
+        \item Move each agent using a predefined random movement rule.
+        \item Ensure that new positions remain within the simulation boundaries.
+    \end{itemize}
+\end{itemize}
+\end{frame}

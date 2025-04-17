@@ -1,0 +1,145 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Lecture Notes on the Logistic Map}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\subsection{Discrete model}
+\begin{itemize}
+    \item In a \textbf{discrete-time model}, time advances in discrete steps. 
+    \item In differential equations, time is the
+continuous variable $t$.
+\item In a discrete-time system, time comes in discrete intervals 0, 1, 2, 3.  no values between them
+\item Such models work well for organisms with \textbf{well-defined breeding seasons} (fish, insects)
+\item  Another example are heartbeats
+\item Equation which discrete time is called a \textbf{difference equation}. 
+\item Example is a population growth $X_{N+1} = rX_N$ (analogous to Malthusian equation)
+\end{itemize}
+
+\subsection{Logistic map}
+\begin{itemize}
+    \item Consider a population of insects that live one year, lay eggs, and then die. 
+    \item The insect population in year $N + 1$ is a function of the population in year $N$. 
+    \item There are enough resources to support a maximum of $K$ insects. 
+    \item Current population is $X_N$, uses $\frac{X_N}{K}$ resources.
+    \item Unused fraction $1 - \frac{X_N}{K}$ is available for the next generation
+    \item If no adults survive from one year to the next we get:
+   \[
+    X_{N+1} = rX_N \left(1 - \frac{X_N}{K}\right)
+  \]
+  \item We may consider $K$ to be 1 and write
+   \[
+    X_{N+1} = rX_N \left(1 - {X_N}\right)
+  \]
+  \item We may think of it discrete analogue of logistic growth, but the the behavior is different. 
+  \item The usual values of interest for the parameter r are those in the interval [0, 4], so that $X_N$ remains bounded on [0, 1]. 
+  \item $r > 4$ leads to negative populations. 
+  \item \textbf{Historical Context} mathematician Robert May,  used the Logistic Map in 1970 to describe how populations grow and stabilize, reflecting constraints such as resource limitations.
+\end{itemize}
+
+\subsection{Exercise}
+    \begin{itemize}
+        \item Simulate sequence with given parameters in Excel.
+        \item Plot the result
+        \item Change initial population between 0 and 1. Is long term behavior affected?
+        \item Describe what behavior do you see?
+        \item Experiment with different $r$ values
+        \item Cob webbing diagram. On paper plus script
+        \item Bifurcation diagram
+        \item Rounding exercesise
+    \end{itemize}
+
+\subsection{Notes}
+With r increasing beyond 3.54409, from almost all initial conditions the population will approach oscillations among 8 values, then 16, 32, etc. The lengths of the parameter intervals that yield oscillations of a given length decrease rapidly; the ratio between the lengths of two successive bifurcation intervals approaches the Feigenbaum constant $\delta \approx 4.66920$. This behavior is an example of a period-doubling cascade.
+
+\subsection{Properties of chaos}
+\begin{itemize}
+    \item Sensitivity to Initial Conditions: Often described as the "butterfly effect," this property means that tiny variations in the starting conditions of a system can lead to vastly different outcomes. This characteristic makes long-term predictions very challenging in systems that exhibit chaos, as small measurement errors can grow exponentially.
+    \item Determinism: To say that a system is deterministic means that each state is completely determined by the previous state. If we allow outside chance events, it is easy to produce an irregular time series by, say, flipping
+a coin, but there’s nothing like this in the food chain model or the discrete logistic model. The
+system is deterministically producing its own irregular behavior without any randomness.
+\item Unpredictability : Despite chaos being deterministic (meaning it is governed by fixed rules and not random), the unpredictable nature of chaotic systems limits the accuracy of long-term forecasts. This has significant implications for fields such as meteorology, climate science, and stock market predictions.
+
+\textbf{Does the flap of a butterfly’s wings in Brazil set off a tornado in Texas?}
+
+\item Irregularity: Behavior is irregular, or aperiodic. Aperiodic behavior never exactly repeats. If a trajectory ever exactly repeated, that is, returned to the very same mathematical state point, it would have to
+be periodic, because determinism would require that it return again and again. Some system have transitive behavior. Chaotic behavior, on the other hand, starts out irregular and remains irregular.  In some systems, it may look like the behavior repeats and it can come very close to previous state values, but it never exactly repeats.
+
+\end{itemize}
+
+
+\section{Lorenz system}
+
+The Lorenz system is a set of three nonlinear ordinary differential equations that model simplified convection rolls in a fluid. It is a famous example of a chaotic system, exhibiting sensitive dependence on initial conditions, meaning small changes in the starting point can lead to vastly different long-term behavior. 
+
+This lecture note will introduce the Lorenz system, explore its properties, and discuss its chaotic nature. 
+
+\subsection{The Equations}
+
+The Lorenz system is described by the following three equations:
+
+\begin{align*}
+\frac{dx}{dt} &= \sigma (y - x) \\
+\frac{dy}{dt}  &= rx - y - xz \\
+\frac{dz}{dt}  &= xy - bz
+\end{align*}
+
+
+\subsection{Properties}
+
+The Lorenz system exhibits several interesting properties:
+\begin{itemize}
+    \item \textbf{Equilibrium points}: The system has multiple equilibrium points, where the rate of change of all variables is zero. However, only one is stable for a specific range of parameter values.
+    \item \textbf{Sensitive dependence on initial conditions:}: Butterfly effect. Even tiny perturbations in the initial state can eventually grow to significantly alter the long-term behavior, resembling the butterfly flapping its wings in one place leading to a hurricane in another (although this is an exaggeration).
+    \item \textbf{Strange attractor}The Lorenz system exhibits a strange attractor, a complex geometric object that attracts all trajectories in the long run. This attractor has a fractal-like structure, meaning it exhibits self-similarity at different scales. 
+\end{itemize}
+
+
+\subsection{Applications}
+
+The Lorenz system, despite its simplified nature, has applications in various fields beyond fluid dynamics. It serves as a model for studying chaotic behavior in other systems, such as:
+
+\begin{itemize}
+    \item Population dynamics
+    \item Laser physics
+    \item Chemical reactions
+    \item Climate modeling
+\end{itemize}
+
+
+\section{The Mandelbrot Set}
+
+The Mandelbrot set is a famous fractal, a geometric shape exhibiting self-similarity at different scales. It arises from a simple mathematical iteration applied in the complex plane. 
+
+\subsection{The Iteration}
+
+The Mandelbrot set is defined using a complex iteration process. Let $c$ be a complex number, represented as $c = x + yi$, where $x$ and $y$ are real numbers and $i$ is the imaginary unit ($i^2 = -1$). The Mandelbrot set membership of $c$ is determined by iterating the following equation:
+
+\begin{equation}
+z_{n+1} = z_n^2 + c
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $z_n$ represents the complex number at the $n^{th}$ iteration
+    \item $z_0$ is  $0$.
+\end{itemize}
+
+
+The iteration continues for a pre-defined maximum number of iterations, denoted by $N$. If the absolute value of $z_n$ never exceeds a certain threshold ($|z_n| \leq B$) within the maximum iterations, then $c$ is considered to belong to the Mandelbrot set.
+
+\end{document}
+
+
+
+
+
+
