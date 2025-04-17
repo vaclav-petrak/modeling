@@ -110,4 +110,38 @@
         \pause
     \item \textbf{Data Integration}: Can incorporate empirical data at the individual level to calibrate or validate the model.
 \end{itemize}
+
+
+
+\end{frame}
+
+
+\begin{frame}{Simulation Loop in an Agentic SIR Model}
+\footnotesize
+\begin{itemize}
+
+    \item \textbf{Update States:}
+    \begin{itemize}
+    \footnotesize
+        \item For each susceptible agent, check proximity to infected agents.
+        \item Use a random draw with the infection probability to transition from susceptible to infected.
+        \item For each infected agent, use a random draw with the recovery probability to transition to recovered.
+    \end{itemize}
+    \item \textbf{Record Results:}
+    \begin{itemize}
+    \footnotesize
+        \item Count the number of susceptible, infected, and recovered individuals and store these counts for visualization.
+    \end{itemize}
+    \item \textbf{Visualization:}
+    \begin{itemize}
+    \footnotesize
+        \item Update  plots showing current positions and a time-series plot tracking S, I, and R dynamics.
+    \end{itemize}
+    \item \textbf{Update Positions:}
+    \begin{itemize}
+    \footnotesize
+        \item Move each agent using a predefined random movement rule.
+        \item Ensure that new positions remain within the simulation boundaries.
+    \end{itemize}
+\end{itemize}
 \end{frame}
