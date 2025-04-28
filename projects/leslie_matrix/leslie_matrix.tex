@@ -1,0 +1,266 @@
+\documentclass{article}
+\usepackage{styles/project_style} 
+
+\title{Introduction to Leslie Matrix Models}
+
+\begin{document}
+\maketitle
+
+\section{What is Leslie Matrix Model?}
+
+Imagine you are studying an animal population. You know that birth rates and survival rates often depend heavily on an individual's age. Young individuals might not reproduce yet, prime-age adults might have high birth rates, and older individuals might have lower survival rates. How can you model the \emph{entire} population's growth and structure over time, taking these age differences into account?
+
+This is where the \textbf{Leslie Matrix model} comes in. Developed by Patrick H. Leslie in the 1940s, it's a powerful tool in population ecology used to model the growth of populations that are structured by \textbf{age classes}. It operates in discrete time steps (e.g., year to year, month to month) and uses linear algebra (specifically matrix multiplication) to project the future size and age distribution of a population.
+
+At its core, the Leslie Matrix model relies on two key components:
+\begin{itemize}
+    \item \textbf{Fertility rates} --- the average number of offspring produced by individuals in each age class.
+    \item \textbf{Survival probabilities} --- the proportion of individuals surviving from one age class to the next.
+\end{itemize}
+
+These values are arranged into a square matrix (called the Leslie matrix), which captures how individuals move through age classes over time and how many new individuals are added to the population. By multiplying this matrix with a population vector (which contains the number of individuals in each age class at a given time), we obtain the projected population vector for the next time step.
+
+The Leslie Matrix model assumes:
+\begin{itemize}
+    \item Individuals are grouped into discrete age classes.
+    \item Time progresses in fixed intervals.
+    \item Birth and survival rates are constant over time (though this can be relaxed in extensions of the model).
+\end{itemize}
+
+This framework enables researchers to analyze not only the total population size but also its age structure, growth rate, and long-term behavior. For example, the dominant eigenvalue of the Leslie matrix corresponds to the long-term growth rate of the population, while the associated eigenvector gives the stable age distribution (i.e., the proportions of individuals in each age class once the population reaches equilibrium).
+
+The Leslie Matrix model is widely used in ecology, conservation biology, and wildlife management to:
+\begin{itemize}
+    \item Predict population trajectories under different scenarios.
+    \item Assess the impact of changes in survival or fertility on overall population dynamics.
+    \item Identify critical age classes for targeted conservation or intervention strategies.
+\end{itemize}
+
+Overall, the Leslie Matrix model offers a mathematically elegant and ecologically meaningful way to study age-structured population dynamics.
+
+
+\subsection*{Comparison with Logistic Growth Model}
+
+To appreciate the usefulness of the Leslie Matrix model, it helps to compare it with simpler population models that do not account for age structure.
+
+
+
+\paragraph{Logistic Growth Model:}
+The logistic model improves on the Malthusian approach by introducing a carrying capacity $K$:
+\[
+N_{t+1} = N_t + rN_t\left(1 - \frac{N_t}{K}\right)
+\]
+This captures density-dependent growth, where the growth rate slows as the population approaches the environmental carrying capacity. While more realistic, the logistic model still treats the population as homogeneous—every individual contributes equally to reproduction and survival regardless of age.
+
+\paragraph{Leslie Matrix Model:}
+In contrast, the Leslie Matrix model incorporates \textbf{demographic structure}, recognizing that individuals of different ages contribute differently to reproduction and survival. Rather than modeling a single population size variable, it tracks a vector of age-specific population counts:
+\[
+\mathbf{n}_{t+1} = \mathbf{L} \mathbf{n}_t
+\]
+where $\mathbf{L}$ is the Leslie matrix and $\mathbf{n}_t$ is the age-structured population vector at time $t$. This allows detailed modeling of population dynamics, such as delayed reproduction, age-specific mortality, and long-term age structure.
+
+
+
+\section{Why use it?}
+
+\begin{itemize}
+    \item \textbf{Age Matters:} It explicitly incorporates age-specific birth (fecundity) and survival rates.
+    \item \textbf{Predictive Power:} It allows you to predict the population size and structure in future time steps.
+    \item \textbf{Long-Term Behavior:} You can analyze the model to understand the population's long-term growth rate and stable age distribution (the proportional distribution of individuals across age classes that the population tends towards over time).
+    \item \textbf{Management Insights:} Useful in conservation biology, wildlife management, fisheries, and even human demography to understand how changes in survival or birth rates might affect population dynamics.
+\end{itemize}
+
+\section{The Core Components}
+
+\subsection{Age Classes}
+The population is divided into a set number of discrete age classes (e.g., 0-1 year olds, 1-2 year olds, 2-3 year olds, etc.). Let's say there are $k$ age classes.
+
+\subsection{Population Vector)}
+This is a column vector representing the number of individuals in each age class at a specific time $t$.
+\[
+N_t = \begin{bmatrix} n_{1,t} \\ n_{2,t} \\ \vdots \\ n_{k,t} \end{bmatrix}
+\]
+where $n_{i,t}$ is the number of individuals in age class $i$ at time $t$.
+
+\subsection{Leslie Matrix ($L$)}
+This is a square ($k \times k$) matrix containing the demographic rates:
+\begin{itemize}
+    \item \textbf{Fecundity rates ($f_i$):} The average number of \emph{newborn offspring} produced by an individual in age class $i$ during one time step, that survive to enter the \emph{first} age class at the \emph{next} time step. These values form the \emph{first row} of the matrix.
+    \item \textbf{Survival rates ($s_i$):} The probability that an individual in age class $i$ survives to enter age class $i+1$ in the next time step. These values form the \emph{sub-diagonal} (the diagonal just below the main diagonal).
+    \item All other entries are typically zero in a basic Leslie model.
+\end{itemize}
+
+The structure looks like this:
+\[
+L = \begin{bmatrix}
+f_1 & f_2 & f_3 & \dots & f_{k-1} & f_k \\
+s_1 & 0 & 0 & \dots & 0 & 0 \\
+0 & s_2 & 0 & \dots & 0 & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & 0 & \dots & s_{k-1} & 0
+\end{bmatrix}
+\]
+\emph{Note:} Sometimes the last survival rate $s_{k-1}$ might actually be $s_k$ representing survival within the last age class if it's an aggregate class (e.g., "5+ years old"), placing it at $L(k,k)$ instead of $L(k, k-1)$. For simplicity here, we assume individuals die or leave the last age class after one time step.
+
+\section{The Projection Equation}
+
+The core of the model is simple matrix multiplication. To find the population vector at the next time step ($t+1$), you multiply the Leslie matrix ($L$) by the current population vector ($N_t$):
+\[
+N_{t+1} = L \times N_t
+\]
+This equation calculates:
+\begin{itemize}
+    \item The number of newborns in the next time step (sum of $f_i \times n_{i,t}$ for all $i$).
+    \item The number of survivors moving into each subsequent age class ($s_i \times n_{i,t}$ gives the number moving from class $i$ to $i+1$).
+\end{itemize}
+
+
+\section{MATLAB Example}
+
+Let's model a hypothetical bird population with three age classes:
+\begin{itemize}
+    \item Age Class 1: 0-1 year (Juveniles)
+    \item Age Class 2: 1-2 years (Young Adults)
+    \item Age Class 3: 2-3 years (Mature Adults) - We assume they don't survive past year 3 in this simple model.
+\end{itemize}
+
+\subsection{Demographic Rates}
+\begin{itemize}
+    \item Juveniles (Class 1) don't reproduce ($f_1 = 0$).
+    \item Young Adults (Class 2) produce an average of 2 offspring per individual per year ($f_2 = 2$).
+    \item Mature Adults (Class 3) produce an average of 1 offspring per individual per year ($f_3 = 1$).
+    \item Survival probability from Class 1 to Class 2 is 50\% ($s_1 = 0.5$).
+    \item Survival probability from Class 2 to Class 3 is 70\% ($s_2 = 0.7$).
+\end{itemize}
+
+\subsection{Initial Population (Time $t=0$)}
+\begin{itemize}
+    \item 10 Juveniles ($n_{1,0} = 10$)
+    \item 8 Young Adults ($n_{2,0} = 8$)
+    \item 5 Mature Adults ($n_{3,0} = 5$)
+\end{itemize}
+
+
+
+
+\subsection{MATLAB Implementation}
+
+Here is the MATLAB code, broken into logical steps, to implement and simulate this model.
+
+\subsubsection{Step 1: Define Parameters}
+First, we define the fecundity ($f$) and survival ($s$) rates as vectors, and determine the number of age classes.
+\begin{lstlisting}[caption={Define demographic parameters}]
+% Fecundity rates (average offspring per individual in each age class)
+f = [0, 2, 1]; % f1=0, f2=2, f3=1
+
+% Survival rates (probability of surviving to the next age class)
+s = [0.5, 0.7]; % s1=0.5 (age 1->2), s2=0.7 (age 2->3)
+num_age_classes = length(f); % Number of age classes (k=3)
+\end{lstlisting}
+
+\subsubsection{Step 2: Construct the Leslie Matrix ($L$)}
+Next, we construct the $3 \times 3$ Leslie matrix $L$ using the defined parameters. The first row contains fecundities, and the sub-diagonal contains survival rates.
+\begin{lstlisting}[caption={Construct the Leslie Matrix}]
+L = zeros(num_age_classes, num_age_classes);
+
+% Fill the first row with fecundity rates
+L(1, :) = f;
+
+% Fill the sub-diagonal with survival rates
+for i = 1:(num_age_classes - 1)
+    L(i+1, i) = s(i);
+end
+
+disp('Leslie Matrix (L):');
+disp(L);
+\end{lstlisting}
+
+\subsubsection{Step 3: Define the Initial Population Vector ($N_0$)}
+We define the population structure at the start ($t=0$) as a column vector $N_0$.
+\begin{lstlisting}[caption={Define the initial population}]
+N0 = [10; 8; 5]; % Column vector: [n1; n2; n3] at time t=0
+disp('Initial Population Vector (N0):');
+disp(N0);
+\end{lstlisting}
+
+\subsubsection{Step 4: Project the Population for One Time Step}
+We apply the core projection equation $N_1 = L \times N_0$ to see the population structure after one time step.
+\begin{lstlisting}[caption={Project population one step ahead}]
+N1 = L * N0; % Calculate population at time t=1
+disp('Population Vector at t=1 (N1):');
+disp(N1);
+\end{lstlisting}
+
+\subsubsection{Step 5: Simulate Population Growth Over Multiple Time Steps}
+Now, we simulate the population dynamics over 20 time steps using a `for` loop, storing the population vector at each step.
+\begin{lstlisting}[caption={Simulate population over time}]
+num_time_steps = 20; % Number of years to simulate
+population_history = zeros(num_age_classes, num_time_steps + 1); % To store N vectors
+population_history(:, 1) = N0; % Store initial population
+
+Nt = N0; % Current population vector starts at N0
+for t = 1:num_time_steps
+    Nt_plus_1 = L * Nt;             % Project to next step ($N_{t+1} = L N_t$)
+    population_history(:, t+1) = Nt_plus_1; % Store result
+    Nt = Nt_plus_1;                 % Update current population for next iteration
+end
+\end{lstlisting}
+
+\subsubsection{Step 6: Analyze and Visualize Results}
+After the simulation, we calculate the total population size and the proportional age structure at each time step. The commented-out plotting commands would generate figures visualizing these results.
+\begin{lstlisting}[caption={Analyze simulation results (Calculation part)}]
+% Calculate total population size at each time step
+total_population = sum(population_history, 1);
+
+% Calculate age structure (proportions) over time
+age_structure = zeros(size(population_history));
+for t = 1:size(population_history, 2)
+    if total_population(t) > 0 % Avoid division by zero
+        age_structure(:, t) = population_history(:, t) / total_population(t);
+    end
+end
+
+% Plot total population size
+figure(1);
+plot(0:num_time_steps, total_population, 'b-o', 'LineWidth', 1.5);
+xlabel('Time Step (Years)'); ylabel('Total Population Size');
+title('Total Population Growth Over Time'); grid on;
+
+% Plot age structure over time (Code commented out for LaTeX document)
+figure(2);
+area(0:num_time_steps, age_structure', 'FaceColor','flat');
+xlabel('Time Step (Years)'); ylabel('Proportion of Population');
+title('Population Age Structure Over Time');
+legend('Age Class 1', 'Age Class 2', 'Age Class 3'); ylim([0 1])
+\end{lstlisting}
+
+\subsubsection{Step 7: Eigenvalue Analysis (Optional)}
+Finally, we analyze the Leslie matrix $L$ itself to find its dominant eigenvalue ($\lambda_1$) and corresponding eigenvector. These tell us the long-term asymptotic growth rate and the stable age distribution, respectively.
+\begin{lstlisting}[caption={Eigenvalue analysis of the Leslie Matrix}]
+[eigenvectors, eigenvalues_diag] = eig(L);
+eigenvalues = diag(eigenvalues_diag); % Get eigenvalues as a vector
+
+% Find the dominant eigenvalue (largest positive real part)
+[dominant_eigenvalue, idx] = max(real(eigenvalues));
+dominant_eigenvector = eigenvectors(:, idx);
+
+% Normalize the stable age distribution eigenvector so elements sum to 1
+stable_age_distribution = real(dominant_eigenvector) / sum(real(dominant_eigenvector));
+
+disp(' '); % Blank line for spacing
+fprintf('Dominant Eigenvalue (lambda): %.4f\n', dominant_eigenvalue);
+disp('Stable Age Distribution (Proportions):');
+disp(stable_age_distribution);
+
+% Compare final simulated age structure to the calculated stable age distribution
+disp('Simulated Age Structure at final time step:');
+disp(age_structure(:, end));
+\end{lstlisting}
+
+This breakdown shows how each part of the MATLAB script corresponds to a specific step in setting up, running, and analyzing the Leslie model. If $\lambda_1 > 1$, the population grows; if $\lambda_1 < 1$, it shrinks; if $\lambda_1 = 1$, it's stationary in the long term, assuming the stable age distribution is reached.
+
+\section{Conclusion}
+
+This tutorial provides a basic foundation for understanding and implementing Leslie Matrix models using MATLAB. They are fundamental tools for analyzing age-structured population dynamics. Leslie models can be extended to include density dependence (where survival/fecundity rates change with population size), migration, stochasticity (random variation), and more complex life cycles. However, this simple linear, age-structured model remains a cornerstone of ecological modeling.
+
+\end{document}
