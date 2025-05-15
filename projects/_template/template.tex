@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{styles/project_style} % Custom style
+\addbibresource{references/projects.bib} % Bibliography file
+
+\title{<Your Project Title Here>}
+\author{<Your Name>}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Brief introduction to the topic and scope of the project.
+
+\section{Background and Motivation}
+Short explanation of the scientific or practical context. Why is the topic important?
+
+\section{Model Description}
+\subsection{Model Structure}
+Describe compartments or elements of your model.
+
+\subsection{Mathematical Formulation}
+Present equations or rules governing model behavior.
+\begin{align}
+    \frac{dS}{dt} &= -\beta \frac{SI}{N}, \\
+    \frac{dI}{dt} &= \beta \frac{SI}{N} - \gamma I, \\
+    \frac{dR}{dt} &= \gamma I
+\end{align}
+
+\section{Algorithm and Implementation}
+\begin{itemize}
+    \item Describe initialization, time stepping.
+    \item Optional interventions.
+    \item Mention programming language used (e.g., MATLAB, Python).
+\end{itemize}
+
+\section{Results and Visualization}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{path/to/your/image.png}
+  \caption{Example figure showing simulation results.}
+  \label{fig:results}
+\end{figure}
+
+\section{Discussion}
+Discuss implications, strengths, limitations, and how results relate to real-world data.
+
+\section{Literature Review}
+\subsection{General Resources}
+\begin{itemize}
+    \item \textcite{example_reference1}
+\end{itemize}
+
+\subsection{Journal Club Discussion}
+\begin{itemize}
+    \item \textcite{example_reference2}
+\end{itemize}
+
+\section{Conclusion}
+Summarize key insights and potential extensions.
+
+\printbibliography
+
+\end{document}

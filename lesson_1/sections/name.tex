@@ -1,0 +1,250 @@
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs} % For better tables, if needed
+\usepackage{multicol} % For columns
+\usepackage{lmodern} % Or any other font package you prefer
+\usepackage{xcolor} % For colors
+
+% Define your colors (matching your existing setup if possible)
+\definecolor{primary}{rgb}{0.2, 0.2, 0.7} % Example primary color
+\definecolor{secondary}{rgb}{0.7, 0.2, 0.2} % Example secondary color
+
+\usetheme{default} % Or your preferred theme
+
+% You can put your \title, \author, \institute, \date here
+% \title{Modeling and Simulation}
+% \author{Václav B. Petrák}
+% \institute{FBMI CVUT}
+% \date{\today}
+
+\begin{document}
+
+% \begin{frame}
+% \titlepage
+% \end{frame}
+
+% Assuming this follows your "Classification" slide which lists:
+% 1. Journal Club Presentation
+% 2. Capstone Project
+% 3. Code Review
+
+\section{Capstone Project Grading}
+
+\begin{frame}[t]
+\frametitle{Grading Criteria for Capstone Project}
+The Capstone Project grade is based on the implementation, analysis, presentation, and a written abstract.
+\vspace{1em}
+
+Assumed contribution to final grade: \textbf{40\%} (adjust as needed)
+\vspace{1em}
+
+\begin{itemize}
+    \item The project involves developing a model, implementing core and additional features, analyzing results, and presenting findings.
+    \item Deliverables: Presentation and a scientific abstract.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Capstone: Project Implementation and Technical Merit (40\% of Capstone Grade)}
+\begin{itemize}
+    \item \textbf{Core Model Implementation (15\%)}
+    \begin{itemize}
+        \item Accuracy and correctness of the fundamental model.
+        \item Demonstrates understanding of core concepts.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Additional Features Implementation (15\%)}
+    \begin{itemize}
+        \item Successful and meaningful implementation of $\geq 2$ additional features.
+        \item Complexity, creativity, and integration of features.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Code Quality (Preliminary) (10\%)}
+    \begin{itemize}
+        \item Code is reasonably organized and understandable.
+        \item Appropriate use of programming constructs.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Capstone: Analysis, Interpretation and Critical Thinking (30\% of Capstone Grade)}
+\begin{itemize}
+    \item \textbf{Results Demonstration and Visualization (10\%)}
+    \begin{itemize}
+        \item Clear and effective presentation of simulation results (graphs, animations, etc.).
+        \item Results address project objectives and show model behavior.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Analysis of Parameters and Emergent Patterns (10\%)}
+    \begin{itemize}
+        \item Insightful discussion on how parameters/initial conditions affect outcomes.
+        \item Identification and explanation of emergent behaviors.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Discussion of Limitations and Real-World Comparison (10\%)}
+    \begin{itemize}
+        \item Thoughtful consideration of model limitations and assumptions.
+        \item Comparison to real-world data, phenomena, or existing research.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Capstone: Presentation and Communication (20\% of Capstone Grade)}
+\begin{itemize}
+    \item \textbf{Structure and Clarity (10\%)}
+    \begin{itemize}
+        \item Well-organized, logical, and easy-to-follow presentation.
+        \item Clear explanation of goals, methods, features, and results.
+        \item Effective use of visual aids.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Delivery and Engagement (5\%)}
+    \begin{itemize}
+        \item Clear, confident speech with appropriate pacing.
+        \item Engages the audience effectively.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Adherence to Time (5\%)}
+    \begin{itemize}
+        \item Adherence to allocated presentation time (e.g., 20-25 min + Q \& A).
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Capstone: Abstract (10\% of Capstone Grade)}
+\begin{itemize}
+    \item \textbf{Content and Clarity (5\%)}
+    \begin{itemize}
+        \item Abstract clearly and concisely summarizes the project's purpose, methods, key findings, and significance.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Accuracy and Completeness (5\%)}
+    \begin{itemize}
+        \item Accurately reflects the work done and main conclusions.
+        \item Includes all necessary components of a scientific abstract.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+\section{Code Review Grading}
+
+\begin{frame}[t]
+\frametitle{Grading Criteria for Code Review}
+This component assesses the quality, design, and documentation of the Capstone Project code.
+\vspace{1em}
+
+Assumed contribution to final grade: \textbf{30\%} (adjust as needed)
+\vspace{1em}
+
+\begin{itemize}
+    \item Focuses on the submitted codebase for the Capstone Project.
+    \item May involve a code walk-through or defense session.
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Code Review: Code Quality and Design (50\% of Code Review Grade)}
+\begin{itemize}
+\only{
+    \item \textbf{Readability and Maintainability (15\%)}
+    \begin{itemize}
+        \item Clean, well-formatted, and understandable code.
+        \item Consistent naming conventions and style.
+        \item Logical organization (functions, classes, modules).
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Modularity and Reusability (15\%)}
+    \begin{itemize}
+        \item Code broken into manageable, reusable components.
+        \item Avoidance of monolithic code blocks.
+    \end{itemize}
+}
+\only{
+    \item \textbf{Efficiency and Performance (10\%)}
+    \begin{itemize}
+        \item Consideration for efficiency of algorithms/data structures.
+        \item Avoidance of obvious performance bottlenecks.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Error Handling and Robustness (10\%)}
+    \begin{itemize}
+        \item Basic error handling for invalid inputs/conditions.
+        \item Code is reasonably robust for typical usage.
+    \end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Code Review: Documentation and Comments (20\% of Code Review Grade)}
+\begin{itemize}
+    \item \textbf{Inline Comments (10\%)}
+    \begin{itemize}
+        \item Sufficient and meaningful comments for complex/non-obvious code.
+        \item Comments aid in understanding the code's logic.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Function/Module Documentation (10\%)}
+    \begin{itemize}
+        \item Clear docstrings or header comments for key functions/modules (purpose, parameters, returns).
+        \item README or equivalent for setup and execution.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Code Review: Correctness and Functionality (20\% of Code Review Grade)}
+\begin{itemize}
+    \item \textbf{Adherence to Project Specification (10\%)}
+    \begin{itemize}
+        \item Code correctly implements core requirements and chosen additional features of the Capstone Project.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Logical Soundness (10\%)}
+    \begin{itemize}
+        \item Logic within the code is sound and correctly translates model rules.
+        \item Absence of significant logical flaws or bugs.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%-------------------------------------------------------------------------------
+
+\begin{frame}[t]
+\frametitle{Code Review: Discussion and Response to Review (10\% of Code Review Grade)}
+\small (Applicable if an interactive review session is held)
+\begin{itemize}
+    \item \textbf{Explanation of Choices (5\%)}
+    \begin{itemize}
+        \item Ability to clearly articulate design decisions and justify coding choices made during development.
+    \end{itemize}
+    \vspace{0.5em}
+    \item \textbf{Responsiveness to Feedback (5\%)}
+    \begin{itemize}
+        \item Openness to constructive criticism.
+        \item Ability to discuss potential improvements or alternatives thoughtfully.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}

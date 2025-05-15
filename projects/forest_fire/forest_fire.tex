@@ -1,7 +1,6 @@
 \documentclass{article}
 \usepackage{styles/project_style} % Assuming you have this style file
-
-\addbibresource{references/projects.bib} % Assuming bibliography file
+\addbibresource{references/projects.bib}
 
 % --- TITLE PAGE INFORMATION ---
 \title{Introduction to the Forest Fire Model}
@@ -197,7 +196,6 @@ function is_burning = isNeighborBurning(r, c, grid, L, BURNING)
         end
     end
 end
-
 \end{lstlisting}
 
 Function \texttt{calculateNextState} calculates the next state of a cell based on its current state, whether a neighbor is burning, and the growth/ignition probabilities. If cell is currently empty (ground) It becomes a tree with probability \texttt{p\_growth}.  If cell is currently a tree, it catches fire if a neighbor is burning OR it ignites spontaneously (lightning) with probability \texttt{f\_ignition}. If cell is currently burning It becomes empty in the next step (burns out).
@@ -276,7 +274,6 @@ Suggested papers that for Journal Club presentation.
     \item \textcite{ForestFire_Freire2019}
     \item \textcite{ForestFire_Alexandridis2008}
     \item \textcite{ForestFire_Mutthulakshmi2020}
-    
 \end{itemize}
 
 \section{Conclusion}
