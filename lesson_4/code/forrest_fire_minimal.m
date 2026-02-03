@@ -1,13 +1,15 @@
-% Simple, functional version of forrest fire cellular automata
-
-clear, clc
-
 % --- Initiate ---
 area = 160;
 iterations = 500;
 P_ignition = 0.00002;
 P_planting = 0.004;
 grid = zeros(area);
+
+% Colors
+ground = [ 76  66 70] / 255;
+trees  = [118 176 65] / 255;
+fire  =  [228  87 46] / 255;
+colormap([ground;trees;fire]);
 
 % --- Iterate ---
 for i = 1:iterations

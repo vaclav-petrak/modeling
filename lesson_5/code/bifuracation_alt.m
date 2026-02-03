@@ -19,7 +19,7 @@ for i = 1:50 % Iterate to create bifurcation diagram
     hold on; 
         plot(r, x, '.', Color = 'Black', MarkerSize=0.01)
     hold off
-    pause(0.1)
+    pause(1)
     xlim([2.8, 4])
     xlabel("r")
     ylabel("x")
