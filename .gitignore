@@ -1,0 +1,28 @@
+# --- LaTeX Temporary Files ---
+# These are generated every time you compile your .tex files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.bbl
+*.blg
+*.lof
+*.lot
+
+# --- MATLAB / Simulink Noise ---
+# Simulink creates autosaves and code generation folders
+*.asv
+slprj/
+*.slxc
+
+# --- OS / IDE Specific ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
