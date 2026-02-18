@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage[a4paper, margin=1in]{geometry} % Page Geometry
+\usepackage{booktabs} % For professional quality tables
+\usepackage{array}    % For more advanced column formatting
+\usepackage{longtable} % For tables that might span multiple pages
+\usepackage{ragged2e} % For better text alignment (e.g., RaggedRight)
+\usepackage{enumitem} % For customizing lists, if needed later
+\usepackage{amsmath}  % For \text{} in math mode if needed
+\usepackage{amsfonts} % For math fonts, if needed
+\usepackage{amssymb}  % For math symbols, if needed
+
+
+
+\begin{document}
+
+\begin{flushleft} 
+Name: \underline{\hspace{6cm}} \hspace{1.1cm} Date: \underline{\hspace{6cm}} \\ 
+\end{flushleft}
+
+\begin{center}
+\begin{tabular}{@{}l r r r@{}}
+\toprule
+Component & Weight & Score  & Weighted Score \\
+\midrule
+Journal Club Presentation & 0.30 & \underline{\hspace{1.5cm}} & \underline{\hspace{1.5cm}} \\
+Capstone Project & 0.40 & \underline{\hspace{1.5cm}} & \underline{\hspace{1.5cm}} \\
+Code Review Discussion & 0.30 & \underline{\hspace{1.5cm}} & \underline{\hspace{1.5cm}} \\
+\midrule[\heavyrulewidth]
+\textbf{Final Grade} &  & &  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+\hrulefill
+\vspace{1em}
+
+\section{Journal Club Presentation Grading}
+\subsection*{Overall Score for Journal Club: \underline{\hspace{1.5cm}} / 100 points }
+This component is 30\% of the final grade.
+
+\subsubsection*{Presentation Design and Delivery (50\% of Journal Club Grade - Max 50 points)}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endfirsthead
+\caption[]{(Continued) Journal Club: Presentation Design and Delivery} \\
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Design:} The presentation is well-organized and easy to follow. & /10 & \\
+\addlinespace
+\textbf{Timing:} The presenter adhered to the 15-minute presentation format. & /10 & \\
+\addlinespace
+\textbf{Delivery:} Clear and confident speech with appropriate pacing. & /20 & \\
+\addlinespace
+\textbf{Questions:} Convincing response to questions. & /10 & \\
+\midrule
+\textbf{Subtotal (Design \& Delivery)} & \textbf{/50} & \\
+\end{longtable}
+
+\subsubsection*{Content of the Presentation (50\% of Journal Club Grade - Max 50 points)}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endfirsthead
+\caption[]{(Continued) Journal Club: Content of the Presentation} \\
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Introduction:} High-level overview, motivation, research question. & /10 & \\
+\addlinespace
+\textbf{Methods:} Explains experimental approach. & /10 & \\
+\addlinespace
+\textbf{Results:} Key results explained. & /10 & \\
+\addlinespace
+\textbf{Critical evaluation:} Critique, improvements, significance. & /20 & \\
+\midrule
+\textbf{Subtotal (Content)} & \textbf{/50} & \\
+\end{longtable}
+
+\textbf{Overall Comments for Journal Club Presentation:}
+
+\newpage
+\section{Capstone Project Presentation Grading}
+\subsection*{Overall Score for Capstone Project: \underline{\hspace{1.5cm}} / 100 points}
+This component is 40\% of the final grade.
+
+\subsubsection*{Presentation Design and Delivery (50\% of Capstone Grade - Max 50 points)}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endfirsthead
+\caption[]{(Continued) Capstone Project: Presentation Design and Delivery} \\
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Design:} Well-organized and easy to follow. & /10 & \\
+\addlinespace
+\textbf{Plots:} Clear graphical presentation. & /15 & \\
+\addlinespace
+\textbf{Timing:} Adhered to 15-minute format. & /5 & \\
+\addlinespace
+\textbf{Delivery:} Clear and confident speech. & /15 & \\
+\addlinespace
+\textbf{Questions:} Convincing response. & /5 & \\
+\midrule
+\textbf{Subtotal (Design \& Delivery)} & \textbf{/50} & \\
+\end{longtable}
+
+
+\subsubsection*{Model Implementation (50\% of Capstone Grade - Max 50 points)}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endfirsthead
+\caption[]{(Continued) Capstone Project: Model Implementation} \\
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\textbf{Correctness:} Correct function of fundamental models. & /15 & \\
+\addlinespace
+\textbf{Understanding:} Demonstrated understanding of core concepts. & /15 & \\
+\addlinespace
+\textbf{Extension beyond core:} Successful and meaningful implementation. & /10 & \\
+\addlinespace
+\textbf{Discussion:} Insightful discussion on parameters/outcomes. & /10 & \\
+\midrule
+\textbf{Subtotal (Model Implementation)} & \textbf{/50} & \\
+\end{longtable}
+
+\textbf{Overall Comments for Capstone Project Presentation:}
+
+\newpage
+\section{Code Review Discussion Grading}
+\subsection*{Overall Score for Code Review: \underline{\hspace{1.5cm}} / 100 points}
+This component is 30\% of the final grade.
+
+\subsubsection*{Readability and Maintainability (20\% of Code Review Grade - Max 20 points)}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endfirsthead
+\caption[]{(Continued) Code Review: Readability and Maintainability} \\
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Clean, well-formatted, easy to follow code. & /5 & \\
+\addlinespace
+Consistent naming conventions and style. & /5 & \\
+\addlinespace
+Logical organization. & /5 & \\
+\addlinespace
+Sufficient and meaningful comments. & /5 & \\
+\midrule
+\textbf{Subtotal (Readability \& Maintainability)} & \textbf{/20} & \\
+\end{longtable}
+
+\subsubsection*{Code Understanding (80\% of Code Review Grade - Max 80 points)}
+\begin{longtable}{@{}>{\RaggedRight\arraybackslash}p{0.5\textwidth} >{\centering\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.25\textwidth}@{}}
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endfirsthead
+\caption[]{(Continued) Code Review: Code Understanding} \\
+\toprule
+Criteria & Score (Max) & Comments \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Ability to explain how any part of the code works. & /30 & \\ 
+\addlinespace
+Ability to clearly articulate design decisions and justify coding choices. & /30 & \\
+\addlinespace
+Ability to suggest improvements, extensions or alternatives. & /20 & \\ 
+\midrule
+\textbf{Subtotal (Code Understanding)} & \textbf{/80} & \\
+\end{longtable}
+
+\textbf{Overall Comments for Code Review Discussion:}
+
+
+
+\end{document}
