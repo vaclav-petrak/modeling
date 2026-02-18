@@ -1,0 +1,132 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{assignment}[2026/02/03 Course Assignment Theme]
+
+% =============================================
+% 1. COLORS
+% =============================================
+\RequirePackage{xcolor}
+
+% Theme Colors
+\definecolor{SlateDarkBlue}{HTML}{2C3E50}
+\definecolor{SlateRed}{HTML}{E74C3C}
+\definecolor{SlateLightBlue}{HTML}{3498DB}
+\definecolor{SlateBg}{HTML}{F5F7FA}
+\definecolor{SlateGrey}{HTML}{333333}
+
+% Code Highlighting Colors (High Contrast for Light Mode)
+\definecolor{CodeBg}{HTML}{F5F7FA}          % Ice White (Very light grey background)
+\definecolor{CodeFg}{HTML}{24292E}          % Dark Grey (Standard code text)
+\definecolor{CodeKey}{HTML}{D32F2F}         % Deep Red (Keywords like 'if', 'for')
+\definecolor{CodeStr}{HTML}{2E7D32}         % Forest Green (Strings)
+\definecolor{CodeCom}{HTML}{7F8C8D}         % Slate Grey (Comments)
+\definecolor{CodeFunc}{HTML}{005CC5}        % Strong Blue (Functions/Variables)
+
+% =============================================
+% 2. ESSENTIAL PACKAGES & BIBLIOGRAPHY
+% =============================================
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+
+% Math
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+
+% Graphics & Tables
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}
+
+% Bibliography
+\RequirePackage[
+    backend=biber,
+    style=authortitle,
+    citestyle=authortitle,
+    hyperref=true
+]{biblatex}
+
+% =============================================
+% 3. FONTS
+% =============================================
+\RequirePackage[sfdefault]{FiraSans} 
+\RequirePackage{FiraMono}            
+
+% =============================================
+% 4. PAGE LAYOUT & HEADERS
+% =============================================
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\renewcommand{\headrule}{\hbox to\headwidth{\color{SlateDarkBlue}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{SlateDarkBlue}\leaders\hrule height \footrulewidth\hfill}}
+
+\fancyhead[L]{\textcolor{SlateDarkBlue}{\textbf{Modeling and Simulation}}}
+\fancyhead[R]{\textcolor{SlateGrey}{FBME CTU}}
+\fancyfoot[L]{\textcolor{SlateGrey}{Capstone Project}}
+\fancyfoot[R]{\textcolor{SlateDarkBlue}{Page \thepage\ of \pageref{LastPage}}}
+
+% =============================================
+% 5. HEADINGS
+% =============================================
+\RequirePackage{titlesec}
+
+\titleformat{\section}
+  {\color{SlateDarkBlue}\normalfont\Large\bfseries}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\color{SlateLightBlue}\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+% =============================================
+% 6. CODE LISTINGS (Fixed Highlighting)
+% =============================================
+\RequirePackage{listings}
+\RequirePackage{caption}
+
+% Caption Style
+\DeclareCaptionFont{SlateDarkBlue}{\color{SlateDarkBlue}}
+\captionsetup{labelfont={bf,SlateDarkBlue},font={small}}
+
+\lstdefinestyle{SlateAssignment}{
+    language=Matlab,                % Default to Matlab
+    backgroundcolor=\color{CodeBg},
+    basicstyle=\ttfamily\small\color{CodeFg},
+    commentstyle=\color{CodeCom}\itshape,
+    keywordstyle=\color{CodeKey}\bfseries,
+    stringstyle=\color{CodeStr},
+    identifierstyle=\color{CodeFunc}, % Colors variables/functions
+    numberstyle=\tiny\color{gray},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=t,
+    keepspaces=true,
+    numbers=left,
+    numbersep=10pt,
+    frame=none,
+    xleftmargin=0.5cm,
+    xrightmargin=0.5cm,
+    aboveskip=1.5em,
+    belowskip=1.5em,
+    showstringspaces=false,
+    morekeywords={ylim, xlim}       % Add extra Matlab keywords here
+}
+
+\lstset{style=SlateAssignment}
+
+% =============================================
+% 7. HYPERLINKS
+% =============================================
+\RequirePackage[
+    colorlinks=true,
+    linkcolor=SlateDarkBlue,
+    citecolor=SlateLightBlue,
+    urlcolor=SlateRed
+]{hyperref}
+
+\endinput

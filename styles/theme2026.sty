@@ -1,0 +1,163 @@
+\ProvidesPackage{beamerthemeAlgorithmicSlate}
+
+% =============================================
+% 1. COLOR DEFINITIONS
+% =============================================
+\RequirePackage{xcolor}
+
+% --- THEME PALETTE (Algorithmic Slate) ---
+% We define the raw HEX codes first
+\definecolor{SlateDarkBlue}{HTML}{2C3E50}   % Midnight Blue
+\definecolor{SlateRed}{HTML}{E74C3C}        % Data Red
+\definecolor{SlateLightBlue}{HTML}{3498DB}  % Simulation Blue
+\definecolor{SlateWhite}{HTML}{F5F7FA}      % Ice White
+\definecolor{SlateGrey}{HTML}{333333}       % Dark Grey
+\definecolor{CodeBg}{HTML}{282C34}          % One Dark (Code BG)
+\definecolor{CodeFg}{HTML}{ABB2BF}          % Code Text
+
+% --- MAPPING TO YOUR NAMES (The Fix) ---
+% This maps your existing variables (primary, secondary) to the new palette.
+\colorlet{primary}{SlateDarkBlue}
+\colorlet{secondary}{SlateRed}
+\colorlet{accent}{SlateLightBlue}
+\colorlet{neutral}{SlateGrey}
+\colorlet{background}{SlateWhite}
+\colorlet{background-light}{white} % For inside blocks
+\colorlet{dark}{black}
+
+% =============================================
+% 2. BEAMER COLOR SETTINGS
+% =============================================
+
+% Global Structure
+\setbeamercolor{structure}{fg=primary}
+\setbeamercolor{normal text}{fg=neutral, bg=background}
+\setbeamercolor{background canvas}{bg=background}
+
+% Titles
+\setbeamercolor{title}{fg=white, bg=primary}
+\setbeamercolor{frametitle}{fg=white, bg=primary}
+\setbeamercolor{section in head/foot}{fg=white, bg=primary}
+
+% Blocks
+\setbeamercolor{block title}{fg=white, bg=primary}
+\setbeamercolor{block body}{fg=neutral, bg=white}
+
+\setbeamercolor{block title alerted}{fg=white, bg=secondary}
+\setbeamercolor{block body alerted}{fg=neutral, bg=white}
+
+\setbeamercolor{block title example}{fg=white, bg=accent}
+\setbeamercolor{block body example}{fg=neutral, bg=white}
+
+% Items
+\setbeamercolor{itemize item}{fg=primary}
+\setbeamercolor{itemize subitem}{fg=accent}
+\setbeamercolor{itemize subsubitem}{fg=secondary}
+\setbeamercolor{enumerate item}{fg=primary}
+
+% Hyperlinks
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    citecolor=accent,
+    urlcolor=accent
+}
+
+% =============================================
+% 3. FONTS & TYPOGRAPHY
+% =============================================
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+
+% Use Fira fonts as a match for the website style
+\usepackage[sfdefault]{FiraSans} 
+\usepackage{FiraMono}            
+
+% Better spacing for lists
+\let\olditemize\itemize
+\renewcommand{\itemize}{
+  \olditemize
+  \setlength{\itemsep}{0.6em}
+}
+
+% =============================================
+% 4. CODE LISTINGS (Dark Mode)
+% =============================================
+\usepackage{listings}
+% If you use matlab-prettifier, we override its colors here
+\lstdefinestyle{SlateStyle}{
+    backgroundcolor=\color{CodeBg},
+    basicstyle=\ttfamily\footnotesize\color{CodeFg},
+    commentstyle=\color{accent}\itshape,
+    keywordstyle=\color{secondary}\bfseries,
+    numberstyle=\tiny\color{gray},
+    stringstyle=\color{green!70!black},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=10pt,
+    frame=none, 
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=10pt,
+    framexrightmargin=10pt,
+    framextopmargin=6pt,
+    framexbottommargin=6pt
+}
+
+\lstset{style=SlateStyle}
+
+% =============================================
+% 5. MATH & PLOTS
+% =============================================
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Define a custom cycle list using the mapped names
+\pgfplotscreateplotcyclelist{slateCycle}{
+    {primary, thick},
+    {secondary, thick},
+    {accent, thick},
+    {gray, thick}
+}
+\pgfplotsset{
+    cycle list name=slateCycle,
+    every axis/.append style={
+        font=\sffamily,
+        grid=major,
+        grid style={white},
+        axis background/.style={fill=white},
+        tick label style={font=\footnotesize},
+        label style={font=\small}
+    }
+}
+
+% =============================================
+% 6. LAYOUT & TEMPLATES
+% =============================================
+
+% Clean bullets
+\setbeamertemplate{itemize item}[square]
+\setbeamertemplate{itemize subitem}[circle]
+
+% Section Separator Slide
+\AtBeginSection[]{
+  {
+    \setbeamercolor{background canvas}{bg=primary} 
+    \setbeamertemplate{navigation symbols}{}
+    \begin{frame}[plain]
+    \vfill
+    \centering
+    \usebeamerfont{title}\huge\color{white}\insertsectionhead\par%
+    \vfill
+    \end{frame}
+  }
+}
+
+\endinput
