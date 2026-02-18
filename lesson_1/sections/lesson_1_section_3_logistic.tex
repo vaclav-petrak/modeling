@@ -1,13 +1,13 @@
-\section{Section 3: Logistics Growth Model}
+\section{Section 3: Logistic Growth Model}
 \subsection{Background}
 \begin{frame}{Logistic growth}
-    The \textbf{logistic growth model represents how populations change over time when resources imitated}.  The logistic model incorporates a carrying capacity—the maximum population size a specific environment can sustainably support.
+    The \textbf{logistic growth model represents how populations change over time when resources are limited}. The logistic model incorporates a carrying capacity—the maximum population size a specific environment can sustainably support.
 \pause
 \vfill
 \textbf{Key Concepts}
 
 \begin{itemize}
-    \item \textbf{Carrying Capacity ($K$)}: A ceiling that limits population growth due to limited resources  (food, space, water, etc.)
+    \item \textbf{Carrying Capacity ($K$)}: A ceiling that limits population growth due to limited resources (food, space, water, etc.).
     \pause
     \item \textbf{Intrinsic Growth Rate ($r$)}: The rate at which a population would grow if there were unlimited resources.
     \pause
@@ -25,7 +25,7 @@ Differential equation of logistic growth
 \pause
 Iterative Form:
 \begin{equation*}
- P(t_{i+1}) = P(t_i) + rP(t_i)\left(1 - \frac{P_t}{K}\right) \Delta t
+ P(t_{i+1}) = P(t_i) + rP(t_i)\left(1 - \frac{P(t_i)}{K}\right) \Delta t
 \end{equation*}
 \pause
 Explicit solution
@@ -37,11 +37,11 @@ where
 \begin{itemize}
     \item $P(t_i)$ is the population at time $t_i$
     \pause
-    \item $P_0$ is initial population
+    \item $P_0$ is the initial population
     \pause
     \item $r$ is the growth rate
     \pause
-    \item $K$ is carrying capacity
+    \item $K$ is the carrying capacity
     \pause
     \item $t$ is time, $\Delta t$ is the time step
 \end{itemize}
@@ -50,22 +50,22 @@ where
 
 \begin{frame}[t]{Logistic growth of population over time}
 \begin{center}
-    \includegraphics[scale = 0.11]{lesson_1/images/logistic_model_curve.png}
+    \includegraphics[scale = 0.11]{images/logistic_model_curve.png}
 \end{center}
 \end{frame}
 
 \begin{frame}{Example --- French and English railway construction}
 \small
-    \includegraphics[scale = 0.3]{lesson_1/images/logistic_model_railroad_curve.png}
-    \includegraphics[scale = 0.2]{lesson_1/images/logistic_model_railroad.png}
+    \includegraphics[scale = 0.3]{images/logistic_model_railroad_curve.png}
+    \includegraphics[scale = 0.2]{images/logistic_model_railroad.png}
     \pause
 \textbf{Topics for discussion}
     \begin{itemize}
-        \item Why do you think that the French railway construction follows logistic growth but English does not? 
+        \item Why do you think that the French railway construction follows logistic growth but the English does not? 
         \pause
         \item How would you explain \textbf{carrying capacity} in the context of railroad construction?
         \pause
-        \item What may affect carrying capacity for railways? Is the capacity it constant or dynamic? 
+        \item What may affect the carrying capacity for railways? Is the capacity constant or dynamic? 
     \end{itemize}
 \end{frame}
 
@@ -78,31 +78,32 @@ Differential equation of logistic growth
 \vfill
 \textbf{Let’s explore the equation}
 \begin{itemize}
-    \item Try to figure out how  carrying capacity affects the population growth. Try different combinations of P an K. 
+    \item Try to figure out how the carrying capacity affects population growth. Try different combinations of P and K. 
     \pause
-    \item What are equilibria solutions where there is no population growth? 
+    \item What are the equilibrium solutions where there is no population growth? 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Derivation of Equilibrium Solutions:}
+\begin{frame}{Derivation of Equilibrium Solutions}
 \small
 To find equilibrium solutions, we set $\frac{dP}{dt} = 0$:
 \begin{equation*}
    0 = rP \left(1 - \frac{P}{K}\right) 
 \end{equation*}
     \pause
-This equation is satisfied when either
+This equation is satisfied when either:
 \begin{itemize}
-    \item  Population is zero \begin{equation*}
+    \item  The population is zero 
+\begin{equation*}
    P = 0
 \end{equation*}
     \pause
-\item Growth rate is  zero 
+\item The growth rate is zero 
 \begin{equation*}
    r = 0
 \end{equation*}
     \pause
-\item Population size equals carrying capacity 
+\item The population size equals the carrying capacity 
 \begin{equation*}
  \begin{aligned}
    1 - \frac{P}{K} = 0 \\
@@ -117,39 +118,37 @@ This equation is satisfied when either
 \begin{frame}{History}
 \small
     \begin{itemize}
-    \item \textbf{Pierre Verhulst}: A Belgian mathematician first proposed the logistic model in the 1830s and 1840s. His model sought to refine the exponential population growth model of Malthus.
+    \item \textbf{Pierre Verhulst}: A Belgian mathematician who first proposed the logistic model in the 1830s and 1840s. His model sought to refine the exponential population growth model of Malthus.
         \pause
-    \item  Verhulst got inspiration from the concept of intraspecific competition —-- the idea that as populations get larger, individuals compete more intensely for limited resources.
+    \item  Verhulst got inspiration from the concept of intraspecific competition—the idea that as populations get larger, individuals compete more intensely for limited resources.
         \pause
-    \item The  equation was published after Verhulst had read Thomas Malthus' \textit{An Essay on the Principle of Population}.
+    \item This equation was published after Verhulst had read Thomas Malthus' \textit{An Essay on the Principle of Population}.
     \end{itemize}
     \begin{center}
-    \includegraphics[scale = 0.15]{lesson_1/images/logistic_model_verhulst.jpg}
+    \includegraphics[scale = 0.15]{images/logistic_model_verhulst.jpg}
     \hspace{1em}
-    \includegraphics[scale = 0.2]{lesson_1/images/logistic_model_historical.png}
-           \textit{Pierre Verhulst and the first plot of logistic growth curve}
+    \includegraphics[scale = 0.2]{images/logistic_model_historical.png}
+           \textit{Pierre Verhulst and the first plot of the logistic growth curve}
     \end{center}
 \end{frame}
 
 \begin{frame}{The logistic growth model has extensive applications}
 
 \begin{itemize}
-    \item \textbf{Biology} : Used extensively in modeling animal, plant and bacterial population growth
+    \item \textbf{Biology}: Used extensively in modeling animal, plant, and bacterial population growth.
     \pause
-    \item \textbf{Epidemiology and medicine}: Helps analyze how diseases spread within a population or growth of tumor.
+    \item \textbf{Epidemiology and medicine}: Helps analyze how diseases spread within a population or tumor growth.
     \pause
-    \item \textbf{Economics}: Model of market adoption of new products or technologies --- a diffusion of innovation
+    \item \textbf{Economics}: Modeling market adoption of new products or technologies—a diffusion of innovation.
     \pause
-    \item \textbf{Linguistics}: an innovation that is at first marginal begins to spread more quickly with time, and then more slowly as it becomes more universally adopted.
+    \item \textbf{Linguistics}: An innovation that is at first marginal begins to spread more quickly with time, and then more slowly as it becomes more universally adopted.
     \pause
-    \item \textbf{Statistics and machine learning} Logistic functions are often used in artificial neural networks to introduce nonlinearity in the model --- but it is mostly for the shape. 
+    \item \textbf{Statistics and machine learning}: Logistic functions are often used in artificial neural networks to introduce nonlinearity in the model—but it is mostly for the shape. 
 \end{itemize}
 
 \end{frame}
 
 \subsection{Exercise}
-
-
 
 \begin{frame}{Tasks overview}
 \footnotesize
@@ -157,21 +156,21 @@ This equation is satisfied when either
     \item Numerically solve the logistic growth equation and plot:
     \begin{itemize}
     \footnotesize
-        \item Population size vs time
-        \item Population increase vs time
-        \item Per capita growth rate vs population size
-        \item Population increase vs population size
+        \item Population size vs. time
+        \item Population increase vs. time
+        \item Per capita growth rate vs. population size
+        \item Population increase vs. population size
     \end{itemize}
     \pause
-    \item Adjust the appearance of the plot
+    \item Adjust the appearance of the plot:
     \begin{itemize}
     \footnotesize
-        \item Add plot title and axis labels 
+        \item Add a plot title and axis labels 
         \item Change line thickness and appearance
-        \item Experiment with other changes.
+        \item Experiment with other changes
     \end{itemize}
     \pause
-    \item Experiment with model parameters
+    \item Experiment with model parameters:
         \begin{itemize}
         \footnotesize
             \item Try to increase the initial population over the capacity of the environment
@@ -180,19 +179,19 @@ This equation is satisfied when either
 \end{enumerate}
 
 \tiny
-\textsuperscript{*}\textit{For the population model of the USA, set step size to 1 month, the initial population size to 5.2 million in 1790,the growth rate to 0.0237, and the capacity of the environment to 460 million.}
+\textsuperscript{*}\textit{For the population model of the USA, set the step size to 1 month, the initial population size to 5.2 million in 1790, the growth rate to 0.0237, and the capacity of the environment to 460 million.}
 \end{frame}
 
 \begin{frame}[fragile]{Solution 3.1: Logistic growth model} 
 \only<1>{
 \tiny
 \vfill
-\lstinputlisting
-{lesson_1/code/task_3_1_logistic_growth.m}
+\lstinputlisting[language=Python]
+{code/task_3_1_logistic_growth.py}
 }
 \only<2>{
 \begin{center}
-   \includegraphics[scale = 0.35]{lesson_1/images/task_3_1_logistic_growth.png}  
+   \includegraphics[scale = 0.35]{images/task_3_1_logistic_growth.png}  
 \end{center}
 }
 \end{frame}
@@ -201,12 +200,12 @@ This equation is satisfied when either
 \only<1>{
 \vfill
 \tiny
-\lstinputlisting
-{lesson_1/code/task_3_2_logistic_growth_plot.m}
+\lstinputlisting[language=Python]
+{code/task_3_2_logistic_growth_plot.py}
 }
 \only<2>{
 \begin{center}
-    \includegraphics[scale = 0.35]{lesson_1/images/task_3_2_logistic_growth.png} 
+    \includegraphics[scale = 0.35]{images/task_3_2_logistic_growth.png} 
 \end{center}
 
 }
@@ -216,14 +215,13 @@ This equation is satisfied when either
 \only<1>{
 \vfill
 \tiny
-\lstinputlisting
-{lesson_1/code/task_3_3_logistic_growth_usa.m}
+\lstinputlisting[language=Python]
+{code/task_3_3_logistic_growth_usa.py}
 }
 \only<2>{
 \begin{center}
-    \includegraphics[scale = 0.35]{lesson_1/images/task_3_3_logistic_usa.png} 
+    \includegraphics[scale = 0.35]{images/task_3_3_logistic_usa.png} 
 \end{center}
 
 }
 \end{frame}
-

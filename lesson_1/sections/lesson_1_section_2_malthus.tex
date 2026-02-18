@@ -1,29 +1,28 @@
 \section{Section 2: Malthusian Growth Model}
 \subsection{Background}
 
-
 \begin{frame}{Malthusian Growth Model}
 \begin{columns}
     \begin{column}{0.6\textwidth}
         \begin{itemize}
     \item The Malthusian growth model is a mathematical model of population growth.
-   \item It is essentially exponential growth of population.
-   \item The model is named after Thomas  Malthus, who wrote \textit{An Essay on the Principle of Population} (1798), one of the first and most influential books on population.
+   \item It essentially describes exponential population growth. [Image of exponential growth curve]
+   \item The model is named after Thomas Malthus, who wrote \textit{An Essay on the Principle of Population} (1798), one of the first and most influential books on population dynamics.
   \end{itemize}
     \end{column}
 
     \begin{column}{0.4\textwidth}
     \includegraphics[scale = 0.08]
-    {lesson_1/images/malthus_portrait.jpg}
-       Thomas Robert Malthus 1766 - 1834, an English economist and scholar.
+    {images/malthus_portrait.jpg}
+       Thomas Robert Malthus (1766 - 1834), an English economist and scholar.
     \end{column}
 \end{columns}
 \end{frame}
   
-\begin{frame}{Key assumption of  Thomas Malthus}
+\begin{frame}{Key assumptions of Thomas Malthus}
 \begin{itemize}
     \item \textbf{Population grows exponentially when resources are abundant.}
-    \item Mathus further thought that Agricultural production increases linearly.
+    \item Malthus further assumed that agricultural production increases only linearly (arithmetically). [Image of Malthusian catastrophe graph showing exponential population vs linear resources]
     \item Population growth is limited by available resources and can be reduced by famine, disease, or war.
 \end{itemize}
 \vfill
@@ -31,15 +30,15 @@
 
 %\pause
 \begin{block}{Malthusian Catastrophe}
-A situation where population exceeds the agricultural production of its environment. Results in severe consequences like poverty, famine, disease, and war. Malthus believed a Malthusian catastrophe was inevitable unless population growth was controlled
+A situation where the population exceeds the agricultural production of its environment. This results in severe consequences like poverty, famine, disease, and war. Malthus believed a Malthusian catastrophe was inevitable unless population growth was controlled.
 \end{block}
 \end{frame}
 
 
-\begin{frame}{Malthus, Darwin and Natural Selection }
+\begin{frame}{Malthus, Darwin, and Natural Selection}
     \begin{itemize}
-        \item Before reading Malthus, Darwin had thought that living things reproduced just enough individuals to keep populations stable
-        \item Malthus helped him  to realize that as populations bred beyond their means, advantageous traits become more prevalent due to  competition for resources
+        \item Before reading Malthus, Darwin thought that living things reproduced just enough individuals to keep populations stable.
+        \item Malthus helped him realize that as populations breed beyond their means, advantageous traits become more prevalent due to competition for resources.
         \item This led to the development of the theory of natural selection.
 \end{itemize}
 \vfill
@@ -47,7 +46,7 @@ A situation where population exceeds the agricultural production of its environm
 
 \footnotesize
 \begin{center}
-    \textit{In October 1838, that is fifteen months after I had begun my systematic enquiry, I happened to read for amusement Malthus on Population, and being well prepared to appreciate the struggle for existence which everywhere goes on from long-continued observation of the habits of animals and plants, \textbf{it at once struck me that under these circumstances favourable variations would tend to be preserved, and unfavourable ones to be destroyed.} The result of this would be the formation of a new species.
+    \textit{"In October 1838... I happened to read for amusement Malthus on Population, and being well prepared to appreciate the struggle for existence... \textbf{it at once struck me that under these circumstances favourable variations would tend to be preserved, and unfavourable ones to be destroyed.} The result of this would be the formation of a new species."
     \newline
     --- Charles Darwin
     }
@@ -55,33 +54,29 @@ A situation where population exceeds the agricultural production of its environm
 \end{center}
 \end{frame}
 
-\begin{frame}{Neo-Malthusianism:}
+\begin{frame}{Neo-Malthusianism}
 \small
 \begin{columns}
     \begin{column}{0.7\textwidth}
         \begin{itemize}
-    \item A revival of Malthusian concerns in the 20\textsuperscript{th}  century, often focused on environmental limits.
+    \item A revival of Malthusian concerns in the 20\textsuperscript{th} century, often focused on environmental limits.
 \item Neo-Malthusians advocate for population control due to concerns about overpopulation, resource depletion, and environmental degradation.
-\item Widely discussed in 1960s, examples is Paul Ehrlich's book \textit{The Population Bomb} (1968)
+\item Widely discussed in the 1960s; a famous example is Paul Ehrlich's book \textit{The Population Bomb} (1968).
 \item Their influence can be seen in family planning initiatives and advocacy for sustainability.
 \item Modern environmentalism acknowledges the impact of population growth on resource use, pollution, and environmental strain.
 \end{itemize}
     \end{column}
         \begin{column}{0.3\textwidth}
-        \includegraphics{lesson_1/images/malthus_population_bomb.jpg}
+        \includegraphics[scale = 0.3]{images/malthus_population_bomb.jpg}
         
     \end{column}
 \end{columns}
-
-
-
-
 \end{frame}
 
 
 \begin{frame}{Malthusian Growth Model Equation}
 
- Change in population $dP/dt$ is proportional to the current population size $P$ at time $t$. Parameter $r$ is the intrinsic rate of increase. It is difference between birth rate and death rate. 
+The change in population $dP/dt$ is proportional to the current population size $P$ at time $t$. The parameter $r$ is the intrinsic rate of increase (the difference between birth rate and death rate).
     \begin{align*}
     \frac{dP}{dt} &= rP
   \end{align*}
@@ -89,9 +84,9 @@ A situation where population exceeds the agricultural production of its environm
 %\pause
 
 To solve the differential equation, we separate the variables.
- We move terms with $P$ to one side and terms with $t$ to the other side.
+We move terms with $P$ to one side and terms with $t$ to the other side.
     \begin{align*}
-    \frac{dP}{P} &= rdt
+    \frac{dP}{P} &= r dt
   \end{align*}
 \end{frame}
 
@@ -105,65 +100,62 @@ We integrate both sides of the equation. Integration introduces a constant of in
   \end{align*}
 
 %\pause
- We exponentiate both sides. We remove the absolute value as the population size always is positive, 
+We exponentiate both sides. We remove the absolute value as the population size is always positive.
 \begin{align*}
-e^{\ln|P|} = e^{rt + C}  \\
-P = e^{rt + C}  
+e^{\ln P} &= e^{rt + C}  \\
+P &= e^{C} e^{rt}  
 \end{align*}
 %\pause
-The  integration constant $C$ represents initial population $P_0$. Substitution leads to the final explicit form
+The integration constant $e^C$ represents the initial population $P_0$. Substitution leads to the final explicit form:
 \begin{align*}
     P(t) &= P_0 e^{rt} 
   \end{align*}
 \end{frame}
 
-\begin{frame}[t]{Numerical vs explicit solution}
+\begin{frame}[t]{Numerical vs Explicit Solution}
   
-
 \begin{itemize}
-
-    \item   Numerical and explicit solutions are two methods used to solve mathematical problems in modeling and simulation.
+    \item Numerical and explicit solutions are two methods used to solve mathematical problems in modeling and simulation.
         
     \vspace{1em}
     
     \only<1>{
-    \item  \textbf{Explicit solution} is based on an mathematical \textbf{exact} solution using algebraic equations. 
+    \item \textbf{Explicit (Analytical) Solution}: A mathematically \textbf{exact} solution expressed as a formula.
     \begin{itemize}
     \color{positive}
-        \item  Provide a precise solution 
-        \item Often allow for a deeper understanding of the underlying mathematical principles
+        \item Provides a precise value for any time $t$.
+        \item Often allows for a deeper understanding of the underlying mathematical relationships.
     \color{negative}
-        \item It can be very difficult or impossible to find explicit solution for more complex problems
+        \item It can be very difficult or impossible to find explicit solutions for complex, non-linear problems.
     \end{itemize}
     }
     \only<2>{
-    \item \textbf{Numerical solution} use \textbf{iterative methods to approximate} a solution using numerical calculations.
+    \item \textbf{Numerical Solution}: Uses \textbf{iterative methods to approximate} a solution using computational steps. [Image of Euler method steps visualization]
 
        \begin{itemize}
         \color{positive}
-        \item  Allow solving a wider range of problems. 
-        \item  Useful for problems that are difficult or impossible to solve explicitly
+        \item Allows solving a much wider range of complex problems (e.g., where parameters change over time).
         \color{negative}
-        \item Solutions are only approximate
-        \item Solutions can be affected by calculation errors
-        \item  Difficult to validate without explicit solutions or real-world data for comparison
+        \item Solutions are only approximate.
+        \item Solutions can be affected by cumulative calculation errors (discretization error).
+        \item Difficult to validate without real-world data or an explicit solution for comparison.
     \end{itemize}}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Numerical vs explicit solution for Malthusian growth}
+\begin{frame}{Numerical vs Explicit Solution for Malthusian Growth}
 \footnotesize
 
 \begin{columns}
     \begin{column}{0.45\textwidth}
-       \textbf{explicit Solution}
+       \textbf{Explicit Solution}
        
-       Calculation using formula:
+       Calculation using the formula:
        \begin{equation*}
     P(t) = P_0 e^{rt} 
   \end{equation*}
 
-  where 
+  Where:
 \begin{itemize}
     \item $P_0$ is the initial population at time $0$
     \item $r$ is the growth rate
@@ -179,28 +171,27 @@ The  integration constant $C$ represents initial population $P_0$. Substitution 
   \hspace{1em}
 
     \begin{column}{0.45\textwidth}
-   \textbf{Equation for numerical solution:}  
+   \textbf{Numerical Solution (Euler's Method):}  
    \begin{equation*}
-   \frac{dP}{dt} = rP 
+   \frac{dP}{dt} \approx \frac{\Delta P}{\Delta t}
 \end{equation*}
 
 \vspace{1em}
-  Solution by Euler's Method:
+  Algorithm:
  \begin{enumerate}
-     \item  \textbf{Discretization:}
+     \item \textbf{Discretization:}
      \begin{equation*}
-         t_i = i \Delta t
+         t_{i+1} = t_i + \Delta t
      \end{equation*}
-        \item  \textbf{Iteration:}
+        \item \textbf{Iteration (Update Rule):}
      \begin{equation*}
-         P(t_{i+1}) = P(t_i) + rP(t_i) \Delta t
+         P(t_{i+1}) = P(t_i) + r P(t_i) \Delta t
      \end{equation*}
  \end{enumerate}
-where 
+Where:
 \begin{itemize}
-    \item $P(t_i)$ is the population at time $t_i$
-    \item $r$ is the growth rate
-    \item $\Delta t$ is the time step
+    \item $P(t_i)$ is the population at time step $i$
+    \item $\Delta t$ is the time step size
 \end{itemize}
     \end{column}
 \end{columns}
@@ -211,28 +202,28 @@ where
 
 \subsection{Exercises}
 
-\begin{frame}{Task 2.1:  Population at discrete times}
+\begin{frame}{Task 2.1: Population at discrete times}
         
 \begin{columns}
     \begin{column}{0.6\textwidth}
-Calculate population at certain times of interest using explicit formula. 
+Calculate population at certain times of interest using the explicit formula.
 \begin{itemize}
-\item Initial population size: 2.5 million
-\item Yearly growth rate: 2.7\%
-\item Equation $P(t) = P_0 e^{rt} $ 
-\item Time in years :
+\item Initial population size ($P_0$): 2.5 million
+\item Yearly growth rate ($r$): 2.7\%
+\item Equation: $P(t) = P_0 e^{rt} $ 
+\item Time in years ($t$):
     \begin{itemize}
         \item 1 
         \item 5
         \item 7.6
         \item 25.78
     \end{itemize}
-\item Note: Population size and growth rate correspond to population of Senegal in 1950.
+\item Note: Population size and growth rate correspond to the population of Senegal in 1950.
 \end{itemize}
     \end{column}
 
     \begin{column}{0.4\textwidth}
-    \includegraphics[scale = 0.2]{lesson_1/images/malthusian_senegal.jpeg}
+    \includegraphics[scale = 0.2]{images/malthusian_senegal.jpeg}
 \end{column}
 \end{columns}
 
@@ -242,51 +233,45 @@ Calculate population at certain times of interest using explicit formula.
 \begin{frame}[fragile]{Solution 2.1: Population at discrete times}
 
 \small
-\lstinputlisting{lesson_1/code/task_2_1_malthusian_explicit_discrete.m}
+\lstinputlisting[language=Python]{code/task_2_1_malthusian_explicit_discrete.py}
 \end{frame}
 
 \begin{frame}[fragile]{Solution 2.1: Population at discrete times}
 \begin{itemize}
     \item The results show population size at times of 1, 5, 7.5, and 25.78 years.
-    \item The explicit solution allows us to easily calculate population predictions at any given time.  
+    \item The explicit solution allows us to easily calculate population predictions at any given specific time without iterating.
 \end{itemize}
 
 \vfill 
 \small
 \begin{lstlisting}
 Years of interest:
-    1.0000    5.0000    7.5000   25.7800
-Calculated population size:
-    2.5684    2.8613    3.0612    5.0146
-\end{lstlisting}
-
-\vfill
-Note: this line leads to the same result, but it is much better to maintain your code well organized. 
-\begin{lstlisting}
-2.5*exp(0.027*[1,5,7.5,25.78])
+    [1, 5, 7.5, 25.78]
+Calculated population size (Millions):
+    [2.568, 2.861, 3.061, 5.014]
 \end{lstlisting}
 
 \end{frame}
 
 
-\begin{frame}{Task 2: Continuous modeling with explicit solution }
+\begin{frame}{Task 2.2: Continuous modeling with explicit solution}
 \begin{itemize}
-    \item The population has same parameters as in Task 1
-    \item Calculate population for the next 70 years 
+    \item The population has the same parameters as in Task 2.1.
+    \item Calculate the population for the next 70 years.
     \item The time step is 1 year.
     \item Plot the results.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Solution 2.2: Continuous modeling with explicit solution } 
+\begin{frame}[fragile]{Solution 2.2: Continuous modeling with explicit solution} 
 \only<1>{
 \footnotesize
-\lstinputlisting{lesson_1/code/task_2_2_malthusian_explicit.m}
+\lstinputlisting[language=Python]{code/task_2_2_malthusian_explicit.py}
 }
 \only<2>{
-    Population increase exponentially. 
+    Population increases exponentially.
     \begin{center}
-    \includegraphics[scale = 0.35]{lesson_1/images/task_2_2_malthusian_explicit.png}  
+    \includegraphics[scale = 0.35]{images/task_2_2_malthusian_explicit.png}  
     \end{center}
     }
 \end{frame}
@@ -294,22 +279,22 @@ Note: this line leads to the same result, but it is much better to maintain your
 
 
 
-\begin{frame}{Task 2.3: Numerical approach }
+\begin{frame}{Task 2.3: Numerical approach}
     \begin{itemize}
-        \item  Use numerical approach to calculate population for 0 to 70 years 
+        \item Use the numerical approach (Euler's method) to calculate population from year 0 to 70.
         \item The time step should be 1 year.
-        \item  Plot the result.
+        \item Plot the result.
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Solution 2.3:  Numerical approach } 
+\begin{frame}[fragile]{Solution 2.3: Numerical approach} 
 \only<1>{
 \footnotesize
-\lstinputlisting{lesson_1/code/task_2_3_malthusian_numerical.m}
+\lstinputlisting[language=Python]{code/task_2_3_malthusian_numerical.py}
 }
 \only<2>{
 \begin{center}
-\includegraphics[scale = 0.35]{lesson_1/images/task_2_3_malthusian_numerical.png}  
+\includegraphics[scale = 0.35]{images/task_2_3_malthusian_numerical.png}  
 \end{center}
 }
 \end{frame}
@@ -317,60 +302,68 @@ Note: this line leads to the same result, but it is much better to maintain your
 
 \begin{frame}{Task 2.4: Difference in solutions}
 \begin{itemize}
-    \item Create plot that shows results from explicit and numerical approach and their difference. 
-    \item Add start year of 1950 to the plot to have correct timeline
-    \item Compare the difference for time step of 1 year, 1 month and 1 day.
+    \item Create a plot that shows results from both explicit and numerical approaches and the difference (error).
+    \item Add a start year of 1950 to the plot to represent the correct timeline.
+    \item Compare the difference for time steps ($\Delta t$) of 1 year, 1 month, and 1 day.
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]{Solution 2.4: The difference in solutions} 
 \only<1>{
-\tiny
-\lstinputlisting{lesson_1/code/task_2_4_malthusian_difference.m}
+\lstinputlisting[language=Python, firstline=1, lastline=20]{code/task_2_4_malthusian_difference.py}
 }
 
-\begin{center}  
 \only<2>{
+\lstinputlisting[language=Python, firstline=22, lastline=40]{code/task_2_4_malthusian_difference.py}
+}
 
-    Step size of 1 year (70 iterations) leads to substantial error.
+
+\begin{center}  
+\only<3>{
+    Step size of 1 year leads to substantial error.
         \vfill
-             \includegraphics[scale = 0.35]{lesson_1/images/task_2_4_malthusian_difference.png}
+             \includegraphics[scale = 0.35]{images/task_2_4_malthusian_difference.png}
  }
   
-\only<3>{
-  Step size of 1 month (840 iterations) reduces the error
-      \vfill
-    \includegraphics[scale = 0.35]{lesson_1/images/task_2_4_malthusian_difference_1month.png} 
-    }
 \only<4>{
-    Step size of 1 day (25 550 iterations) leads to negligible error.
+  Step size of 1 month reduces the error significantly.
+      \vfill
+    \includegraphics[scale = 0.35]{images/task_2_4_malthusian_difference_1month.png} 
+    }
+
+\only<5>{
+    Step size of 1 day leads to negligible error.
     \vfill
-    \includegraphics[scale = 0.35]{lesson_1/images/task_2_4_malthusian_difference_1day.png} 
+    \includegraphics[scale = 0.35]{images/task_2_4_malthusian_difference_1day.png} 
     }
 \end{center}
     
 \end{frame}
 
 \begin{frame}[fragile]{Task 2.5: Real world data}
-    Compare prediction modeled by the explicit formula with real data of Senegalese population 
-    \vfill
-\scriptsize
-\lstinputlisting[firstline=1,  lastline=13]
-{lesson_1/code/task_2_5_malthusian_senegal.m}
+Compare the prediction modeled by the explicit formula with real data of the Senegalese population.
+\vfill
+\lstinputlisting[language=Python, firstline=1, lastline=13]
+{code/task_2_5_malthusian_senegal.py}
 \end{frame}
 
 
 \begin{frame}[fragile]{Solution 2.5: Real world data}
 \only<1>{
 \tiny
-\lstinputlisting{lesson_1/code/task_2_5_malthusian_senegal.m}
+\lstinputlisting[language=Python, firstline=1, lastline=18]{code/task_2_5_malthusian_senegal.py}
 }
+
 \only<2>{
-Even a very simple model can be capture reality very well. 
+\tiny
+\lstinputlisting[language=Python, firstline=19, lastline=38]{code/task_2_5_malthusian_senegal.py}
+}
+
+\only<3>{
+Even a very simple model can capture reality very well.
 \begin{center}
-    \includegraphics[scale=0.35]
-{lesson_1/images/task_2_5_malthusian_senegal.png}
+\includegraphics[scale=0.35]{images/task_2_5_malthusian_senegal.png}
 \end{center}
 
 }
@@ -380,26 +373,24 @@ Even a very simple model can be capture reality very well.
 \begin{frame}[fragile]{Task 2.6: Real world data --- USA}
 \small
 \begin{itemize}
-    \item Compare prediction modeled by the explicit formula for USA with real data.
-    \item Adjust time span start year and the initial population
-    \item Set growth rate to 2.75\%.
+    \item Compare the prediction modeled by the explicit formula for the USA with real data.
+    \item Adjust the time span, start year, and initial population.
+    \item Set growth rate to 2.75\% (historical average for that specific start period).
 \end{itemize}
 
 \vfill
 \tiny
-\lstinputlisting[firstline=1, lastline=13]{lesson_1/code/task_2_6_malthusian_usa.m}
+\lstinputlisting[language=Python, firstline=4, lastline=17]{code/task_2_6_malthusian_usa.py}
 \end{frame}
 
 \begin{frame}[fragile]{Solution 2.6: Real world data --- USA}
-\only<1>{
-\tiny
-\lstinputlisting{lesson_1/code/task_2_6_malthusian_usa.m}
-}
-\only<2>{
-Model is reasonably precise for the first one hundered years, then it diverges. \newline
-\textbf{Why?}
+\only<1>{\lstinputlisting[language=Python, firstline=1, lastline=21] {code/task_2_6_malthusian_usa.py}}
+\only<2>{\lstinputlisting[language=Python, firstline=22, lastline=40]{code/task_2_6_malthusian_usa.py}}
+\only<3>{
+The model is reasonably precise for the first one hundred years, then it diverges. \newline
+\textbf{Why?} (The growth rate slowed down; resources/space became less "unlimited").
 \begin{center}
-    \includegraphics[scale=0.35]{lesson_1/images/task_2_6_malthusian_usa.png}
+    \includegraphics[scale=0.35]{images/task_2_6_malthusian_usa.png}
 \end{center}
 }
 \end{frame}

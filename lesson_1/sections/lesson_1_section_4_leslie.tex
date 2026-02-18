@@ -105,7 +105,7 @@ S_1 & 0 & 0 \\
     \begin{itemize}
         \item \textbf{Circles:} Represent specific age classes or ages (1 to 4).
         \item \textbf{Horizontal Arrows ($S_x$):} Represent \textbf{survival probabilities}. Probability that an individual of age $x$ survives to age $x+1$. There is no survival beyonf group 4.
-        \item \textbf{Curved Arrows ($F_x$):} Represent \textbf{births (fecundity)}.  Arrows lead back to Age 1 because newborns enter the first class. Arrows emerging from ages 2, 3, and 4 indicate these ages are reproductive.
+        \item \textbf{Curved Arrows ($F_x$):} Represent \textbf{births (fecundity)}. Arrows lead back to Age 1 because newborns enter the first class. Arrows emerging from ages 2, 3, and 4 indicate these ages are reproductive.
     \end{itemize}
 \end{frame}
 
@@ -189,25 +189,27 @@ What happens if we simulate this for many time steps?
 \vspace{1em}
 \textbf{Your Task:}
 \begin{enumerate}
-    \item Construct the Leslie Matrix $L$ in Matlab.
+    \item Construct the Leslie Matrix $L$ in Python (using NumPy).
     \item Define an initial population vector $n_0$: 100 chicks, 0 adults.
 \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]{Solution 4.1: Defining the Model}
 \small
-\begin{lstlisting}
-% Define parameters
-F1 = 0;   F2 = 1.5; F3 = 2.0;
-S1 = 0.6; S2 = 0.5;
+\begin{lstlisting}[language=Python]
+import numpy as np
 
-% Construct Leslie Matrix
-L = [F1, F2, F3;
-     S1, 0,  0;
-     0,  S2, 0];
+# Define parameters
+F1 = 0;   F2 = 1.5; F3 = 2.0
+S1 = 0.6; S2 = 0.5
 
-% Initial population (100 chicks, 0 young adults, 0 old adults)
-n0 = [100; 0; 0];
+# Construct Leslie Matrix
+L = np.array([[F1, F2, F3],
+              [S1, 0,  0],
+              [0,  S2, 0]])
+
+# Initial population (100 chicks, 0 young adults, 0 old adults)
+n0 = np.array([100, 0, 0])
 \end{lstlisting}
 \end{frame}
 
@@ -222,19 +224,19 @@ n0 = [100; 0; 0];
 
 \begin{frame}[fragile]{Solution 4.2: Simulation Loop}
 \small
-\begin{lstlisting}
-years = 20;
-% Pre-allocate matrix for results (3 rows, years+1 columns)
-pop_history = zeros(3, years + 1);
+\begin{lstlisting}[language=Python]
+years = 20
+# Pre-allocate matrix (3 rows, years+1 columns)
+pop_history = np.zeros((3, years + 1))
 
-% Set initial year
-pop_history(:, 1) = n0;
+# Set initial year (Python is 0-indexed)
+pop_history[:, 0] = n0
 
-% Loop through time
-for t = 1:years
-    % n(t+1) = L * n(t)
-    pop_history(:, t+1) = L * pop_history(:, t);
-end
+# Loop through time
+for t in range(years):
+    # n(t+1) = L @ n(t)
+    # The @ operator performs matrix multiplication
+    pop_history[:, t+1] = L @ pop_history[:, t]
 \end{lstlisting}
 \end{frame}
 
@@ -243,35 +245,32 @@ end
 \begin{enumerate}
     \item Calculate the \textbf{total population} for each year (sum of all age classes).
     \item Plot the Total Population over time.
-    \item Plot the specific age classes over time (use \lstinline{hold on}).
+    \item Plot the specific age classes over time.
 \end{enumerate}
 \end{frame}
 
 \begin{frame}[fragile]{Solution 4.3: Plotting}
 \tiny
-\begin{lstlisting}
-% Calculate total population (sum of each column)
-total_pop = sum(pop_history);
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
 
-% Create time vector
-t = 0:years;
+# Calculate total population (sum each column, axis=0)
+total_pop = np.sum(pop_history, axis=0)
+t = np.arange(years + 1)
 
-% Plot
-figure;
-subplot(2,1,1);
-plot(t, total_pop, 'k-', 'LineWidth', 2);
-title('Total Population Growth');
-xlabel('Years'); ylabel('Count');
-grid on;
+# Plot
+plt.figure(figsize=(10, 6))
 
-subplot(2,1,2);
-plot(t, pop_history(1,:), 'b-o', 'DisplayName', 'Chicks'); hold on;
-plot(t, pop_history(2,:), 'r-o', 'DisplayName', 'Young Adults');
-plot(t, pop_history(3,:), 'g-o', 'DisplayName', 'Old Adults');
-legend('show');
-title('Population by Age Class');
-xlabel('Years'); ylabel('Count');
-grid on;
+plt.subplot(2,1,1)
+plt.plot(t, total_pop, 'k-', linewidth=2)
+plt.title('Total Population Growth'); plt.grid(True)
+
+plt.subplot(2,1,2)
+plt.plot(t, pop_history[0, :], 'b-o', label='Chicks')
+plt.plot(t, pop_history[1, :], 'r-o', label='Young')
+plt.plot(t, pop_history[2, :], 'g-o', label='Old')
+plt.legend(); plt.grid(True)
+plt.show()
 \end{lstlisting}
 \end{frame}
 
@@ -288,17 +287,18 @@ We claimed earlier that the \textit{proportion} of age groups becomes constant.
 
 \begin{frame}[fragile]{Solution 4.4: Stable Age Distribution}
 \small
-\begin{lstlisting}
-% Normalize to find proportions
-proportions = pop_history ./ sum(pop_history);
+\begin{lstlisting}[language=Python]
+# Normalize to find proportions
+# axis=0 means we sum down the columns
+proportions = pop_history / np.sum(pop_history, axis=0)
 
-% Display the proportions for the last year
-disp('Final Age Distribution:');
-disp(proportions(:, end));
+# Display the proportions for the last year (-1 index)
+print("Final Age Distribution:")
+print(proportions[:, -1])
 
-% Check the previous year to see if it stabilized
-disp('Previous Year Distribution:');
-disp(proportions(:, end-1));
+# Check the previous year to see if it stabilized
+print("Previous Year Distribution:")
+print(proportions[:, -2])
 \end{lstlisting}
 
 \vfill
