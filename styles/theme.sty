@@ -1,69 +1,86 @@
 \ProvidesPackage{beamerthemeMyColor}
 
 % --------- Colors ---------
-% Define custom colors
-    \definecolor{primary}{RGB}{36, 123, 160}
-    \definecolor{secondary}{RGB}{242, 95, 92}
-    \definecolor{neutral}{RGB}{80, 81, 79}
-    \definecolor{background}{RGB}{255, 255, 255}
-    \definecolor{background-light}{RGB}{200, 200, 200}
-    \definecolor{dark}{RGB}{0, 0, 0}
+\definecolor{primary}{RGB}{36, 123, 160}       % Blue
+\definecolor{secondary}{RGB}{242, 95, 92}      % Red/Coral
+\definecolor{neutral}{RGB}{80, 81, 79}         % Gray
+\definecolor{background}{RGB}{255, 255, 255}   % White
+\definecolor{background-light}{RGB}{245, 245, 245} % Very light gray for code blocks
+\definecolor{dark}{RGB}{0, 0, 0}               % Black
+\definecolor{negative}{RGB}{242, 95, 92}
+\definecolor{positive}{RGB}{30, 168, 160}
 
-    \definecolor{negative}{RGB}{242, 95, 92}
-    \definecolor{positive}{RGB}{30, 168, 160}
-    
 % Set colors for elements
-    \setbeamercolor{title}{fg=background, bg=primary}
-    \setbeamercolor{frametitle}{bg=primary, fg=background}
-    \setbeamercolor{itemize item}{fg=primary}
-    \setbeamercolor{block title}{fg=background, bg=neutral}
-    \setbeamercolor{block body}{fg=dark, bg=background-light}
+\setbeamercolor{title}{fg=background, bg=primary}
+\setbeamercolor{frametitle}{bg=primary, fg=background}
+\setbeamercolor{itemize item}{fg=primary}
+\setbeamercolor{description item}{fg=secondary} % <--- Add this line
+\setbeamercolor{block title}{fg=background, bg=neutral}
+\setbeamercolor{block body}{fg=dark, bg=background-light}
 
 % Set hyperlink colors
-    \hypersetup{
-        colorlinks=true,
-        linkcolor=black,
-        citecolor=green,
-        urlcolor=cyan
-    }
-    
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=green,
+    urlcolor=primary
+}
+
 % --------- Core Formatting ---------
-\RequirePackage[utf8]{inputenc}  % Allows input of special characters (e.g., accented characters)
-\RequirePackage{array}            % Improved array and tabular environments
-\RequirePackage{booktabs}         % Better table formatting
-\RequirePackage{caption}          % Customizing captions
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{caption}
 \usepackage[T1]{fontenc}
 
 % --------- Mathematics ---------
-\RequirePackage{amsmath}  % Advanced math typesetting
-\RequirePackage{amssymb}  % Additional math symbols
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 
 % --------- Graphics & Visualization ---------
-\RequirePackage{graphicx}     % Include graphics
-\RequirePackage{tikz}         % Drawing and graphing package
-\usetikzlibrary{positioning, shapes.geometric}
-\usetikzlibrary{trees}       % Tree structures in TikZ
-\RequirePackage{pgfplots}     % Create plots in LaTeX
-\pgfplotsset{compat=1.18}  % set version
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric, trees}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
-% --------- Code listing ---------
-\usepackage{listings}     % For code listing
-\lstset{language=matlab, basicstyle=\ttfamily}
-\usepackage{matlab-prettifier}
-\lstset{
-    style=Matlab-editor, % If you want to base it on the Matlab-editor style
-    basicstyle=\ttfamily,
-    backgroundcolor=\color{gray!8}, % Light grey background
+% --------- Code listing (UPDATED FOR PYTHON) ---------
+\usepackage{listings}
+
+% Define style - NO EMPTY LINES ALLOWED inside the definition
+\lstdefinestyle{myPythonStyle}{
+    language=Python,
+    backgroundcolor=\color{background-light},
+    basicstyle=\ttfamily\scriptsize\color{dark}, % <--- Changed to scriptsize
+    keywordstyle=\color{primary}\bfseries,
+    stringstyle=\color{secondary},
+    commentstyle=\color{neutral}\itshape,
+    identifierstyle=\color{dark},
+    numbers=left,
+    numberstyle=\tiny\color{neutral!50},
+    numbersep=8pt,
+    stepnumber=1,
+    tabsize=4,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,
+    morekeywords={self, as, with, True, False, None, super, @classmethod, @staticmethod},
+    frame=lines,
+    rulecolor=\color{neutral!20},
+    frameround=ffff,
+    captionpos=b
 }
 
+% Set this as the default style
+\lstset{style=myPythonStyle}
 
 % --------- Hyperlinking ---------
-\RequirePackage{hyperref}  % Hyperlinks in the document
+\RequirePackage{hyperref}
 
 % --------- Miscellaneous ---------
-\RequirePackage{verbatim}  % Include code and text verbatim
+\RequirePackage{verbatim}
 
-% Beamer styling commands
+% --------- Beamer Styling Commands ---------
 \setbeamertemplate{itemize subitem}[square]
 \setbeamercolor{itemize subitem}{fg=neutral}
 
@@ -77,14 +94,14 @@
 % Custom section frame
 \AtBeginSection[]{
   {
-    \hypersetup{linkcolor=white}  % Change the link color to white
+    \hypersetup{linkcolor=background}
     \begin{frame}
     \vfill
     \centering
-    \begin{beamercolorbox}[sep=8pt,center]{title}
+    \begin{beamercolorbox}[sep=8pt,center, shadow=true, rounded=true]{title}
       \usebeamerfont{title}\insertsectionhead\par%
     \end{beamercolorbox}
     \vfill
     \end{frame}
-  }  % End of the group
+  }
 }
