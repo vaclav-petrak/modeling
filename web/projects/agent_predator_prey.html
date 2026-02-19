@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Predator-Prey Agent-Based Simulation | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Predator-Prey Agent-Based Simulation</h1>
+            <p class="hero-subtitle">Exploring population dynamics through individual agent behaviors and interactions.</p>
+            
+            <div class="location-badge">
+                🐺 Focus: Agent-Based Modeling & Ecosystem Dynamics
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/agent_predator_prey.png", alt="Visualization of a predator-prey agent-based environment">
+            <span class="caption">Figure 1: Example of an agent-based predator-prey simulation environment.</span>
+            
+            <p>Predator-prey dynamics have traditionally been studied using Lotka-Volterra equations, which describe population changes through differential equations. However, agent-based models provide an alternative approach by simulating individual agents with specific behaviors and interactions.</p>
+            
+            <p>In this project, you will develop an agent-based simulation to explore predator-prey interactions, focusing on how individual behaviors influence overall population dynamics.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>Implement a basic agent-based predator-prey model and incorporate <strong>at least two additional features</strong> from the list below:</p>
+            <ul>
+                <li><strong>Multi-Level Interactions:</strong> Introduce a food chain involving more than two agent types (e.g., predators hunt prey, prey consume vegetation).</li>
+                <li><strong>Terrain Factors:</strong> Implement different terrain types that affect movement, survival chances, or interactions (e.g., water bodies as barriers, forests as hiding spots).</li>
+                <li><strong>Seasonal Changes:</strong> Simulate seasonal variations that influence predator-prey interactions, such as food availability.</li>
+                <li><strong>Energy Consumption and Replenishment:</strong> Assign energy levels to agents that deplete over time, requiring food intake to sustain survival and reproduction.</li>
+                <li><strong>Consumption Limits:</strong> Impose constraints on food consumption, such as a maximum intake per agent or competition for resources.</li>
+                <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+            </ul>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Implementation Details:</strong> Explain your implementation of the core predator-prey model, detailing agent behaviors, movement rules, and interaction mechanics.</li>
+                <li><strong>Results Demonstration:</strong> Demonstrate your results using visualizations, such as animations, population trend graphs, or heatmaps of agent distribution.</li>
+                <li><strong>Feature Analysis:</strong> Present the two additional features you chose to implement, discussing their impact on system dynamics and any challenges you faced.</li>
+                <li><strong>Emergent Behaviors:</strong> Analyze emergent behaviors in your simulation, such as population oscillations, predator extinction, or stable coexistence.</li>
+                <li><strong>Initial Conditions:</strong> Explore how different initial conditions (e.g., varying predator-to-prey ratios, resource availability, or mobility constraints) influence outcomes.</li>
+                <li><strong>Model Comparison:</strong> Compare your simulation results with the predictions of traditional Lotka-Volterra models, identifying similarities and discrepancies.</li>
+                <li><strong>Methodology Comparison:</strong> Discuss the advantages and limitations of agent-based modeling compared to equation-based approaches in studying predator-prey systems.</li>
+                <li><strong>Reflection:</strong> Share insights gained about population dynamics, ecosystem interactions, and the role of stochasticity in ecological modeling.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Allee Effect Modeling | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Allee Effect Modeling</h1>
+            <p class="hero-subtitle">Exploring population dynamics through the logistic growth model with the Allee effect.</p>
+            
+            <div class="location-badge">
+                📊 Focus: Population Dynamics & Ecological Modeling
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/alle_effect.png" alt="Graph illustrating the Allee effect in population dynamics">
+            <span class="caption">Figure 1: Example of population dynamics incorporating the Allee effect.</span>
+            
+            <p>The Allee effect is a phenomenon in population dynamics where individuals experience higher fitness at higher densities. Unlike the classical logistic growth model, which assumes population growth slows as density increases due to resource competition, the Allee effect suggests that populations at very low densities may struggle to survive and grow due to insufficient interactions, such as cooperative hunting or group defense.</p>
+            
+            <p>In this project, you will implement a <strong>logistic growth model with the Allee effect</strong> to explore how population dynamics change when both density-dependent competition and cooperation are considered.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>Implement a <strong>basic logistic growth model</strong> that incorporates the Allee effect. In addition, you should extend the model by including at least two of the following features:</p>
+            <ul>
+                <li><strong>Allee Threshold Variability:</strong> Introduce different threshold values for the Allee effect and analyze how they impact population persistence or extinction.</li>
+                <li><strong>Stochastic Effects:</strong> Implement random fluctuations in birth and death rates to model environmental variability.</li>
+                <li><strong>Real-World Data Comparison:</strong> Compare your model's behavior to real-world population data or existing ecological studies.</li>
+                <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+            </ul>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Implementation:</strong> Explain how you implemented the logistic growth model and incorporated the Allee effect mathematically.</li>
+                <li><strong>Visualizations:</strong> Demonstrate your results using visual plots and graphs.</li>
+                <li><strong>Additional Features:</strong> Present the additional features you implemented, discussing your approach and methodology.</li>
+                <li><strong>Insights & Implications:</strong> Discuss insights gained from modeling the Allee effect and its implications for conservation biology and population management.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

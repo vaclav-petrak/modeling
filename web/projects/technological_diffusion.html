@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Technological Diffusion Analysis | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Technological Diffusion Analysis</h1>
+            <p class="hero-subtitle">Modeling the spread of innovation using the logistic growth and Bass diffusion models.</p>
+            
+            <div class="location-badge">
+                📊 Focus: Data Fitting & Predictive Modeling
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/technological_diffusion.png", alt="Historical map of the French railway network expansion">
+            <span class="caption">Figure 1: Example of infrastructure expansion over time.</span>
+            
+            <p>The spread of a technology, also known as technological diffusion, often follows patterns remarkably similar to biological population growth. This phenomenon can be observed in historical examples, such as the expansion of the French railway network (see image above), as well as in the adoption of technologies like the radio, smartphones, automobiles, and social media platforms.</p>
+            
+            <p>In this project, you will analyze the spread of a technology of your choice using the <strong>logistic growth model</strong>. By fitting this model to real-world data, you will estimate key parameters such as the <strong>carrying capacity</strong>, the <strong>intrinsic growth rate</strong>, and the <strong>inflection point</strong> (the point of maximum growth).</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <ol>
+                <li><strong>Data Collection:</strong> Identify reliable datasets that track the adoption of a specific technology over time (e.g., mobile phones, internet users, electric cars, or social media platforms). You must find <strong>at least two datasets</strong>. Ensure the data has sufficient time-series coverage to capture the early adoption, rapid growth, and saturation phases. <em>Note: Finding the right data will be a challenge, so begin this step early.</em></li>
+                <li><strong>Model Fitting:</strong> Fit the logistic growth model to your datasets and analyze the model parameters (carrying capacity, growth rate, and inflection point).</li>
+                <li><strong>Alternative Modeling:</strong> Explore and apply at least one alternative model, such as the Bass diffusion model, to your data.</li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Data Methodology:</strong> Explain your approach to data collection and any challenges you faced in finding reliable sources.</li>
+                <li><strong>Logistic Model Fit:</strong> Explain your logistic model parameters and quantify how well the model fits the data (e.g., using specific goodness-of-fit metrics).</li>
+                <li><strong>Results & Interpretation:</strong> Present and interpret your findings, highlighting the estimated carrying capacity, growth rate, and inflection point.</li>
+                <li><strong>Model Comparison:</strong> Compare the results of the logistic growth model with your chosen alternative model (e.g., the Bass model). Which performs better and why?</li>
+                <li><strong>Limitations:</strong> Discuss any limitations of the logistic growth model in this context and suggest potential improvements.</li>
+                <li><strong>Literature Review:</strong> Compare your analysis with state-of-the-art research in technological diffusion modeling.</li>
+                <li><strong>Reflection:</strong> Reflect on what you learned about diffusion dynamics and data modeling techniques through this project.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

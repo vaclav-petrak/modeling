@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Epidemic Systems Modeling | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Epidemic Systems Modeling</h1>
+            <p class="hero-subtitle">Exploring COVID-19 transmission dynamics using compartmental models and differential equations.</p>
+            
+            <div class="location-badge">
+                📊 Focus: Mathematical Modeling & Empirical Simulation
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/compartment_model_covid.png" alt="Simulated epidemic curves showing flattened transmission peaks">
+            <span class="caption">Figure 1: Example of epidemic curves and the impact of simulated interventions.</span>
+            
+            <p>Epidemic systems exhibit complex dynamics arising from fundamental interactions between susceptible populations and infectious agents. The COVID-19 pandemic presents a particularly intricate case study, with transmission patterns influenced by multiple factors including social behavior, intervention strategies, and viral properties.</p>
+            
+            <p>Mathematical models provide powerful tools to explore these dynamics, but they are only as reliable as the data and assumptions underlying them. In this project, you will implement compartmental models for COVID-19 transmission, focusing on grounding your simulations in realistic, biologically plausible parameters to investigate how different models and interventions capture actual pandemic trajectories.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <ol>
+                <li><strong>Model Implementation:</strong> Implement at least two different compartmental models (e.g., SIR vs. SEIR) to highlight the structural differences required to realistically model COVID-19 (such as accounting for the disease's incubation period).</li>
+                <li><strong>Empirical Calibration:</strong> Establish your baseline parameters (e.g., transmission rate, recovery rate, latency period) using peer-reviewed literature. You must cite real-world data for your initial values.</li>
+                <li><strong>Plausible Simulations:</strong> Create simulations that track population movement between compartments over time. When designing intervention scenarios, restrict parameter changes to realistic bounds (e.g., a lockdown cannot reduce the contact rate to absolute zero; vaccines do not have 100% instant efficacy).</li>
+                <li><strong>Visualization:</strong> Visualize how biologically and socially plausible interventions alter infection curves compared to your empirical baseline.</li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Model Justification & Comparison:</strong> Analyze the structural differences between your chosen models. Specifically, discuss why a basic model might fail to capture realistic COVID-19 dynamics compared to an extended model (e.g., the realistic impact of the exposed/asymptomatic compartment).</li>
+                <li><strong>Parameter Selection & Validation:</strong> Detail your core parameters (e.g., basic reproduction number R0, recovery rate) and explicitly state the scientific literature used to ground them.</li>
+                <li><strong>Sensitivity Analysis:</strong> Vary parameters strictly within biologically and socially plausible ranges to demonstrate how sensitive the model is to real-world uncertainties. Explain why extreme, unrealistic outlier values were excluded.</li>
+                <li><strong>Realistic Intervention Analysis:</strong> Analyze the impact of interventions (e.g., delayed vaccine rollouts, imperfect social distancing adherence) and their timing. Discuss the limitations of assuming perfect compliance in models.</li>
+                <li><strong>Limitations:</strong> Candidly discuss the limitations of your mathematical models in representing true human behavior, spatial distribution, and viral mutation.</li>
+                <li><strong>Reflection:</strong> Share what you learned about the challenges of matching clean mathematical formulas to messy, real-world epidemiological data.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

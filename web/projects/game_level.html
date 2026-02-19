@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Procedural Level Generation | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Procedural Level Generation</h1>
+            <p class="hero-subtitle">Creating diverse and engaging game environments through cellular automata and simple rule-based systems.</p>
+            
+            <div class="location-badge">
+                🎮 Focus: Procedural Generation & Cellular Automata
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/game_level.png" alt="Example of procedural cave generation">
+            <span class="caption">Figure 1: Example of emergent cave structures generated via cellular automata.</span>
+            
+            <p>Procedural level generation is a technique in game development that can create diverse and engaging environments through simple rule-based systems.</p>
+            
+            <p>In this project, you will implement a level generation system using cellular automata principles that creates game-ready terrain while considering gameplay elements.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <ol>
+                <li><strong>Core Mechanics:</strong> Implement a basic cellular automaton for game level generation: a 2D grid where each cell can be in one of three states: empty space, wall, or special feature. At each generation step, cells transition between states based on neighbor configurations, creating cave-like structures or interconnected rooms. The system should evolve from random noise into coherent level layouts through iterative application of simple rules.</li>
+                <li><strong>Additional Features:</strong> Incorporate at least two more of the following features:
+                    <ul>
+                        <li><strong>Landscape Tuning:</strong> Use rule tuning to generate different types of landscapes, e.g., caves, water, terrain.</li>
+                        <li><strong>Rule Visualization Tool:</strong> Create a simple interface to visualize how different rules affect cell transitions. This could show before/after states for each possible neighborhood configuration.</li>
+                        <li><strong>Basic Pathfinding Analysis:</strong> Add a simple algorithm that checks if there's a valid path between any two points in your generated level to ensure playability.</li>
+                        <li><strong>Basic Metrics:</strong> Calculate and display simple statistics about your generated levels, such as open space percentage and the evolution of parameters over time.</li>
+                        <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Implementation Details:</strong> Explain your implementation of the core level generation mechanics, including state transitions and rule configuration.</li>
+                <li><strong>Visual Evidence:</strong> Demonstrate your generation results using visualizations showing level evolution across multiple iterations.</li>
+                <li><strong>Feature Deep-Dive:</strong> Present the two additional features you chose to implement, discussing your approach and any challenges you encountered.</li>
+                <li><strong>Emergent Structures:</strong> Show examples of emergent structures in your levels, such as natural-looking cave systems.</li>
+                <li><strong>Parameter Analysis:</strong> Analyze how different parameters (initial noise density, rule sets, iteration count) affect level design outcomes.</li>
+                <li><strong>Limitations:</strong> Discuss model limitations.</li>
+                <li><strong>Literature Review:</strong> Compare your implementation to current research in procedural content generation for games.</li>
+                <li><strong>Reflection:</strong> Share what you learned about cellular automata and their application to game development through this project.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

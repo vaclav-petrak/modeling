@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Malthusian Population Growth Analysis | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Malthusian Population Growth Analysis</h1>
+            <p class="hero-subtitle">Evaluating the adherence of country populations to the Malthusian exponential growth model.</p>
+            
+            <div class="location-badge">
+                📈 Focus: Demographic Data & Predictive Modeling
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/malthusian_model_fit.png"Graph showing Malthusian exponential population growth">
+            <span class="caption">Figure 1: Illustration of exponential population growth versus resource limits.</span>
+            
+            <p> Population growth patterns have been a central focus of demographic studies since Thomas Malthus proposed his exponential growth model in the late 18th century. This model suggests that populations grow exponentially when unchecked by resource limitations or other factors.</p>
+            
+            <p>While many countries have transitioned to different growth patterns, some still exhibit characteristics of Malthusian growth. In this project, you will analyze population data from multiple countries to identify and study those that most closely follow the Malthusian model.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>Implement a data analysis pipeline to evaluate how closely different countries' population growth adheres to the Malthusian exponential growth model using population data from 1955 to 2020.</p>
+            <ol>
+                <li><strong>Model Fitting:</strong> Fit the Malthusian model to population data for at least 10 different countries.</li>
+                <li><strong>Evaluation:</strong> Evaluate the goodness of fit using appropriate statistical measures. Identify which countries most closely follow the Malthusian growth pattern.</li>
+                <li><strong>Analytical Extensions:</strong> Incorporate at least two of the following analytical extensions:
+                    <ul>
+                        <li><em>Demographic Transition Analysis:</em> Compare countries at different stages of demographic transition and their deviation from the Malthusian model.</li>
+                        <li><em>Projection Accuracy:</em> Test how well the fitted models predict population values for years beyond the training data.</li>
+                        <li><em>Comparative Model Analysis:</em> Compare the Malthusian exponential model against logistic growth or other population models.</li>
+                        <li><em>Custom Extension:</em> Implement another analytical extension of similar complexity of your choice.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Methodology:</strong> Explain your methodology for fitting the Malthusian model, including data sources, preprocessing steps, and parameter estimation techniques.</li>
+                <li><strong>Visualizations:</strong> Present visualizations comparing actual population data with model-fitted curves for each analyzed country.</li>
+                <li><strong>Goodness of Fit:</strong> Discuss the statistical measures used to evaluate goodness of fit and justify your selection of these metrics.</li>
+                <li><strong>Case Study:</strong> Present a case study of the country that exhibits the closest adherence to the Malthusian model, including historical context.</li>
+                <li><strong>Extension Analysis:</strong> Analyze the two additional analytical extensions you implemented, discussing insights gained and challenges encountered.</li>
+                <li><strong>Comparative Fit Analysis:</strong> Compare countries with good model fit against those with poor fit, discussing factors that may contribute to these differences.</li>
+                <li><strong>Limitations:</strong> Discuss the limitations of the Malthusian model in contemporary demographic analysis and situations where it remains relevant.</li>
+                <li><strong>Reflection:</strong> Reflect on how this analysis contributes to our understanding of population dynamics and demographic transition theory.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

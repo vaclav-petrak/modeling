@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS402: Modelling & Simulation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Spring 2026 // Kladno Campus</span>
+                <nav>
+                    <ul>
+                        <li><a href="#schedule">Modules</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#grading">Grading</a></li>
+                        <li><a href="https://github.com/your-username/course-repo" target="_blank">GitHub</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <h1 class="hero-title">Modelling & Simulation</h1>
+            <p class="hero-subtitle">From discrete difference equations to chaos theory. A computational approach to understanding complex physical and biological systems using Python.</p>
+            
+            <div class="location-badge">
+                📍 Room B205 • Tuesdays 14:00 - 16:00
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="logistics">
+            <h2>Lecrure & Links</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-role">Lead Instructor</div>
+                    <h4>Václav Petrák</h4>
+                    <div class="contact-info">
+                        📧 vaclav.petrak@fbmi.cvut.cz<br>
+
+                        🏢 Office A104<br>
+
+                        🕒 Hours: Mon/Wed 10:00-12:00
+
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-role">Course Resources</div>
+                    <h4>Online Materials</h4>
+                    <div class="contact-info">
+                        <strong>Discord:</strong> <a href="#">#cs402-spring26</a><br>
+                        <strong>LMS:</strong> <a href="#">Moodle Link</a><br>
+                        <strong>Submit:</strong> <a href="#">Gradescope</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule">
+            <h2>Course Modules & Schedule</h2>
+<div class="module-grid">
+
+    <div class="card">
+        <div class="card-header">
+            <span class="module-tag">LESSON 01</span>
+            <span class="date-badge">February 20 • 9:00</span>
+        </div>
+        <h3>Discrete Dynamics</h3>
+        <p>Introduction to modeling. We explore simple iterative maps and population growth models.</p>
+        <ul class="topic-list">
+            <li>Fibonacci Sequence & Golden Ratio</li>
+            <li>Malthusian Growth (Explicit vs Numerical)</li>
+            <li>Logistic Growth Models</li>
+        </ul>
+        
+        <div class="project-lab-box">
+            <div class="lab-title">
+                <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Project Lab: Scoping
+            </div>
+            <p>Initial group formation and domain selection. Review of past capstone repositories.</p>
+        </div>
+
+        <a href="#" class="colab-btn">
+            <svg class="colab-icon" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.5-16h3v7h-3zm0 9h3v3h-3z"/></svg>
+            Launch Notebook 01
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="module-tag">LESSON 02</span>
+            <span class="date-badge">March 6 • 9:00</span>
+        </div>
+        <h3>System Dynamics</h3>
+        <p>Interacting populations and feedback loops. Introduction to phase space analysis.</p>
+        <ul class="topic-list">
+            <li>Lotka-Volterra Equations</li>
+            <li>Spruce Budworm Outbreak Model</li>
+            <li>Phase Plane Analysis</li>
+        </ul>
+
+        <div class="project-lab-box">
+            <div class="lab-title">
+                <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Project Lab: Literature Review
+            </div>
+            <p>Identifying key parameters and differential equations for your chosen theme.</p>
+        </div>
+
+        <a href="#" class="colab-btn">
+            <svg class="colab-icon" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.5-16h3v7h-3zm0 9h3v3h-3z"/></svg>
+            Launch Notebook 02
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="module-tag">LESSON 03</span>
+            <span class="date-badge">March 20 • 9:00</span>
+        </div>
+        <h3>Epidemiology & Agents</h3>
+        <p>Comparing equation-based models with agent-based simulations (ABM).</p>
+        <ul class="topic-list">
+            <li>SIR Model (Susceptible-Infected-Recovered)</li>
+            <li>Random Walks & 2D Agent Simulation</li>
+        </ul>
+
+        <div class="project-lab-box">
+            <div class="lab-title">
+                <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                Project Lab: Proposals
+            </div>
+            <p><strong>DUE:</strong> Finalize project proposals and initial Python class structure.</p>
+        </div>
+
+        <a href="#" class="colab-btn">
+            <svg class="colab-icon" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1.5-16h3v7h-3zm0 9h3v3h-3z"/></svg>
+            Launch Notebook 03
+        </a>
+    </div>
+
+</div>
+        </section>
+
+<section id="projects">
+            <h2>Final Project Themes</h2>
+            <p style="margin-bottom: 2rem;">Students will select one of the following domains for their capstone simulation project. Project proposals are due by <strong>Mar 24</strong>.</p>
+            
+            <div class="project-grid">
+                
+                <a href="projects/technological_diffusion.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/technological_diffusion.png" alt="Technological Diffusion">
+                    </div>
+                    <div class="project-content">
+                        <h4>Technological Diffusion Analysis</h4>
+                        <p>Modeling the spread of innovation using the logistic growth and Bass diffusion models.</p>
+                    </div>
+                </a>
+
+                <a href="projects/alle_effect.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/alle_effect.png" alt="Allee Effect">
+                    </div>
+                    <div class="project-content">
+                        <h4>Allee Effect Modeling</h4>
+                        <p>Exploring population dynamics through the logistic growth model with the Allee effect.</p>
+                    </div>
+                </a>
+
+                <a href="projects/compartment_model_covid.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/compartment_model_covid.png" alt="Compartmental COVID">
+                    </div>
+                    <div class="project-content">
+                        <h4>Epidemic Systems Modeling</h4>
+                        <p>Exploring COVID-19 transmission dynamics using compartmental models and differential equations.</p>
+                    </div>
+                </a>
+
+                <a href="projects/granular_flow.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/granular_flow.png" alt="Falling Sand">
+                    </div>
+                    <div class="project-content">
+                        <h4>Granular Materials Simulation</h4>
+                        <p>Simulating granular flow and particle interactions using cellular automata.</p>
+                    </div>
+                </a>
+
+                <a href="projects/forrest_fire.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/forrest_fire.png" alt="Forest Fire">
+                    </div>
+                    <div class="project-content">
+                        <h4>Forest Fire Simulation</h4>
+                        <p>Modeling fire spread dynamics using cellular automata and environmental parameters.</p>
+                    </div>
+                </a>
+
+                <a href="projects/game_level.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/game_level.png" alt="Procedural Level Design">
+                    </div>
+                    <div class="project-content">
+                        <h4>Procedural Level Generation</h4>
+                        <p>Creating diverse and engaging game environments through cellular automata and simple rule-based systems.</p>
+                    </div>
+                </a>
+
+                <a href="projects/leslie_matrix_model.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/leslie_matrix_model.png" alt="Leslie Matrix">
+                    </div>
+                    <div class="project-content">
+                        <h4>Population Dynamics Analysis</h4>
+                        <p>Modeling age-structured population changes using the Leslie matrix.</p>
+                    </div>
+                </a>
+
+                <a href="projects/agent_based_disease.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/agent_based_disease.png" alt="Agent-Based Disease">
+                    </div>
+                    <div class="project-content">
+                        <h4>Agent-Based Epidemic Modeling</h4>
+                        <p>Simulating disease dynamics using agent-based SIR models.</p>
+                    </div>
+                </a>
+
+                <a href="projects/agent_predator_prey.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/agent_predator_prey.png" alt="Agent Predator-Prey">
+                    </div>
+                    <div class="project-content">
+                        <h4>Predator-Prey Agent-Based Simulation</h4>
+                        <p>Exploring population dynamics through individual agent behaviors and interactions.</p>
+                    </div>
+                </a>
+
+                <a href="projects/aggregation_model.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/aggregarion_model.png" alt="Aggregation Model">
+                    </div>
+                    <div class="project-content">
+                        <h4>Diffusion-Limited Aggregation</h4>
+                        <p>Simulating diffusion-limited aggregation and natural cluster growth.</p>
+                    </div>
+                </a>
+
+                <a href="projects/celular_automata.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/celular_autama.png" alt="Cellular Automata">
+                    </div>
+                    <div class="project-content">
+                        <h4>Epidemic Spread Modeling</h4>
+                        <p>Simulating disease propagation using cellular automata and spatial dynamics.</p>
+                    </div>
+                </a>
+
+                <a href="projects/malthusian_model_fit.htm" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/malthusian_model_fit.png" alt="Malthusian Model Fit">
+                    </div>
+                    <div class="project-content">
+                        <h4>Malthusian Population Growth Analysis</h4>
+                        <p>Evaluating the adherence of country populations to the Malthusian exponential growth model./p>
+                    </div>
+                </a>
+
+                <a href="projects/predator_prey_with_disease.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/predaor_prey_with_disease.png" alt="Predator-Prey with Disease">
+                    </div>
+                    <div class="project-content">
+                        <h4>Predator-Prey Disease Dynamics</h4>
+                        <p>Investigating the effects of disease transmission on ecological population stability using mathematical models./p>
+                    </div>
+                </a>
+
+                <a href="projects/stochastic_population_modeling.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/stochastic_population_modeling.png" alt="Stochastic Population">
+                    </div>
+                    <div class="project-content">
+                        <h4>Stochastic Population Modeling</h4>
+                        <p>Enhancing the classic logistic growth model by incorporating environmental randomness.</p>
+                    </div>
+                </a>
+
+                <a href="projects/trafic_flow.html" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/trafic_flow.png" alt="Traffic Flow">
+                    </div>
+                    <div class="project-content">
+                        <h4>Nagel-Schreckenberg Traffic Simulation</h4>
+                        <p>Exploring traffic dynamics and emergent patterns using cellular automata.</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="grading" style="margin-top: 4rem;">
+            <h2>Grading & Resources</h2>
+            <div class="card" style="border-left: 4px solid var(--color-primary);">
+                <p><strong>Assessment:</strong> Grades are based on weekly Python notebook submissions and the final capstone project. See the <a href="other_documents/grading.tex">grading policy</a>.</p>
+                <p><strong>Literature:</strong> References for this course include <em>Volterra (1926)</em> and <em>Chattopadhyay (2003)</em>. PDFs available in the repo.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

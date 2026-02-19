@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Population Dynamics Analysis | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Population Dynamics Analysis</h1>
+            <p class="hero-subtitle">Modeling age-structured population changes using the Leslie matrix.</p>
+            
+            <div class="location-badge">
+                📊 Focus: Demographic Modeling & Simulation
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/leslie_matrix_model.png" alt="Example of an age-structured demographic pyramid">
+            <span class="caption">Figure 1: Example of an age-structured population pyramid over time.</span>
+            
+            <p>Population dynamics can be modeled using various approaches, with some methods, like Malthusian and logistic growth models, ignoring age structure. However, real populations have distinct age classes with different fertility and survival rates, which can be captured using the <strong>Leslie matrix model</strong>. This project will explore how the Leslie matrix can be used to model female population dynamics based on real demographic data.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>You will implement a Leslie matrix-based population model for a selected country. Your simulation should project population changes over time, considering fertility and survival rates. Additionally, you must incorporate <strong>at least two</strong> of the following features:</p>
+            <ul>
+                <li><strong>Changing Fertility Rates:</strong> Introduce time-dependent fertility rates to simulate demographic trends, such as declining birth rates.</li>
+                <li><strong>Stochastic Survival Rates:</strong> Model variability in survival rates due to external factors like healthcare improvements or environmental changes.</li>
+                <li><strong>Migration Effects:</strong> Include immigration and emigration to examine how movement influences population growth.</li>
+                <li><strong>Multiple Subpopulations:</strong> Differentiate between groups (e.g., urban vs. rural) with distinct demographic parameters.</li>
+                <li><strong>Other features of similar complexity:</strong> Any additional aspect you choose that enhances the realism of your model.</li>
+            </ul>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Model Construction:</strong> Explain the construction of your Leslie matrix, including the selection of fertility and survival parameters.</li>
+                <li><strong>Visualizations:</strong> Demonstrate your results using graphs or animations to show how the population evolves over time.</li>
+                <li><strong>Feature Implementation:</strong> Present the two additional features you chose to implement, discussing your approach and any challenges encountered.</li>
+                <li><strong>Initial Conditions:</strong> Analyze how different initial conditions (e.g., aging population, baby boom) influence population trends.</li>
+                <li><strong>Real-world Comparison:</strong> Compare your simulation results to real-world demographic trends and discuss deviations.</li>
+                <li><strong>Literature Review:</strong> Discuss state-of-the-art research in demographic modeling that uses the Leslie matrix model.</li>
+                <li><strong>Reflection:</strong> Reflect on what you learned about age-structured population models through this project.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

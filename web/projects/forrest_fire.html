@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Forest Fire Simulation | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Forest Fire Simulation</h1>
+            <p class="hero-subtitle">Modeling fire spread dynamics using cellular automata and environmental parameters.</p>
+            
+            <div class="location-badge">
+                🌲 Focus: Cellular Automata & Environmental Modeling
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/forrest_fire.png", alt="Simulation grid showing stages of a forest fire">
+            <span class="caption">Figure 1: Example of a cellular automaton modeling forest fire progression.</span>
+            
+            <p>Forest fires exhibit complex behavior arising from simple interactions between fire and vegetation. Cellular automata provide an effective way to model these dynamics, allowing us to understand fire spread patterns.</p>
+            
+            <p>In this project, you will implement a forest fire simulation that captures the essential features of fire propagation while considering environmental factors.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <ol>
+                <li><strong>Core Implementation:</strong> Implement the basic forest fire cellular automaton: a 2D grid where each cell can be in one of three states: empty, containing a tree, or burning. At each time step, an empty cell may grow a tree with a probability, while a tree cell will catch fire if any of its neighboring cells is burning or may spontaneously ignite with a small probability.</li>
+                <li><strong>Advanced Features:</strong> Incorporate at least two more of the following features:
+                    <ul>
+                        <li><strong>Probabilistic Fire Spread:</strong> Replace deterministic rules of fire spread: a fire has a chance of either staying on fire or going out, and the trees around a fire have a chance of igniting or not.</li>
+                        <li><strong>Wind Dynamics:</strong> Add directional wind effects that modify fire spread probabilities based on wind speed and direction.</li>
+                        <li><strong>Terrain Integration:</strong> Include different terrain types (such as flat land, water bodies, roads, elevation) that affect fire spread patterns.</li>
+                        <li><strong>Vegetation Diversity:</strong> Model multiple vegetation types with different flammability characteristics and burn rates.</li>
+                        <li><strong>Weather Systems:</strong> Implement changing weather conditions that affect fire behavior (humidity, temperature, precipitation).</li>
+                        <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Core Mechanics:</strong> Explain your implementation of the core fire spread mechanics, including state transitions and propagation rules.</li>
+                <li><strong>Visualizations:</strong> Demonstrate your simulation results using visualizations showing fire progression over time.</li>
+                <li><strong>Advanced Features:</strong> Present the two additional features you chose to implement, discussing your approach and any challenges you encountered.</li>
+                <li><strong>Emergent Patterns:</strong> Show examples of emergent patterns in your simulation, such as fire fronts, spotting, or barrier effects.</li>
+                <li><strong>Parameter Analysis:</strong> Analyze how different parameters (vegetation density, wind conditions, terrain features) affect fire spread.</li>
+                <li><strong>Model Comparison:</strong> Compare your simulation's behavior to documented forest fire patterns and discuss model limitations.</li>
+                <li><strong>Literature Review:</strong> Compare your implementation to current research in forest fire modeling.</li>
+                <li><strong>Reflection:</strong> Share what you learned about cellular automata and their application to environmental modeling through this project.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

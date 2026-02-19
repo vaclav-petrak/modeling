@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Epidemic Spread Modeling | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Epidemic Spread Modeling</h1>
+            <p class="hero-subtitle">Simulating disease propagation using cellular automata and spatial dynamics.</p>
+            
+            <div class="location-badge">
+                🦠 Focus: Simulation & Spatial Dynamics
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/celular_autama.png" alt="Grid-based simulation of an epidemic spread">
+            <span class="caption">Figure 1: Example of an epidemic spread simulation on a cellular grid.</span>
+            
+            <p>Epidemic spread models play a crucial role in understanding how infectious diseases propagate through populations. Cellular automata provide a grid-based approach to simulating disease spread, enabling explicit representation of both spatial and temporal dynamics.</p>
+            
+            <p>In this project, you will develop a cellular automata-based simulation to explore how local interactions, movement restrictions, and different transmission rules influence epidemic dynamics.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>You should implement a basic cellular automata model for disease spread and incorporate <strong>at least two</strong> additional features from the list below:</p>
+            <ul>
+                <li><strong>Basic Disease Transmission:</strong> Implement a grid where cells represent individuals, following a rule-based infection process (e.g., Susceptible-Infected-Recovered (SIR) model).</li>
+                <li><strong>Heterogeneous Population Dynamics:</strong> Introduce different population groups with varying susceptibility, recovery rates, or movement behaviors.</li>
+                <li><strong>Quarantine and Movement Restrictions:</strong> Implement measures such as lockdowns, travel bans, or isolation zones to study their effects on disease spread.</li>
+                <li><strong>Environmental Factors:</strong> Model spatial variations such as high-risk zones (e.g., crowded areas) or environmental influences on transmission.</li>
+                <li><strong>Adaptive Behavior:</strong> Allow individuals to change their movement patterns or interactions based on the infection risk in their surroundings.</li>
+                <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+            </ul>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Implementation Details:</strong> Explain your implementation of the core disease transmission model, including how you structured the grid, defined the rules, and managed state transitions.</li>
+                <li><strong>Visualizations:</strong> Demonstrate your results using visualizations, such as animations, heatmaps, or step-by-step snapshots.</li>
+                <li><strong>Additional Features:</strong> Present the two additional features you chose to implement, discussing your approach and any challenges you encountered.</li>
+                <li><strong>Emergent Behaviors:</strong> Show examples of emergent behaviors, such as clustering effects, wave-like transmission, or unexpected epidemic patterns.</li>
+                <li><strong>Initial Conditions:</strong> Analyze how different initial conditions (e.g., varying infection rates, population density, or movement restrictions) impact disease spread.</li>
+                <li><strong>Real-world Comparison:</strong> Compare your simulation results with real-world epidemic data or established epidemiological models.</li>
+                <li><strong>Methodological Comparison:</strong> Discuss how cellular automata compare to other mathematical approaches used in epidemiology, such as differential equation models.</li>
+                <li><strong>Reflection:</strong> Share insights gained about epidemic modeling, spatial dynamics, and the strengths and limitations of cellular automata in this context.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Nagel-Schreckenberg Traffic Simulation | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Nagel-Schreckenberg Traffic Simulation</h1>
+            <p class="hero-subtitle">Exploring traffic dynamics and emergent patterns using cellular automata.</p>
+            
+            <div class="location-badge">
+                🚗 Focus: Cellular Automata & Traffic Modeling
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/trafic_flow.png" alt="Spacetime diagram of traffic flow in the Nagel-Schreckenberg model">
+            <span class="caption">Figure 1: Example of spontaneous jam formation and stop-and-go waves.</span>
+            
+            <p>The Nagel-Schreckenberg model is a cellular automaton that demonstrates how complex traffic patterns emerge from simple rules. This model captures essential features of real traffic flow, including spontaneous jam formation and stop-and-go waves.</p>
+            
+            <p>In this project, you will implement this model to explore traffic dynamics and understand how individual driver behaviors affect overall traffic patterns.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <ol>
+                <li><strong>Core Implementation:</strong> You should implement the core Nagel-Schreckenberg rules—acceleration, slowing down, randomization, and vehicle movement on a single-lane road.</li>
+                <li><strong>Additional Features:</strong> In addition, implement at least <strong>two</strong> more of the following features:
+                    <ul>
+                        <li><strong>Multi-lane Dynamics:</strong> Add multiple lanes with lane-changing rules based on speed differences and safety gaps.</li>
+                        <li><strong>Driver Behavior Variations:</strong> Introduce different driver types (aggressive, cautious, normal) with varying randomization parameters and desired speeds.</li>
+                        <li><strong>Road Network Features:</strong> Implement traffic lights, speed limits, or similar features.</li>
+                        <li><strong>Traffic Monitoring:</strong> Add measurement points that collect data on flow rates, density, and average speeds at different road sections.</li>
+                        <li><strong>Custom Feature:</strong> Other feature of similar complexity of your choice.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Implementation Details:</strong> Explain your implementation of the core model rules, including how you handled vehicle movement, speed updates, and randomization.</li>
+                <li><strong>Visualizations:</strong> Demonstrate your results using clear visualizations and plots.</li>
+                <li><strong>Feature Expansion:</strong> Present the two additional features you chose to implement, discussing your approach.</li>
+                <li><strong>Emergent Phenomena:</strong> Show examples of emergent phenomena in your simulation, such as traffic jam formation and dissolution.</li>
+                <li><strong>Parameter Analysis:</strong> Analyze how different parameters (maximum velocity, vehicle density) affect traffic flow patterns.</li>
+                <li><strong>Real-world Comparison:</strong> Compare your simulation's behavior to real-world traffic patterns and discuss limitations.</li>
+                <li><strong>Literature Review:</strong> Compare your implementation to recent research literature on traffic flow modeling.</li>
+                <li><strong>Reflection:</strong> Share what you learned about cellular automata and their application to traffic systems through this project.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

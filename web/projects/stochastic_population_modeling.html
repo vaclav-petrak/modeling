@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Stochastic Population Modeling | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Stochastic Population Modeling</h1>
+            <p class="hero-subtitle">Enhancing the classic logistic growth model by incorporating environmental randomness.</p>
+            
+            <div class="location-badge">
+                🌿 Focus: Ecological Modeling & Stochastic Processes
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+                        <img src="../images/stochastic_population_modeling.png", alt="Historical map of the French railway network expansion">
+                        <span class="caption">Figure 1: Example of a population trajectory with stochastic fluctuations over time.</span>
+            
+            <p>Environmental variability introduces unpredictable fluctuations in factors affecting population growth, such as resource availability or climate conditions. In this project, you will enhance the classic logistic growth model by incorporating stochastic (random) elements to study how environmental randomness influences population dynamics. By adjusting the carrying capacity (K), intrinsic growth rate (r), or both with random variation, you will simulate realistic ecological scenarios and analyze emergent outcomes.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <ol>
+                <li><strong>Core Implementation:</strong> Implement the logistic growth equation with stochasticity. Add random variation to <strong>K</strong> (carrying capacity), <strong>r</strong> (growth rate), and both.</li>
+                <li><strong>Probability Distributions:</strong> Use probability distributions (e.g., normal, uniform, Poisson) to model parameter randomness.</li>
+                <li><strong>Additional Features:</strong> Incorporate at least two additional features from the list below:
+                    <ul>
+                        <li><strong>Seasonal Variation:</strong> For example, <strong>K</strong> could fluctuate annually due to rainfall variability, or <strong>r</strong> might vary seasonally with temperature changes.</li>
+                        <li><strong>Catastrophic Events:</strong> Introduce rare, extreme disruptions (e.g., wildfires, pandemics) that reduce population size or <strong>K</strong> abruptly.</li>
+                        <li><strong>Density-Dependent Variability:</strong> Link the magnitude of parameter fluctuations to population density (e.g., larger <strong>K</strong> variance near carrying capacity).</li>
+                        <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Stochastic Integration:</strong> Explain how you integrated stochasticity into the logistic equation.</li>
+                <li><strong>Visualizations:</strong> Include plots, phase diagrams, or histograms showing population trajectories under different stochastic conditions. Animate repeated trials to highlight outcome variability.</li>
+                <li><strong>Feature Implementation:</strong> Describe your chosen features, their implementation, and their limitations.</li>
+                <li><strong>Emergent Behavior:</strong> Identify unexpected patterns (if present).</li>
+                <li><strong>Ecological Comparisons:</strong> Compare your results to ecological case studies (e.g., insect outbreaks, endangered species recovery).</li>
+                <li><strong>Literature Context:</strong> Relate your approach to research on stochastic population models.</li>
+                <li><strong>Reflection:</strong> Reflect on the role of randomness in ecological systems and the limitations of deterministic models.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

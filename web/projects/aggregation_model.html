@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Diffusion-Limited Aggregation | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Diffusion-Limited Aggregation (DLA)</h1>
+            <p class="hero-subtitle">Simulating complex, fractal-like pattern formation using cellular automata.</p>
+            
+            <div class="location-badge">
+                📊 Focus: Cellular Automata & Pattern Formation
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/aggregarion_model.png", alt="Example of Diffusion-Limited Aggregation fractal pattern">
+            <span class="caption">Figure 1: Example of a structure formed by Diffusion-Limited Aggregation.</span>
+            
+            <p>Diffusion-Limited Aggregation (DLA) describes the process where randomly moving particles adhere to a growing structure, forming complex, fractal-like patterns. This project will implement a DLA model using cellular automata to explore diffusion and pattern formation.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>Your implementation should include a basic DLA model where particles perform a random walk until they attach to an existing structure. Additionally, incorporate <strong>at least two</strong> of the following features:</p>
+            <ul>
+                <li><strong>Seed Growth Variation:</strong> Experiment with different initial seed configurations, such as a single point, a line, or multiple starting points.</li>
+                <li><strong>Adhesion Probability:</strong> Introduce probabilistic sticking rules to simulate variations in surface roughness and material properties.</li>
+                <li><strong>Directional Bias:</strong> Modify the random walk behavior to introduce real-world influences such as gravity, fluid flow, or electromagnetic fields.</li>
+                <li><strong>Obstacle Interaction:</strong> Place barriers in the simulation space and observe how diffusion patterns adapt to these constraints.</li>
+                <li><strong>Multi-Species Aggregation:</strong> Extend the model to include multiple types of particles with different sticking behaviors, mimicking complex natural growth processes (e.g., coral reefs or bacterial colonies).</li>
+                <li><strong>Custom Feature:</strong> Another feature of similar complexity of your choice.</li>
+            </ul>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your presentation or report, address the following:</p>
+            <ul>
+                <li><strong>Implementation:</strong> Explain how you implemented the basic diffusion and aggregation mechanics, including particle movement and sticking rules.</li>
+                <li><strong>Visualization:</strong> Provide a visualization of your simulation, preferably as a GIF or video.</li>
+                <li><strong>Feature Development:</strong> Describe the two (or more) features you chose to implement, discussing your approach and any challenges you faced.</li>
+                <li><strong>Observations:</strong> Highlight any interesting or unexpected behaviors observed in your simulation, such as pattern self-organization or complex growth structures.</li>
+                <li><strong>Parameter Analysis:</strong> Analyze how different initial conditions or parameter choices (e.g., adhesion probability, directional bias) affect the resulting structures.</li>
+                <li><strong>Real-World Comparison:</strong> Discuss how your simulated patterns compare to real-world phenomena such as bacterial growth, electrochemical deposition, or snowflake formation.</li>
+                <li><strong>Literature Review:</strong> Compare your model to state-of-the-art research in diffusion-limited aggregation and pattern formation.</li>
+                <li><strong>Reflection:</strong> Share insights gained about cellular automata, diffusion processes, and the emergent properties of simple stochastic rules.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

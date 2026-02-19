@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Agent-Based Epidemic Modeling | CS402</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="project-header">
+        <div class="container">
+            <div class="header-top">
+                <span class="course-meta">CS402 // Capstone Project</span>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">← Back to Course</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <h1 class="hero-title">Agent-Based Epidemic Modeling</h1>
+            <p class="hero-subtitle">Simulating disease dynamics using agent-based SIR models.</p>
+            
+            <div class="location-badge">
+                🦠 Focus: Simulation & Agent-Based Modeling
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <section id="introduction">
+            <h2>Introduction</h2>
+            
+            <img src="../images/agent_based_disease.png" alt="Visualization of an agent-based epidemic simulation">
+            <span class="caption">Figure 1: Example of an agent-based SIR simulation.</span>
+            
+            <p>Agent-based modeling is a powerful tool for simulating the spread of diseases by capturing interactions at the individual level within a population. This method allows for the study of complex behaviors and multiple factors influencing disease transmission. In this project, you will develop and analyze disease dynamics through agent-based SIR (Susceptible-Infected-Recovered) model simulations.</p>
+        </section>
+
+        <section id="task">
+            <h2>Task</h2>
+            <p>You will implement a basic agent-based SIR model and incorporate at least one of the following scenarios:</p>
+            <ul>
+                <li><strong>Movement Patterns:</strong> Agents move freely but tend to converge at central locations such as shopping centers or schools.</li>
+                <li><strong>Intercommunity Spread:</strong> Agents travel between separate communities, influencing regional outbreaks.</li>
+                <li><strong>Mask Compliance:</strong> Wearing masks reduces infection probability, but some individuals do not comply, leading to heterogeneous risk.</li>
+                <li><strong>Other Scenario:</strong> Implement a different feature of similar complexity that affects disease spread.</li>
+            </ul>
+        </section>
+
+        <section id="discussion">
+            <h2>Discussion Points</h2>
+            <p>In your final report, be sure to address the following:</p>
+            <ul>
+                <li><strong>Implementation Details:</strong> Explain your implementation of the core SIR model, including how you handle agent movement, infection, and recovery dynamics.</li>
+                <li><strong>Simulation Results:</strong> Demonstrate your simulation results using a gif or video in your presentation.</li>
+                <li><strong>Additional Features:</strong> Present the additional feature(s) you implemented, discussing your approach and challenges encountered.</li>
+                <li><strong>Emergent Behaviors:</strong> Show examples of emergent behaviors, such as superspreading events or localized outbreaks.</li>
+                <li><strong>Parameter Analysis:</strong> Analyze how different initial conditions or parameter changes (e.g., infection rate, movement restrictions) affect disease spread.</li>
+                <li><strong>Real-World Validation:</strong> Compare your simulation’s behavior to real-world epidemic data and discuss its validity.</li>
+                <li><strong>Literature Review:</strong> Compare your simulation results to findings from state-of-the-art research literature.</li>
+                <li><strong>Reflection:</strong> Reflect on what you learned about agent-based modeling and disease dynamics through this project.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Department of Computer Science. <br>Course content adapted for Python & Jupyter.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

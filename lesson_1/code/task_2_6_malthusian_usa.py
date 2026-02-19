@@ -1,34 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Growth rate
-r = 0.027
+# Parameters
+r = 0.0275
+start_year = 1790
 
-# Start year
-start_year = 1950
+# Time axis: equivalent to 0:10:230
+t_usa = np.arange(0, 240, 10) 
 
-# Time axis (years)
-t_sen = np.array([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 72, 73, 74])
-
-# Senegalese population (millions)
-P_sen = np.array([2.5, 2.8, 3.3, 3.8, 4.4, 5.0, 5.7, 6.5, 7.5, 8.6, 9.7, 11.0, 12.5, 14.4, 16.4, 17.3, 17.8, 18.2])
+# US population data (Millions)
+P_usa = np.array([
+    3.9, 5.3, 7.2, 9.6, 12.9, 17.1, 23.2, 31.4,
+    38.6, 50.2, 63.0, 76.2, 92.2, 106.0, 123.2, 132.2,
+    151.3, 179.3, 203.3, 226.5, 248.7, 281.4, 308.7, 331.4
+])
 
 # EXPLICIT SOLUTION
-# Initial population is the first value: P_sen[0]
-P_expl = P_sen[0] * np.exp(r * t_sen)
+# P(t) = P0 * e^(rt)
+P_expl = P_usa[0] * np.exp(r * t_usa)
 
 # PLOTTING
+years = t_usa + start_year
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
 # Tile 1: Real data and model
-ax1.plot(t_sen + start_year, P_expl, color="red", label='Model')
-ax1.plot(t_sen + start_year, P_sen, color="blue", label='Real Data')
+ax1.plot(years, P_expl, color="red", label="Model")
+ax1.plot(years, P_usa, color="black", label="Real Data")
 ax1.set_title("Real data and model")
-ax1.set_ylim(0, 20)
+ax1.set_ylim(0, 350)
 ax1.legend()
 
 # Tile 2: The difference
-ax2.plot(t_sen + start_year, P_expl - P_sen, '-o', color="black")
+ax2.plot(years, P_expl - P_usa, '-o', color="black")
 ax2.set_title("The difference")
 
 plt.tight_layout()

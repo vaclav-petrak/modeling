@@ -177,6 +177,59 @@ What happens if we simulate this for many time steps?
 \textit{Note for linear algebra enthusiasts: $\lambda$ is the dominant eigenvalue of $L$, and the stable age distribution is the corresponding eigenvector.}
 \end{frame}
 
+
+\subsection{Population Growth Rate ($\lambda$)}
+
+\begin{frame}{The Finite Rate of Increase ($\lambda$)}
+    \small
+    As the population approaches the Stable Age Distribution, it begins to grow (or decline) at a constant rate every time step.
+    
+    \vspace{1em}
+    We call this rate $\lambda$ (lambda).
+    
+    \begin{equation*}
+        N_{total}(t+1) = \lambda \cdot N_{total}(t)
+    \end{equation*}
+    
+    \vspace{1em}
+    \textbf{Biological Interpretation:}
+    \begin{itemize}
+        \item \textbf{$\lambda > 1$:} The population is \textbf{growing} exponentially.
+        \item \textbf{$\lambda = 1$:} The population is \textbf{stable} (stationary).
+        \item \textbf{$\lambda < 1$:} The population is \textbf{declining} to extinction.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Importance of $\lambda$}
+    Why is calculating $\lambda$ so critical in conservation and ecology?
+    \vspace{1em}
+    \begin{itemize}
+        \item \textbf{Conservation Status:} Determines if an endangered species is recovering ($\lambda > 1$) or needs intervention ($\lambda < 1$).
+        \item \textbf{Pest Control:} To eradicate a pest, we must lower survival/fertility until $\lambda < 1$.
+        \item \textbf{Harvesting:} In fisheries or forestry, we want to harvest the "excess" without driving $\lambda$ below 1.
+        \item \textbf{Comparative Analysis:} Allows us to compare population health across different habitats regardless of current population size.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{How to Calculate $\lambda$}
+    There are two main ways to find $\lambda$:
+    
+    \vspace{1em}
+    \textbf{1. The Analytical Method (Eigenvalues)}
+    \begin{itemize}
+        \item $\lambda$ is the \textbf{dominant eigenvalue} (largest absolute value) of the Leslie Matrix $\mathbf{L}$.
+        \item Requires linear algebra: $\det(\mathbf{L} - \lambda \mathbf{I}) = 0$.
+    \end{itemize}
+    
+    \vspace{1em}
+    \textbf{2. The Numerical Method (Simulation)}
+    \begin{itemize}
+        \item If we simulate the population long enough, the ratio between consecutive years converges to $\lambda$.
+        \item $\lambda \approx \frac{N(t+1)}{N(t)}$ (for large $t$).
+    \end{itemize}
+\end{frame}
+
+
 \subsection{Exercise}
 
 \begin{frame}{Task 4.1: Defining the Model}
@@ -303,4 +356,38 @@ print(proportions[:, -2])
 
 \vfill
 \textit{You should see that the vector values stabilize, confirming the Stable Age Distribution theorem.}
+\end{frame}
+
+\begin{frame}{Task 4.5: Calculating $\lambda$ in Python}
+    \textbf{Your Task:}
+    \begin{enumerate}
+        \item \textbf{Method A (Simulation):} Calculate the growth rate using the total population from the \textit{last two years} of your simulation.
+        $$ \lambda_{sim} = \frac{\text{Total Pop (Year 20)}}{\text{Total Pop (Year 19)}} $$
+        
+        \item \textbf{Method B (Linear Algebra):} Use NumPy's linear algebra library to calculate the eigenvalues of matrix $L$ directly.
+        \item Compare the two values.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Solution 4.5: Calculating $\lambda$}
+\small
+\begin{lstlisting}[language=Python]
+# --- Method A: From Simulation ---
+# Total population at last step / Total population at 2nd to last step
+lambda_sim = total_pop[-1] / total_pop[-2]
+print(f"Simulated Lambda: {lambda_sim:.4f}")
+
+# --- Method B: Eigenanalysis ---
+# Calculate eigenvalues
+eigenvalues = np.linalg.eigvals(L)
+
+# The dominant eigenvalue is the maximum real value
+lambda_eig = np.max(np.real(eigenvalues))
+print(f"Theoretical Lambda: {lambda_eig:.4f}")
+
+# They should be nearly identical!
+\end{lstlisting}
+\vspace{1em}
+\footnotesize
+\textit{Note: `np.linalg.eigvals` returns complex numbers. We use `np.real` and `np.max` to find the dominant growth rate.}
 \end{frame}
