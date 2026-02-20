@@ -1,11 +1,12 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{../styles/project_style2026} % Assuming you have this style file
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{geometry}
 \geometry{a4paper, margin=1in}
-\usepackage{cite}
+\addbibresource{references.bib}
 
 \title{Title of the Research Paper}
 \author{Author Name}
@@ -27,6 +28,7 @@ The Introduction section provides background information, states the research pr
     \item \textbf{The specific topic of study}: Quote papers closely related to your task and recent papers on the topic. The aim is to find at least two or three such papers.
     \item \textbf{Objectives of your work}: Clearly state what you are trying to do. Note that this might differ from a standard research paper, which usually aims to bring about new knowledge. If your goal was only to reproduce a result, say so.
     \item \textbf{Overview}: Conclude with a brief overview of the paper's structure.
+    Do not forget to quote relevant paper\autocite{lotka1920analytical}
 \end{enumerate}
 
 \section{Methods}
@@ -45,14 +47,12 @@ The Methods section describes how the research was conducted. It should provide 
 The results section presents the findings of the study. Don't interpret your data here. Use tables, figures, and graphs to present data. Figure captions should be concise but comprehensive. They should describe the data shown and draw attention to important features contained within the figure.
 
 \section{Discussion}
-The discussion section interprets and explains the significance of the findings, relating the results to your objectives and the existing literature. Attempt at least two or three paragraphs. Begin with a summary of the key findings. Discuss any unexpected results and potential reasons for these. Address the limitations of the study. Discuss what the results imply for future research.
+The discussion section interprets and explains the significance of the findings, relating the results to your objectives and the existing literature. Attempt at least two or three paragraphs. Begin with a summary of the key findings. Discuss any unexpected results and potential reasons for these. Compare with the literature \autocite{barraquand2017lotka} Address the limitations of the study. Discuss what the results imply for future research. 
 
 \section{Conclusion}
 The conclusion section summarizes the main findings and their significance. You should restate your research objective and how it was addressed. Highlight the key findings and their implications.
 
 \section{References}
 The reference section lists all sources cited in the paper.
-\bibliographystyle{plain}
-\bibliography{references} % Create a file named 'references.bib' for your references.
-
+\printbibliography
 \end{document}
