@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
 # Parameters
 r, P0, K, start_year = 0.0237, 5.2, 460, 1790
 t_usa = np.arange(0, 240, 10)
