@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Lecture Notes: The Logistic Model with Constant Harvesting}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Standard Logistic Model}
+Before we harvest, we start with the classic logistic growth equation for a population $P$ over time $t$:
+\begin{equation*}
+\frac{dP}{dt} = rP \left( 1 - \frac{P}{K} \right)
+\end{equation*}
+\textbf{Where:}
+\begin{itemize}
+    \item $r$ = intrinsic growth rate
+    \item $K$ = carrying capacity
+    \item $P$ = population size
+\end{itemize}
+
+\section{Introducing Constant Harvesting}
+Now, let's assume we are removing (harvesting) individuals from the population at a constant rate, $h$ (e.g., catching a fixed number of fish per year). We simply subtract this rate from our original equation:
+\begin{equation*}
+\frac{dP}{dt} = rP \left( 1 - \frac{P}{K} \right) - h
+\end{equation*}
+
+\section{Finding the Equilibrium Points}
+To understand the long-term behavior of this population, we need to find its equilibrium points. An equilibrium occurs when the population is no longer changing, meaning the rate of change is zero:
+\begin{equation*}
+\frac{dP}{dt} = 0
+\end{equation*}
+So, we set our harvested equation to zero:
+\begin{equation*}
+rP - \frac{r}{K}P^2 - h = 0
+\end{equation*}
+
+\section{Rearranging into a Quadratic Equation}
+To solve for the population $P$, let's rearrange the equation into the standard quadratic form ($aP^2 + bP + c = 0$):
+\begin{equation*}
+-\frac{r}{K}P^2 + rP - h = 0
+\end{equation*}
+To make it easier to work with, multiply the entire equation by $-1$:
+\begin{equation*}
+\frac{r}{K}P^2 - rP + h = 0
+\end{equation*}
+\textbf{Here, our quadratic coefficients are:}
+\begin{itemize}
+    \item $a = \frac{r}{K}$
+    \item $b = -r$
+    \item $c = h$
+\end{itemize}
+
+\section{Solving for P using the Quadratic Formula}
+Now, we apply the quadratic formula, $P = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$:
+\begin{equation*}
+P = \frac{-(-r) \pm \sqrt{(-r)^2 - 4 \left(\frac{r}{K}\right) (h)}}{2 \left(\frac{r}{K}\right)}
+\end{equation*}
+Simplifying this gives us the possible equilibrium populations:
+\begin{equation*}
+P = \frac{r \pm \sqrt{r^2 - \frac{4rh}{K}}}{\frac{2r}{K}}
+\end{equation*}
+
+\section{Finding the Critical Harvesting Rate ($h_c$)}
+The critical harvesting rate is the maximum amount we can harvest without driving the population to extinction. Mathematically, it's the point where the population goes from having two real equilibrium points (a stable and an unstable one) to having zero (meaning the population will unavoidably collapse). 
+
+For real equilibrium points to exist, the value inside the square root (the discriminant, $\Delta$) must be greater than or equal to zero:
+\begin{equation*}
+\Delta = r^2 - \frac{4rh}{K} \ge 0
+\end{equation*}
+
+The \textbf{critical harvesting rate ($h_c$)} occurs exactly when the discriminant is equal to zero (giving us exactly one equilibrium point):
+\begin{equation*}
+r^2 - \frac{4rh_c}{K} = 0
+\end{equation*}
+
+Now, we just solve for $h_c$:
+\begin{equation*}
+r^2 = \frac{4rh_c}{K}
+\end{equation*}
+Divide both sides by $r$ (assuming $r > 0$):
+\begin{equation*}
+r = \frac{4h_c}{K}
+\end{equation*}
+Multiply by $K$ and divide by $4$:
+\begin{equation*}
+h_c = \frac{rK}{4}
+\end{equation*}
+
+\section{Conclusion}
+The critical harvesting rate is:
+\begin{equation*}
+\mathbf{h_c = \frac{rK}{4}}
+\end{equation*}
+\begin{itemize}
+    \item If $h < \frac{rK}{4}$, the population has a stable equilibrium and survives.
+    \item If $h > \frac{rK}{4}$, the harvest rate exceeds the population's maximum ability to reproduce, and the population will inevitably collapse to zero.
+\end{itemize}
+
+\end{document}
