@@ -2,7 +2,7 @@
 
 \begin{frame}
 \begin{center}
-    \includegraphics[scale=0.25]{lesson_2/images/predator_plot.png}
+    \includegraphics[scale=0.25]{images/predator_plot.png}
 \end{center}
     
 \end{frame}
@@ -88,7 +88,7 @@
 Picture below illustrates the concept of predators-prey encounters as $N \cdot P$ product.
 \vfill
 \begin{center}
-     \includegraphics[scale = 0.22]{lesson_2/images/predator_meetings.png}
+     \includegraphics[scale = 0.22]{images/predator_meetings.png}
 \end{center}
 \pause
 The concept would not work for predators hunting in packs or for  prey staying in herds. 
@@ -119,23 +119,67 @@ The concept would not work for predators hunting in packs or for  prey staying i
 
 \begin{frame}
 \begin{center}
-    \includegraphics[scale = 0.1]{lesson_2/images/predator_prey_in_time.png}
+    \includegraphics[scale = 0.1]{images/predator_prey_in_time.png}
 \end{center}
     
 \end{frame}
 
 \begin{frame}
 \begin{center}
-     \includegraphics[scale = 0.1]{lesson_2/images/predator_prey_space.png}
+     \includegraphics[scale = 0.1]{images/predator_prey_space.png}
 \end{center}
    
 \end{frame}
 
 \begin{frame}{Concept of feedback}
 \begin{center}
-    \includegraphics[scale = 0.5]{lesson_2/images/predator_feedback.png}
+    \includegraphics[scale = 0.5]{images/predator_feedback.png}
 \end{center}
     
+\end{frame}
+
+\begin{frame}{What is a Vector Field?}
+    \begin{itemize}
+        \item In mathematics and physics, a \textbf{vector field} assigns a vector to every point in a given space. 
+        \pause
+        \item For a 2D dynamical system, the state is represented by coordinates $(x, y)$. The differential equations define the rate of change at any point:
+        \begin{equation}
+            \vec{v}(x,y) = \left( \frac{dx}{dt}, \frac{dy}{dt} \right)
+        \end{equation}
+        \pause
+        \item Visually, this is represented as a grid of arrows. The \textbf{direction} of the arrow shows where the system is heading, and its \textbf{length} (magnitude) shows how fast it is changing.
+        \item Vector fields allow us to understand the qualitative, long-term behavior of a system without needing to analytically solve the complex differential equations.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Vector Field in Predator-Prey Phase Space}
+    \begin{itemize}
+        \item In the Lotka-Volterra model, our 2D phase space is defined by the prey population $N$ and the predator population $P$.
+        \pause
+        \item At any given state $(N, P)$, the instantaneous rate of change is the vector:
+        \begin{equation}
+            \vec{v} = \left( rN - \beta NP, \; m\beta NP - dP \right)
+        \end{equation}
+        \pause
+        \item The arrows in this specific vector field indicate how both populations will shift from that exact moment.
+        \item By following the continuous flow of these arrows, we can trace the closed, periodic trajectories of the populations over time.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Equilibrium Points in the Vector Field}
+    \begin{itemize}
+        \item \textbf{Equilibrium points} (or fixed points) occur where the vector magnitude is exactly zero. At these points, the system is completely at rest ($\frac{dN}{dt} = 0$ and $\frac{dP}{dt} = 0$).
+        \pause
+        \item For the Lotka-Volterra equations, the vector field reveals two such points:
+        \begin{enumerate}
+            \item \textbf{Extinction:} $(0, 0)$ --- both populations are zero.
+            \pause
+            \item \textbf{Coexistence:} $\left( \frac{d}{m\beta}, \frac{r}{\beta} \right)$ --- populations perfectly balance each other out and remain static.
+        \end{enumerate}
+        \pause
+        \vspace{1em}
+        \item The vector field arrows orbit continuously around the coexistence equilibrium point, mathematically illustrating the perpetual lagging and catching-up dynamics of the two species.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -150,6 +194,7 @@ The concept would not work for predators hunting in packs or for  prey staying i
 \end{frame}
 
 
+
 \begin{frame}
     \frametitle{Conclusion}
     \begin{itemize}
@@ -158,28 +203,84 @@ The concept would not work for predators hunting in packs or for  prey staying i
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Exercise: Building a Predator-Prey Model in Simulink}
-\small
 
-        Use Simulink to construct and analyze the Lotka-Volterra model.
+\section{Modeling Approaches}
 
-
-        \begin{enumerate}
-        \footnotesize
-            \item Create a new Simulink model and build the system using two integrator blocks representing the populations of predators and prey.
-            \item Use function blocks to implement the differential equations for each population.
-            \item Set initial populations for predators and prey using constant blocks.
-        \end{enumerate}
-        Experiment with the following parameters and observe the effects on the population dynamics. 
- \begin{enumerate}
-     \footnotesize
-            \item Adjust the prey growth rate $r$ to see how it affects the population cycles.
-            \item Study the impact the predator death rate $d$)
-            \item Modify the attack efficiency $\beta$ and observe the changes in the frequency and amplitude of the oscillations.
-            \item Experiment with the conversion efficiency $m$
-             \end{enumerate}
-
-    Plot predator and prey population in time and phase-space plot for the predator prey system.
-
+\begin{frame}{Modeling Approach 1: The Euler Method}
+    \begin{itemize}
+        \item The Euler method is the simplest numerical procedure for solving ordinary differential equations (ODEs).
+        \vspace{0.5em}
+        \item \textbf{How it works:} We break time into discrete, tiny steps ($\Delta t$). At each step, we calculate the current rate of change and assume it remains constant for that brief interval.
+        \item \textbf{Discrete Equations:}
+        \begin{equation}
+            N_{t+\Delta t} = N_t + \Delta t (r N_t - \beta N_t P_t)
+        \end{equation}
+        \begin{equation}
+            P_{t+\Delta t} = P_t + \Delta t (m \beta N_t P_t - d P_t)
+        \end{equation}
+        \vspace{0.5em}
+        \item \textbf{Pros:} Transparent; excellent for learning how continuous equations translate to discrete steps.
+        \item \textbf{Cons:} Prone to accumulating errors. If $\Delta t$ is too large, the inherent closed loops artificially spiral outwards.
+    \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Euler Method in Python}
+    \footnotesize
+    Demonstrating the explicit loop, mapping directly to the discrete equations:
+    \vspace{0.5em}
+    \begin{lstlisting}[language=Python, basicstyle=\ttfamily\scriptsize, keywordstyle=\color{blue}, commentstyle=\color{gray}, frame=single]
+import numpy as np
+
+r, beta, m, d = 1.0, 0.1, 0.05, 0.5
+dt = 0.01  # Small time step is crucial for stability
+steps = 2000
+
+N, P = np.zeros(steps), np.zeros(steps)
+N[0], P[0] = 40, 9  # Initial conditions
+
+for i in range(1, steps):
+    dN_dt = r * N[i-1] - beta * N[i-1] * P[i-1]
+    dP_dt = m * beta * N[i-1] * P[i-1] - d * P[i-1]
+    
+    N[i] = N[i-1] + dN_dt * dt
+    P[i] = P[i-1] + dP_dt * dt
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Modeling Approach 2: ODE Solvers}
+    \begin{itemize}
+        \item For practical applications and research, manual loops are often insufficient. We use dedicated mathematical solvers, such as SciPy's \texttt{solve\_ivp}.
+        \vspace{0.5em}
+        \item \textbf{How it works:} These solvers act as a "black box" utilizing advanced algorithms (like Runge-Kutta). You provide the differential equations, time span, and initial conditions.
+        \item \textbf{Adaptive Step Size:} The solver automatically shrinks $\Delta t$ when populations change rapidly (for accuracy) and expands it when stable (to save computing power).
+        \vspace{0.5em}
+        \item \textbf{Pros:} Highly accurate, stable, and correctly handles the periodic nature of predator-prey dynamics without artificial spiraling.
+        \item \textbf{Cons:} Less transparent for beginners; the integration loop is hidden behind the scenes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{SciPy Solver in Python}
+    \footnotesize
+    Define the system as a function, allowing the solver to handle integration:
+    \vspace{0.5em}
+    \begin{lstlisting}[language=Python, basicstyle=\ttfamily\scriptsize, keywordstyle=\color{blue}, commentstyle=\color{gray}, frame=single]
+from scipy.integrate import solve_ivp
+
+def lotka_volterra(t, state, r, beta, m, d):
+    N, P = state
+    dN_dt = r * N - beta * N * P
+    dP_dt = m * beta * N * P - d * P
+    return [dN_dt, dP_dt]
+
+params = (1.0, 0.1, 0.05, 0.5)
+initial_state = [40, 9] 
+t_span = (0, 20) 
+
+# 'RK45' is the default Runge-Kutta method
+solution = solve_ivp(fun=lotka_volterra, t_span=t_span, 
+                     y0=initial_state, args=params)
+
+time = solution.t
+prey, predators = solution.y[0], solution.y[1]
+    \end{lstlisting}
+\end{frame}
