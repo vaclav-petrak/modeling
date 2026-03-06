@@ -103,7 +103,6 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-            cursor: help;
         }
 
         .control-group label {
@@ -242,69 +241,58 @@
         {
             key: 'PREY_SPEED',
             name: 'Prey Speed',
-            min: 0.1, max: 5.0, step: 0.1,
-            tooltip: 'How far each prey agent moves per simulation step. Higher values make prey harder to catch.'
+            min: 0.1, max: 5.0, step: 0.1
         },
         {
             key: 'PREY_REPRO_RATE',
             name: 'Prey Reproduction Rate',
-            min: 0.001, max: 0.1, step: 0.001,
-            tooltip: 'Probability that a prey agent reproduces each step. Higher values grow the prey population faster.'
+            min: 0.001, max: 0.1, step: 0.001
         },
         {
             key: 'PRED_SPEED',
             name: 'Predator Speed',
-            min: 0.1, max: 5.0, step: 0.1,
-            tooltip: 'How far each predator agent moves per simulation step. Higher values improve hunting success.'
+            min: 0.1, max: 5.0, step: 0.1
         },
         {
             key: 'PRED_EAT_RADIUS',
             name: 'Predator Eat Radius',
-            min: 0.5, max: 10.0, step: 0.5,
-            tooltip: 'Distance within which a predator can catch and eat a prey agent. Larger radius means easier hunting.'
+            min: 0.5, max: 10.0, step: 0.5
         },
         {
             key: 'PRED_ENERGY_GAIN',
             name: 'Energy Gained Per Meal',
-            min: 1, max: 50, step: 1,
-            tooltip: 'How much energy a predator gains from eating one prey. More energy supports more reproduction and survival.'
+            min: 1, max: 50, step: 1
         },
         {
             key: 'PRED_STARVE_RATE',
             name: 'Predator Starvation Rate',
-            min: 0.1, max: 5.0, step: 0.1,
-            tooltip: 'Energy lost by each predator per step. Predators with zero energy die. Higher rates cause faster die-offs when prey is scarce.'
+            min: 0.1, max: 5.0, step: 0.1
         },
         {
             key: 'PRED_REPRO_ENERGY',
             name: 'Predator Reproduction Energy Threshold',
-            min: 10, max: 100, step: 5,
-            tooltip: 'Minimum energy a predator must have to reproduce. Higher thresholds slow predator population growth.'
+            min: 10, max: 100, step: 5
         },
         {
             key: 'PRED_REPRO_RATE',
             name: 'Predator Reproduction Rate',
-            min: 0.001, max: 0.1, step: 0.001,
-            tooltip: 'Probability that an eligible predator reproduces each step. Parent splits energy with offspring.'
+            min: 0.001, max: 0.1, step: 0.001
         },
         {
             key: 'MIG_PROB_PREY',
             name: 'Prey Migration Probability',
-            min: 0.0, max: 1.0, step: 0.01,
-            tooltip: 'Probability per step that a new prey agent migrates into the world from outside. Prevents total prey extinction.'
+            min: 0.0, max: 1.0, step: 0.01
         },
         {
             key: 'MIG_PROB_PRED',
             name: 'Predator Migration Probability',
-            min: 0.0, max: 1.0, step: 0.01,
-            tooltip: 'Probability per step that a new predator migrates into the world from outside. Prevents total predator extinction.'
+            min: 0.0, max: 1.0, step: 0.01
         }
     ];
 
     sliderDefs.forEach(def => {
         const group = document.createElement('div');
         group.className = 'control-group';
-        group.title = def.tooltip;
         group.innerHTML = `
             <label>${def.name} <span id="val-${def.key}">${config[def.key]}</span></label>
             <input type="range" id="slider-${def.key}" min="${def.min}" max="${def.max}" step="${def.step}" value="${config[def.key]}">
@@ -422,10 +410,10 @@
         });
         predators.push(...new_preds);
 
-        if (prey.length === 0 || Math.random() < config.MIG_PROB_PREY) {
+        if (Math.random() < config.MIG_PROB_PREY) {
             prey.push({ x: Math.random() * WORLD_SIZE, y: Math.random() * WORLD_SIZE });
         }
-        if (predators.length === 0 || Math.random() < config.MIG_PROB_PRED) {
+        if (Math.random() < config.MIG_PROB_PRED) {
             predators.push({ x: Math.random() * WORLD_SIZE, y: Math.random() * WORLD_SIZE, energy: 20.0 });
         }
 

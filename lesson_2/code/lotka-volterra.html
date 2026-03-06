@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotka-Volterra Predator-Prey</title>
+    <style>
+        :root {
+            --bg-color: #0d0d1a;
+            --panel-bg: #161625;
+            --text-main: #ffffff;
+            --text-muted: #aaaacc;
+            --accent-prey: #00FFCC;
+            --accent-pred: #FF3366;
+            --border: #333355;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0; padding: 0; height: 100%; overflow: hidden;
+        }
+
+        body {
+            padding: 16px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header { text-align: center; flex-shrink: 0; }
+        .header h1 { margin: 0; font-size: 20px; }
+        .header p  { margin: 4px 0 0; font-size: 13px; color: var(--text-muted); font-family: 'Georgia', serif; letter-spacing: 0.03em; }
+
+        .dashboard {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            max-width: 1400px;
+            flex: 1 1 0;
+            min-height: 0;
+        }
+
+        .panel {
+            flex: 1;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .panel h2 {
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+
+        .panel canvas {
+            flex: 1 1 0;
+            min-height: 0;
+            width: 100%;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            display: block;
+        }
+
+        .controls {
+            width: 100%;
+            max-width: 1400px;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px 18px;
+        }
+
+        .control-group { display: flex; flex-direction: column; gap: 4px; }
+
+        .control-group label {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .control-group label span { color: var(--text-main); font-weight: bold; }
+
+        .control-group input[type="range"] {
+            width: 100%; accent-color: #8877ff; cursor: pointer;
+        }
+
+        .buttons {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 4px;
+        }
+
+        button {
+            background-color: #333355;
+            color: white;
+            border: none;
+            padding: 8px 22px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #444477; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Lotka–Volterra Predator-Prey Model</h1>
+    <p>dN/dt = rN &minus; &beta;NP &nbsp;&nbsp;|&nbsp;&nbsp; dP/dt = m&beta;NP &minus; dP</p>
+</div>
+
+<div class="dashboard">
+    <div class="panel">
+        <h2>Population Dynamics</h2>
+        <canvas id="canvas-time"></canvas>
+    </div>
+    <div class="panel">
+        <h2>Phase Diagram (N vs P)</h2>
+        <canvas id="canvas-phase"></canvas>
+    </div>
+</div>
+
+<div class="controls" id="controls"></div>
+
+<script>
+// ==========================================
+// 1. PARAMETERS
+// ==========================================
+//  dN/dt = r·N  − β·N·P
+//  dP/dt = m·β·N·P − d·P
+//
+//  N = prey population (e.g. rabbits)
+//  P = predator population (e.g. foxes)
+//  r = prey growth rate
+//  β = attack efficiency of predator
+//  m = proportionality constant (conversion efficiency)
+//  d = predator death rate
+//
+//  Equilibrium: N* = d/(m·β),  P* = r/β
+
+let config = {
+    r:    0.6,    // prey growth rate
+    beta: 0.02,   // attack efficiency
+    m:    0.5,    // proportionality constant
+    d:    0.4,    // predator death rate
+    N0:   40.0,   // initial prey
+    P0:   9.0,    // initial predators
+};
+
+const DT              = 0.05;
+const STEPS_PER_FRAME = 3;
+const PHASE_TRAIL     = 3000;
+
+let N, P, t;
+let history_N = [];
+let history_P = [];
+let current_step = 0;
+let isPaused = false;
+
+function initSimulation() {
+    N = config.N0;
+    P = config.P0;
+    t = 0;
+    history_N = [N];
+    history_P = [P];
+    current_step = 0;
+}
+
+// ==========================================
+// 2. CONTROLS
+// ==========================================
+const sliderDefs = [
+    { key: 'r',    name: 'r — Prey Growth Rate',         min: 0.01, max: 2.0,  step: 0.01  },
+    { key: 'beta', name: 'β — Attack Efficiency',        min: 0.001,max: 0.1,  step: 0.001 },
+    { key: 'm',    name: 'm — Proportionality Constant', min: 0.01, max: 2.0,  step: 0.01  },
+    { key: 'd',    name: 'd — Predator Death Rate',      min: 0.01, max: 2.0,  step: 0.01  },
+    { key: 'N0',   name: 'N\u2080 — Initial Prey',      min: 1,    max: 300,  step: 1     },
+    { key: 'P0',   name: 'P\u2080 — Initial Predators', min: 1,    max: 150,  step: 1     },
+];
+
+const controlsContainer = document.getElementById('controls');
+
+sliderDefs.forEach(def => {
+    const group = document.createElement('div');
+    group.className = 'control-group';
+    group.innerHTML = `
+        <label>${def.name} <span id="val-${def.key}">${config[def.key]}</span></label>
+        <input type="range" id="slider-${def.key}" min="${def.min}" max="${def.max}" step="${def.step}" value="${config[def.key]}">
+    `;
+    controlsContainer.appendChild(group);
+
+    document.getElementById(`slider-${def.key}`).addEventListener('input', e => {
+        config[def.key] = parseFloat(e.target.value);
+        document.getElementById(`val-${def.key}`).innerText = config[def.key];
+    });
+});
+
+const buttonsDiv = document.createElement('div');
+buttonsDiv.className = 'buttons';
+buttonsDiv.innerHTML = `
+    <button id="btn-toggle">Pause</button>
+    <button id="btn-reset">Reset Simulation</button>
+`;
+controlsContainer.appendChild(buttonsDiv);
+
+document.getElementById('btn-toggle').addEventListener('click', e => {
+    isPaused = !isPaused;
+    e.target.innerText = isPaused ? 'Play' : 'Pause';
+});
+document.getElementById('btn-reset').addEventListener('click', () => {
+    initSimulation();
+});
+
+// ==========================================
+// 3. CANVAS SETUP
+// ==========================================
+const canvases = {
+    time:  document.getElementById('canvas-time'),
+    phase: document.getElementById('canvas-phase'),
+};
+const ctxs = {
+    time:  canvases.time.getContext('2d'),
+    phase: canvases.phase.getContext('2d'),
+};
+
+function resizeCanvases() {
+    for (let key in canvases) {
+        const canvas = canvases[key];
+        const rect = canvas.getBoundingClientRect();
+        canvas.width  = Math.floor(rect.width);
+        canvas.height = Math.floor(rect.height);
+    }
+}
+window.addEventListener('resize', resizeCanvases);
+
+// ==========================================
+// 4. ODE INTEGRATION (RK4)
+// ==========================================
+function rk4Step(N, P, dt) {
+    function dNdt(N, P) { return config.r * N - config.beta * N * P; }
+    function dPdt(N, P) { return config.m * config.beta * N * P - config.d * P; }
+
+    const k1N = dNdt(N, P),           k1P = dPdt(N, P);
+    const k2N = dNdt(N+.5*dt*k1N, P+.5*dt*k1P), k2P = dPdt(N+.5*dt*k1N, P+.5*dt*k1P);
+    const k3N = dNdt(N+.5*dt*k2N, P+.5*dt*k2P), k3P = dPdt(N+.5*dt*k2N, P+.5*dt*k2P);
+    const k4N = dNdt(N+dt*k3N, P+dt*k3P),        k4P = dPdt(N+dt*k3N, P+dt*k3P);
+
+    return {
+        nN: Math.max(0, N + (dt/6)*(k1N + 2*k2N + 2*k3N + k4N)),
+        nP: Math.max(0, P + (dt/6)*(k1P + 2*k2P + 2*k3P + k4P)),
+    };
+}
+
+function step() {
+    if (isPaused) return;
+    for (let i = 0; i < STEPS_PER_FRAME; i++) {
+        const { nN, nP } = rk4Step(N, P, DT);
+        N = nN; P = nP; t += DT;
+        history_N.push(N);
+        history_P.push(P);
+        current_step++;
+    }
+}
+
+// ==========================================
+// 5. DRAWING
+// ==========================================
+function drawTime() {
+    const ctx = ctxs.time;
+    const w = canvases.time.width;
+    const h = canvases.time.height;
+    ctx.clearRect(0, 0, w, h);
+    if (history_N.length < 2) return;
+
+    const WINDOW = 2000;
+    const min_i  = Math.max(0, current_step - WINDOW);
+    const sliceN = history_N.slice(min_i, current_step + 1);
+    const sliceP = history_P.slice(min_i, current_step + 1);
+
+    const max_pop = Math.max(10, Math.max(...sliceN), Math.max(...sliceP)) * 1.1;
+    const scaleX  = w / Math.max(sliceN.length - 1, 1);
+    const scaleY  = h / max_pop;
+
+    function drawLine(data, color) {
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        data.forEach((v, i) => {
+            const px = i * scaleX, py = h - v * scaleY;
+            i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        });
+        ctx.stroke();
+    }
+
+    drawLine(sliceN, '#00FFCC');
+    drawLine(sliceP, '#FF3366');
+
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#00FFCC'; ctx.fillText('N — Prey',      10, 18);
+    ctx.fillStyle = '#FF3366'; ctx.fillText('P — Predators', 10, 34);
+    ctx.fillStyle = '#aaaacc'; ctx.fillText(`t = ${t.toFixed(1)}`, 10, 50);
+}
+
+function drawPhase() {
+    const ctx = ctxs.phase;
+    const w = canvases.phase.width;
+    const h = canvases.phase.height;
+    ctx.clearRect(0, 0, w, h);
+    if (history_N.length < 2) return;
+
+    const start_idx = Math.max(0, current_step - PHASE_TRAIL);
+    const sliceN    = history_N.slice(start_idx, current_step + 1);
+    const sliceP    = history_P.slice(start_idx, current_step + 1);
+
+    const max_N = Math.max(10, Math.max(...history_N) * 1.15);
+    const max_P = Math.max(5,  Math.max(...history_P) * 1.15);
+    const scaleX = w / max_N;
+    const scaleY = h / max_P;
+
+    // Prey nullcline dN/dt=0 → P = r/β  (horizontal)
+    const Pnc = (config.r / config.beta) * scaleY;
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(0,255,204,0.22)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.moveTo(0, h - Pnc); ctx.lineTo(w, h - Pnc);
+    ctx.stroke();
+
+    // Predator nullcline dP/dt=0 → N = d/(m·β)  (vertical)
+    const Nnc = (config.d / (config.m * config.beta)) * scaleX;
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(255,51,102,0.22)';
+    ctx.moveTo(Nnc, 0); ctx.lineTo(Nnc, h);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Trajectory with fading trail
+    ctx.lineWidth = 1.5;
+    ctx.lineJoin = 'round';
+    for (let i = 0; i < sliceN.length - 1; i++) {
+        const alpha = (i / sliceN.length) * 0.85;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(136,119,255,${alpha})`;
+        ctx.moveTo(sliceN[i]   * scaleX, h - sliceP[i]   * scaleY);
+        ctx.lineTo(sliceN[i+1] * scaleX, h - sliceP[i+1] * scaleY);
+        ctx.stroke();
+    }
+
+    // Equilibrium marker N* = d/(m·β), P* = r/β
+    const Nstar = config.d / (config.m * config.beta);
+    const Pstar = config.r / config.beta;
+    const ex = Nstar * scaleX;
+    const ey = h - Pstar * scaleY;
+    if (ex > 0 && ex < w && ey > 0 && ey < h) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+        ctx.lineWidth = 1.5;
+        ctx.arc(ex, ey, 5, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+
+    // Current position dot
+    const cx = N * scaleX, cy = h - P * scaleY;
+    ctx.beginPath();
+    ctx.fillStyle = '#ffffff';
+    ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#ccccff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Stats
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#aaaacc';
+    ctx.fillText(`N: ${N.toFixed(1)}   P: ${P.toFixed(1)}`, 10, 20);
+    ctx.fillText(`N* = ${Nstar.toFixed(1)}   P* = ${Pstar.toFixed(1)}`, 10, 36);
+
+    // Axis labels
+    ctx.fillStyle = '#00FFCC';
+    ctx.fillText('N (prey) \u2192', w - 78, h - 6);
+    ctx.save();
+    ctx.translate(14, h / 2 + 40);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillStyle = '#FF3366';
+    ctx.fillText('P (predators) \u2192', 0, 0);
+    ctx.restore();
+}
+
+// ==========================================
+// 6. MAIN LOOP
+// ==========================================
+function loop() {
+    step();
+    drawTime();
+    drawPhase();
+    setTimeout(() => { requestAnimationFrame(loop); }, 30);
+}
+
+initSimulation();
+setTimeout(() => {
+    resizeCanvases();
+    loop();
+}, 100);
+</script>
+</body>
+</html>
