@@ -101,7 +101,7 @@ The simulation of the Forest Fire Model typically proceeds as follows:
 *Note:* Careful implementation is needed regarding the order of updates, especially whether fire spread, lightning, and growth are evaluated based on the grid state at the beginning of the time step or potentially updated sequentially within the step. The simultaneous update described above (using a `next\_grid`) is common. Boundary conditions (e.g., periodic or fixed) also need to be defined.
 
 
-\section{MATLAB Implementation Example}
+\section{Python Implementation Example}
 
 
 
@@ -114,125 +114,84 @@ The simulation of the Forest Fire Model typically proceeds as follows:
     \item `num\_steps`: Number of simulation steps
 \end{itemize}
 
-\subsection{MATLAB Code}
-Matlab code for basic Forrest fire model.  Initiation sets parameters. 
+\subsection{Python Code}
+Python code for a basic forest fire model. Initialization sets parameters. 
 \begin{lstlisting}[caption={Initial parameters}]
-% --- Simulation Parameters ---
-L = 160;             % Grid dimension
-num_steps = 500;     % Number of simulation iterations
-f = 0.00002;         % Probability of spontaneous ignition 
-p = 0.004;           % Probability of tree growth 
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.colors import ListedColormap
 
-% --- State Constants ---
-EMPTY = 0;          
-TREE = 1;           
-BURNING = 2;        
+L = 160
+num_steps = 500
+f = 0.00002
+p = 0.004
 
-% --- Initialization ---
-grid = zeros(L, L);  % Initialize the grid as empty 
+EMPTY = 0
+TREE = 1
+BURNING = 2
 
-% --- Visualization Setup ---
-figure(1);           % Create figure window
-% Define colors for visualization
-color_ground = [ 76  66  70] / 255; % Ground color
-color_trees  = [118 176  65] / 255; % Tree color
-color_fire   = [228  87  46] / 255; % Fire color
-colormap([color_ground; color_trees; color_fire]); %
+grid = np.zeros((L, L), dtype=int)
 
-% Display initial grid and keep handle for updates
-h_img = imagesc(grid); % Display initial grid and keep handle for updates
-title(sprintf('Forest Fire Model - Step 0 / %d', num_steps));
-axis equal off;      
-clim([EMPTY BURNING]); 
-
+color_ground = np.array([76, 66, 70]) / 255
+color_trees = np.array([118, 176, 65]) / 255
+color_fire = np.array([228, 87, 46]) / 255
+cmap = ListedColormap([color_ground, color_trees, color_fire])
 \end{lstlisting}
 
 The main loop Iterate through every cell in the current grid. It checks if any *neighbor* is burning (Moore neighborhood) and Calculate the next state based on rules and neighbor status using a helper function. It plots the result for each iteration.
 \begin{lstlisting}[caption={Main code}]
-for step = 1:num_steps
-    % --- State Update ---
-    next_grid = zeros(L, L); 
-    for r = 1:L
-        for c = 1:L 
-            neighbor_is_burning = isNeighborBurning(r, c, grid, L, BURNING);
-            current_state = grid(r, c);
-            next_grid(r, c) = calculateNextState(current_state, neighbor_is_burning, p, f, EMPTY, TREE, BURNING);
-        end
-    end
+for step in range(num_steps):
+    next_grid = np.zeros((L, L), dtype=int)
+    for r in range(L):
+        for c in range(L):
+            neighbor_is_burning = is_neighbor_burning(r, c, grid, L, BURNING)
+            current_state = grid[r, c]
+            next_grid[r, c] = calculate_next_state(current_state, neighbor_is_burning, p, f, EMPTY, TREE, BURNING)
 
-    grid = next_grid; % Update the main grid with the calculated next states
+    grid = next_grid
 
-    % --- Plotting ---
-    set(h_img, 'CData', grid); % Update the displayed grid data
-    title(sprintf('Forest Fire Model - Step %d / %d', step, num_steps));
-    pause(0.05); 
-end
+    plt.clf()
+    plt.imshow(grid, cmap=cmap, vmin=EMPTY, vmax=BURNING)
+    plt.title(f'Forest Fire Model - Step {step + 1} / {num_steps}')
+    plt.axis('off')
+    plt.pause(0.05)
 \end{lstlisting}
 
-There are two helper functions. First function  \texttt{isNeighborBurning} checks if the 8 Moore neighbors of the cell for fire. 
+There are two helper functions. First, \texttt{is\_neighbor\_burning} checks whether any of the 8 Moore neighbors of a cell are on fire. 
 
 \begin{lstlisting}[caption={Helper functions}]
-function is_burning = isNeighborBurning(r, c, grid, L, BURNING)
-% neighbors).
-    is_burning = false; % Assume no neighbor is burning initially
-    % Iterate through the 3x3 neighborhood
-    for dr = -1:1
-        for dc = -1:1
-            % Skip the center cell itself
-            if dr == 0 && dc == 0
-                continue;
-            end
-            % Calculate neighbor coordinates
-            nr = r + dr;
-            nc = c + dc;
-            % Check if neighbor is within grid boundaries
-            if nr >= 1 && nr <= L && nc >= 1 && nc <= L
-                % If a neighbor is burning, set flag and exit loops
-                if grid(nr, nc) == BURNING
-                    is_burning = true;
-                    return;
-                end
-            end
-        end
-    end
-end
+def is_neighbor_burning(r, c, grid, grid_size, burning_state):
+    for dr in (-1, 0, 1):
+        for dc in (-1, 0, 1):
+            if dr == 0 and dc == 0:
+                continue
+            nr = r + dr
+            nc = c + dc
+            if 0 <= nr < grid_size and 0 <= nc < grid_size:
+                if grid[nr, nc] == burning_state:
+                    return True
+    return False
 \end{lstlisting}
 
-Function \texttt{calculateNextState} calculates the next state of a cell based on its current state, whether a neighbor is burning, and the growth/ignition probabilities. If cell is currently empty (ground) It becomes a tree with probability \texttt{p\_growth}.  If cell is currently a tree, it catches fire if a neighbor is burning OR it ignites spontaneously (lightning) with probability \texttt{f\_ignition}. If cell is currently burning It becomes empty in the next step (burns out).
+Function \texttt{calculate\_next\_state} calculates the next state of a cell based on its current state, whether a neighbor is burning, and the growth/ignition probabilities. If the cell is currently empty (ground), it becomes a tree with probability \texttt{p\_growth}. If the cell is currently a tree, it catches fire if a neighbor is burning or it ignites spontaneously (lightning) with probability \texttt{f\_ignition}. If the cell is currently burning, it becomes empty in the next step (burns out).
 
 \begin{lstlisting}[caption={Helper functions}]
-function next_state = calculateNextState(current_state, neighbor_is_burning, p_growth, f_ignition, EMPTY, TREE, BURNING)
-    switch current_state
-        case EMPTY   % 
-            if rand() < p_growth
-                next_state = TREE;
-            else
-                next_state = EMPTY; % Stays empty otherwise
-            end
-
-
-        case TREE   
-            random_ignition = rand() < f_ignition;
-            if (neighbor_is_burning || random_ignition)
-                next_state = BURNING; % Tree starts burning
-            else
-                next_state = TREE; % Stays a tree otherwise
-            end
-            
-        case BURNING 
-            next_state = EMPTY;
-            
-        otherwise 
-            next_state = current_state; 
-    end
-end
+def calculate_next_state(current_state, neighbor_is_burning, p_growth, f_ignition, empty, tree, burning):
+    if current_state == empty:
+        return tree if np.random.random() < p_growth else empty
+    if current_state == tree:
+        random_ignition = np.random.random() < f_ignition
+        return burning if (neighbor_is_burning or random_ignition) else tree
+    if current_state == burning:
+        return empty
+    return current_state
 \end{lstlisting}
 
 \begin{itemize}
 \item The code initializes a grid, usually predominantly trees.
 \item It iterates through time steps, calculating the next state of each cell based on the rules and the current state of the grid and its neighbors.
 \item Periodic boundary conditions ensure fire can wrap around the edges.
-\item The imagesc function visualizes the grid state at each step, allowing observation of fire clusters spreading and dying out, and regrowth patterns.
+\item The \texttt{imshow} function visualizes the grid state at each step, allowing observation of fire clusters spreading and dying out, and regrowth patterns.
 \end{itemize}
 
 \section{Example Scenario }

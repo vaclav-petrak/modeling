@@ -106,9 +106,9 @@ Here, the parameter $A$ determines the nature of the Allee effect:
 These various formulations emphasize that the Allee effect is a concept rather than a single equation—different biological processes and assumptions lead to different mathematical expressions.
 
 
-\section{MATLAB Implementation of Population Growth Models}
+\section{Python Implementation of Population Growth Models}
 
-The following MATLAB script computes and plots three population‐growth curves:
+The following Python script computes and plots three population‐growth curves:
 \begin{itemize}
   \item \textbf{Logistic growth} (no Allee effect),
   \item \textbf{Weak Allee effect}, using a quadratic term that slows growth at low densities but never yields negative growth,
@@ -130,33 +130,30 @@ Below, the weak effect is corrected to the common quadratic form
         — strong Allee effect, negative growth for \(N < A_\text{strong}\).
 \end{itemize}
 
-\subsection{MATLAB Code}
+\subsection{Python Code}
 \begin{lstlisting}[caption={Analyze simulation results (Calculation part)}]
-%--- Model parameters and density vector
-r = 0.5;       % Intrinsic growth rate
-K = 200;       % Carrying capacity
-A_strong = 60; % Strong effect threshold
-N = linspace(0, K*1.05, 5000);
+import matplotlib.pyplot as plt
+import numpy as np
 
-%--- Compute growth curves
-growth_no = r * N .* (1 - N/K);
-growth_weak = (r/K) * N.^2 .* (1 - N/K);
-growth_strong = r * N .* (1 - N/K) .* (N/A_strong - 1);
+r = 0.5
+K = 200
+A_strong = 60
+N = np.linspace(0, K * 1.05, 5000)
 
-%--- Plot all three curves
-figure;
-hold on
-    plot(N, growth_no, 'LineWidth', 2);
-    plot(N, growth_weak, 'LineWidth', 2);
-    plot(N, growth_strong, 'LineWidth', 2);
-    yline(0, 'k-', 'LineWidth', 1.5); 
-    title('Population Growth Models with Allee Effects');
-    xlabel('Population Density'); ylabel('dN/dt');
-    legend('No Allee Effect',  'Weak Allee Effect',
-            'Strong Allee Effect', 
-            'Location', 'southeast');
-    xlim([0, K*1.1])
-hold off
+growth_no = r * N * (1 - N / K)
+growth_weak = (r / K) * N ** 2 * (1 - N / K)
+growth_strong = r * N * (1 - N / K) * (N / A_strong - 1)
+
+plt.plot(N, growth_no, linewidth=2, label='No Allee Effect')
+plt.plot(N, growth_weak, linewidth=2, label='Weak Allee Effect')
+plt.plot(N, growth_strong, linewidth=2, label='Strong Allee Effect')
+plt.axhline(0, color='black', linewidth=1.5)
+plt.title('Population Growth Models with Allee Effects')
+plt.xlabel('Population Density')
+plt.ylabel('dN/dt')
+plt.xlim(0, K * 1.1)
+plt.legend(loc='lower right')
+plt.show()
 \end{lstlisting}
 
 \paragraph{Explanation}

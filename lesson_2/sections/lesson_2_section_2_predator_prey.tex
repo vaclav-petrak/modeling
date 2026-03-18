@@ -166,6 +166,78 @@ The concept would not work for predators hunting in packs or for  prey staying i
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Calculating the Vector Field: Examples}
+    \begin{itemize}
+        \small
+        \item Let's calculate the instantaneous rate of change $\vec{v} = \left(\frac{dN}{dt}, \frac{dP}{dt}\right)$ using a specific set of parameters: 
+        \item \textbf{Assume:} $r = 2$ (prey growth), $\beta = 0.1$ (attack rate), $m = 0.5$ (conversion), and $d = 1$ (predator death). 
+        \item Our rate equations become:
+        \begin{equation}
+            \frac{dN}{dt} = 2N - 0.1NP \quad \text{and} \quad \frac{dP}{dt} = 0.05NP - P
+        \end{equation}
+        
+        \vspace{0.5em}
+        
+        \only<2>{
+            \item \textcolor{blue}{\textbf{Point 1: (10, 10) --- Low prey, low predators}}
+            \begin{equation*}
+                 \textcolor{blue}{\vec{v} = (2(10) - 0.1(10 \cdot 10), \; 0.05(10 \cdot 10) - 10) = \mathbf{(10, -5)}} 
+            \end{equation*}
+            \textit{\textcolor{blue}{Result: Prey population grows (+10), predators starve (-5).}}
+        }
+        
+        \only<3>{
+            \item \textcolor{red}{\textbf{Point 2: (40, 10) --- Abundant prey, low predators}}
+            \begin{equation*}
+                 \textcolor{red}{\vec{v} = (2(40) - 0.1(40 \cdot 10), \; 0.05(40 \cdot 10) - 10) = \mathbf{(40, 10)}} 
+            \end{equation*}
+             \textit{\textcolor{red}{Result: Both populations are booming.}}
+        }
+        
+        \only<4>{
+            \item \textcolor{green!60!black}{\textbf{Point 3: (20, 20) --- The Coexistence Point}}
+            \begin{equation*}
+                 \textcolor{green!60!black}{\vec{v} = (2(20) - 0.1(20 \cdot 20), \; 0.05(20 \cdot 20) - 20) = \mathbf{(0, 0)}} 
+            \end{equation*}
+             \textit{\textcolor{green!60!black}{Result: The system is perfectly balanced; no change.}}
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizing the Vector Field}
+    \begin{center}
+
+    \begin{tikzpicture}[x=0.16cm, y=0.16cm, >=stealth]
+        
+        % 1. Draw the Axes
+        \draw[->, thick] (0,0) -- (55,0) node[right] {Prey ($N$)};
+        \draw[->, thick] (0,0) -- (0,35) node[above] {Predators ($P$)};
+        
+        % 2. Add Axis Ticks and Labels
+        \foreach \x in {10, 20, 30, 40, 50}
+            \draw (\x, 1) -- (\x, -1) node[below] {\x};
+        \foreach \y in {10, 20, 30}
+            \draw (1, \y) -- (-1, \y) node[left] {\y};
+            
+        % 3. Plot Point 1: (10, 10) with vector (10, -5)
+        % Vector is scaled by 0.2 for visualization: (2, -1)
+        \fill[blue] (10,10) circle (4pt) node[above left, black] {Point 1: (10, 10)};
+        \draw[->, blue, very thick] (10,10) -- ++(2, -1);
+        
+        % 4. Plot Point 2: (40, 10) with vector (40, 10)
+        % Vector is scaled by 0.2 for visualization: (8, 2)
+        \fill[red] (40,10) circle (4pt) node[above left, black] {Point 2: (40, 10)};
+        \draw[->, red, very thick] (40,10) -- ++(8, 2);
+        
+        % 5. Plot Point 3: (20, 20) with vector (0, 0)
+        % No arrow needed since magnitude is 0
+        \fill[green!60!black] (20,20) circle (4pt) node[above right, black] {Point 3: (20, 20)};
+        
+    \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+
 \begin{frame}{Equilibrium Points in the Vector Field}
     \begin{itemize}
         \item \textbf{Equilibrium points} (or fixed points) occur where the vector magnitude is exactly zero. At these points, the system is completely at rest ($\frac{dN}{dt} = 0$ and $\frac{dP}{dt} = 0$).
@@ -203,6 +275,66 @@ The concept would not work for predators hunting in packs or for  prey staying i
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Calculating Equilibrium Points: Step 1}
+    \begin{itemize}
+        \item To find the exact equilibrium points, we must determine mathematically where the populations stop changing.
+        \pause
+        \item This requires setting the rates of change (derivatives) for both populations to zero:
+        \begin{equation}
+            \frac{dN}{dt} = 0 \quad \text{and} \quad \frac{dP}{dt} = 0
+        \end{equation}
+        \pause
+        \item Substituting our Lotka-Volterra equations, we establish a system of two algebraic equations:
+        \begin{equation}
+            rN - \beta NP = 0
+        \end{equation}
+        \begin{equation}
+            m\beta NP - dP = 0
+        \end{equation}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Calculating Equilibrium Points: Step 2}
+    
+    \begin{itemize}
+        \item Next, we factor $N$ and $P$ out of both equations to simplify solving them:
+        \begin{equation}
+            N(r - \beta P) = 0
+        \end{equation}
+        \begin{equation}
+            P(m\beta N - d) = 0
+        \end{equation}
+        \pause
+        \vspace{1em}
+        \item \textbf{Case 1: The Extinction Equilibrium}
+        \item From the first equation, one obvious solution is $N = 0$.
+        \pause
+        \item Substituting $N = 0$ into the second equation gives $P(-d) = 0$. Since the death rate $d > 0$, this means $P$ must be $0$.
+        \item This gives us our first equilibrium point at the origin: \textbf{$(0, 0)$}. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Calculating Equilibrium Points: Step 3}
+    \begin{itemize}
+        \item \textbf{Case 2: The Coexistence Equilibrium}
+        \item Now, let's assume neither population is extinct ($N \neq 0$ and $P \neq 0$). 
+        \pause
+        \item To satisfy our factored equations, the terms inside the parentheses must equal zero:
+        \begin{equation}
+            r - \beta P = 0
+        \end{equation}
+        \begin{equation}
+            m\beta N - d = 0
+        \end{equation}
+        \pause
+        \item Solving these for $P$ and $N$ respectively:
+        \begin{equation}
+            P = \frac{r}{\beta} \quad \text{and} \quad N = \frac{d}{m\beta}
+        \end{equation}
+        \pause
+        \item This yields our second, non-trivial equilibrium point: \textbf{$\left( \frac{d}{m\beta}, \frac{r}{\beta} \right)$}.
+    \end{itemize}
+\end{frame}
 
 \section{Modeling Approaches}
 
@@ -284,3 +416,4 @@ time = solution.t
 prey, predators = solution.y[0], solution.y[1]
     \end{lstlisting}
 \end{frame}
+

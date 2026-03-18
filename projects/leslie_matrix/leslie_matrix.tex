@@ -115,7 +115,7 @@ This equation calculates:
 \end{itemize}
 
 
-\section{MATLAB Example}
+\section{Python Example}
 
 Let's model a hypothetical bird population with three age classes:
 \begin{itemize}
@@ -143,124 +143,110 @@ Let's model a hypothetical bird population with three age classes:
 
 
 
-\subsection{MATLAB Implementation}
+\subsection{Python Implementation}
 
-Here is the MATLAB code, broken into logical steps, to implement and simulate this model.
+Here is the Python code, broken into logical steps, to implement and simulate this model.
 
 \subsubsection{Step 1: Define Parameters}
 First, we define the fecundity ($f$) and survival ($s$) rates as vectors, and determine the number of age classes.
 \begin{lstlisting}[caption={Define demographic parameters}]
-% Fecundity rates (average offspring per individual in each age class)
-f = [0, 2, 1]; % f1=0, f2=2, f3=1
+import numpy as np
 
-% Survival rates (probability of surviving to the next age class)
-s = [0.5, 0.7]; % s1=0.5 (age 1->2), s2=0.7 (age 2->3)
-num_age_classes = length(f); % Number of age classes (k=3)
+f = np.array([0, 2, 1], dtype=float)
+s = np.array([0.5, 0.7], dtype=float)
+num_age_classes = len(f)
 \end{lstlisting}
 
 \subsubsection{Step 2: Construct the Leslie Matrix ($L$)}
 Next, we construct the $3 \times 3$ Leslie matrix $L$ using the defined parameters. The first row contains fecundities, and the sub-diagonal contains survival rates.
 \begin{lstlisting}[caption={Construct the Leslie Matrix}]
-L = zeros(num_age_classes, num_age_classes);
+L = np.zeros((num_age_classes, num_age_classes))
+L[0, :] = f
+for i in range(num_age_classes - 1):
+    L[i + 1, i] = s[i]
 
-% Fill the first row with fecundity rates
-L(1, :) = f;
-
-% Fill the sub-diagonal with survival rates
-for i = 1:(num_age_classes - 1)
-    L(i+1, i) = s(i);
-end
-
-disp('Leslie Matrix (L):');
-disp(L);
+print('Leslie Matrix (L):')
+print(L)
 \end{lstlisting}
 
 \subsubsection{Step 3: Define the Initial Population Vector ($N_0$)}
-We define the population structure at the start ($t=0$) as a column vector $N_0$.
+We define the population structure at the start ($t=0$) as a one-dimensional NumPy array $N_0$.
 \begin{lstlisting}[caption={Define the initial population}]
-N0 = [10; 8; 5]; % Column vector: [n1; n2; n3] at time t=0
-disp('Initial Population Vector (N0):');
-disp(N0);
+N0 = np.array([10, 8, 5], dtype=float)
+print('Initial Population Vector (N0):')
+print(N0)
 \end{lstlisting}
 
 \subsubsection{Step 4: Project the Population for One Time Step}
 We apply the core projection equation $N_1 = L \times N_0$ to see the population structure after one time step.
 \begin{lstlisting}[caption={Project population one step ahead}]
-N1 = L * N0; % Calculate population at time t=1
-disp('Population Vector at t=1 (N1):');
-disp(N1);
+N1 = L @ N0
+print('Population Vector at t=1 (N1):')
+print(N1)
 \end{lstlisting}
 
 \subsubsection{Step 5: Simulate Population Growth Over Multiple Time Steps}
 Now, we simulate the population dynamics over 20 time steps using a `for` loop, storing the population vector at each step.
 \begin{lstlisting}[caption={Simulate population over time}]
-num_time_steps = 20; % Number of years to simulate
-population_history = zeros(num_age_classes, num_time_steps + 1); % To store N vectors
-population_history(:, 1) = N0; % Store initial population
+num_time_steps = 20
+population_history = np.zeros((num_age_classes, num_time_steps + 1))
+population_history[:, 0] = N0
 
-Nt = N0; % Current population vector starts at N0
-for t = 1:num_time_steps
-    Nt_plus_1 = L * Nt;             % Project to next step ($N_{t+1} = L N_t$)
-    population_history(:, t+1) = Nt_plus_1; % Store result
-    Nt = Nt_plus_1;                 % Update current population for next iteration
-end
+Nt = N0.copy()
+for t in range(num_time_steps):
+    Nt_plus_1 = L @ Nt
+    population_history[:, t + 1] = Nt_plus_1
+    Nt = Nt_plus_1
 \end{lstlisting}
 
 \subsubsection{Step 6: Analyze and Visualize Results}
 After the simulation, we calculate the total population size and the proportional age structure at each time step. The commented-out plotting commands would generate figures visualizing these results.
 \begin{lstlisting}[caption={Analyze simulation results (Calculation part)}]
-% Calculate total population size at each time step
-total_population = sum(population_history, 1);
+import matplotlib.pyplot as plt
 
-% Calculate age structure (proportions) over time
-age_structure = zeros(size(population_history));
-for t = 1:size(population_history, 2)
-    if total_population(t) > 0 % Avoid division by zero
-        age_structure(:, t) = population_history(:, t) / total_population(t);
-    end
-end
+total_population = np.sum(population_history, axis=0)
+age_structure = np.zeros_like(population_history)
+for t in range(population_history.shape[1]):
+    if total_population[t] > 0:
+        age_structure[:, t] = population_history[:, t] / total_population[t]
 
-% Plot total population size
-figure(1);
-plot(0:num_time_steps, total_population, 'b-o', 'LineWidth', 1.5);
-xlabel('Time Step (Years)'); ylabel('Total Population Size');
-title('Total Population Growth Over Time'); grid on;
+plt.figure(1)
+plt.plot(range(num_time_steps + 1), total_population, 'b-o', linewidth=1.5)
+plt.xlabel('Time Step (Years)')
+plt.ylabel('Total Population Size')
+plt.title('Total Population Growth Over Time')
+plt.grid(True)
 
-% Plot age structure over time (Code commented out for LaTeX document)
-figure(2);
-area(0:num_time_steps, age_structure', 'FaceColor','flat');
-xlabel('Time Step (Years)'); ylabel('Proportion of Population');
-title('Population Age Structure Over Time');
-legend('Age Class 1', 'Age Class 2', 'Age Class 3'); ylim([0 1])
+plt.figure(2)
+plt.stackplot(range(num_time_steps + 1), age_structure[0], age_structure[1], age_structure[2], labels=['Age Class 1', 'Age Class 2', 'Age Class 3'])
+plt.xlabel('Time Step (Years)')
+plt.ylabel('Proportion of Population')
+plt.title('Population Age Structure Over Time')
+plt.legend()
+plt.ylim(0, 1)
 \end{lstlisting}
 
 \subsubsection{Step 7: Eigenvalue Analysis (Optional)}
 Finally, we analyze the Leslie matrix $L$ itself to find its dominant eigenvalue ($\lambda_1$) and corresponding eigenvector. These tell us the long-term asymptotic growth rate and the stable age distribution, respectively.
 \begin{lstlisting}[caption={Eigenvalue analysis of the Leslie Matrix}]
-[eigenvectors, eigenvalues_diag] = eig(L);
-eigenvalues = diag(eigenvalues_diag); % Get eigenvalues as a vector
+eigenvalues, eigenvectors = np.linalg.eig(L)
+idx = np.argmax(np.real(eigenvalues))
+dominant_eigenvalue = np.real(eigenvalues[idx])
+dominant_eigenvector = np.real(eigenvectors[:, idx])
 
-% Find the dominant eigenvalue (largest positive real part)
-[dominant_eigenvalue, idx] = max(real(eigenvalues));
-dominant_eigenvector = eigenvectors(:, idx);
+stable_age_distribution = dominant_eigenvector / np.sum(dominant_eigenvector)
 
-% Normalize the stable age distribution eigenvector so elements sum to 1
-stable_age_distribution = real(dominant_eigenvector) / sum(real(dominant_eigenvector));
-
-disp(' '); % Blank line for spacing
-fprintf('Dominant Eigenvalue (lambda): %.4f\n', dominant_eigenvalue);
-disp('Stable Age Distribution (Proportions):');
-disp(stable_age_distribution);
-
-% Compare final simulated age structure to the calculated stable age distribution
-disp('Simulated Age Structure at final time step:');
-disp(age_structure(:, end));
+print(f'Dominant Eigenvalue (lambda): {dominant_eigenvalue:.4f}')
+print('Stable Age Distribution (Proportions):')
+print(stable_age_distribution)
+print('Simulated Age Structure at final time step:')
+print(age_structure[:, -1])
 \end{lstlisting}
 
-This breakdown shows how each part of the MATLAB script corresponds to a specific step in setting up, running, and analyzing the Leslie model. If $\lambda_1 > 1$, the population grows; if $\lambda_1 < 1$, it shrinks; if $\lambda_1 = 1$, it's stationary in the long term, assuming the stable age distribution is reached.
+This breakdown shows how each part of the Python script corresponds to a specific step in setting up, running, and analyzing the Leslie model. If $\lambda_1 > 1$, the population grows; if $\lambda_1 < 1$, it shrinks; if $\lambda_1 = 1$, it's stationary in the long term, assuming the stable age distribution is reached.
 
 \section{Conclusion}
 
-This tutorial provides a basic foundation for understanding and implementing Leslie Matrix models using MATLAB. They are fundamental tools for analyzing age-structured population dynamics. Leslie models can be extended to include density dependence (where survival/fecundity rates change with population size), migration, stochasticity (random variation), and more complex life cycles. However, this simple linear, age-structured model remains a cornerstone of ecological modeling.
+This tutorial provides a basic foundation for understanding and implementing Leslie Matrix models using Python. They are fundamental tools for analyzing age-structured population dynamics. Leslie models can be extended to include density dependence (where survival/fecundity rates change with population size), migration, stochasticity (random variation), and more complex life cycles. However, this simple linear, age-structured model remains a cornerstone of ecological modeling.
 
 \end{document}

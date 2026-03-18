@@ -109,56 +109,54 @@ The simulation of compartmental models typically involves solving the differenti
 \end{enumerate}
 
 \section{ Implementation Example}
-The following code demonstrates a basic implementation of the SI (Susceptible–Infected) model in MATLAB. This is the simplest type of compartmental model, where individuals can only transition from the Susceptible compartment to the Infected compartment. Recovery is not included, making it suitable for scenarios where infection persists indefinitely or for short-term spread estimation.
+The following code demonstrates a basic implementation of the SI (Susceptible–Infected) model in Python. This is the simplest type of compartmental model, where individuals can only transition from the Susceptible compartment to the Infected compartment. Recovery is not included, making it suitable for scenarios where infection persists indefinitely or for short-term spread estimation.
 
 The model is implemented using Euler’s method, a straightforward numerical integration technique that approximates differential equations using finite time steps. This method is sufficient for simple models and educational purposes, although more accurate methods (e.g., Runge-Kutta) are recommended for larger or more sensitive systems.
 
 The code is divided into three logical sections: initialization, simulation, and visualization. The first part initializes the parameters and sets up the simulation:
 
 \begin{lstlisting}[caption={Initiation}]
-% Parameters
-beta = 0.3;       % infection rate
-N = 1000;         % total population
-I0 = 1;           % initial number of infected individuals
-S0 = N - I0;      % initial number of susceptible individuals
-t_max = 60;       % duration of simulation (days)
-dt = 0.1;         % time step
+import numpy as np
 
-% Time vector
-t = 0:dt:t_max;
-num_steps = length(t);
+beta = 0.3
+N = 1000
+I0 = 1
+S0 = N - I0
+t_max = 60
+dt = 0.1
 
-% Initialize S and I arrays
-S = zeros(1, num_steps); I = zeros(1, num_steps);
-
-% Set initial values
-S(1) = S0; I(1) = I0;
+t = np.arange(0, t_max + dt, dt)
+num_steps = len(t)
+S = np.zeros(num_steps)
+I = np.zeros(num_steps)
+S[0] = S0
+I[0] = I0
 \end{lstlisting}
 
 Here, we define the transmission rate \texttt{beta}, the total population \texttt{N}, and the initial number of infected individuals. The rest of the population is considered susceptible. We also define the simulation time span and the numerical time step \texttt{dt}. The time vector and arrays to store compartment sizes are preallocated for efficiency. The second section performs the actual simulation:
 \begin{lstlisting}[caption={Simulation loop}]
-% Simulation loop 
-for i = 2:num_steps
-    dS = -beta * S(i-1) * I(i-1) / N;
-    dI = -dS;  % because S + I = N
-    S(i) = S(i-1) + dS * dt;
-    I(i) = I(i-1) + dI * dt;
-end
+for i in range(1, num_steps):
+    dS = -beta * S[i - 1] * I[i - 1] / N
+    dI = -dS
+    S[i] = S[i - 1] + dS * dt
+    I[i] = I[i - 1] + dI * dt
 \end{lstlisting}
 At each time step, we compute the change in susceptible and infected individuals using the SI model differential equations. Since there's no recovery, every infected individual remains infectious indefinitely. The decrease in susceptible individuals directly corresponds to the increase in infected individuals, preserving the total population size. Finally, the results are plotted:
 
 \begin{lstlisting}[caption={Plotting}]
-% Plot results
-plot(t, S, 'b', 'LineWidth', 2);
-hold on;
-plot(t, I, 'r', 'LineWidth', 2);
-xlabel('Time (days)'); ylabel('Number of individuals');
-legend('Susceptible', 'Infected');
-title('SI Model Simulation');
+import matplotlib.pyplot as plt
+
+plt.plot(t, S, 'b', linewidth=2, label='Susceptible')
+plt.plot(t, I, 'r', linewidth=2, label='Infected')
+plt.xlabel('Time (days)')
+plt.ylabel('Number of individuals')
+plt.legend()
+plt.title('SI Model Simulation')
+plt.show()
 \end{lstlisting}
 This produces a time series showing how the number of susceptible individuals decreases and the number of infected individuals increases over time. The steepness of the curve depends on the transmission rate \texttt{beta}. In real-world modeling, such output helps visualize epidemic progression and identify when an infection might reach its peak.
 
-To model more realistic dynamics, such as recovery or an incubation period, additional compartments (e.g., Exposed or Recovered) and corresponding equations can be added. This can be efficiently handled in MATLAB using built-in solvers like \texttt{ode45}, which is particularly useful for larger models with more compartments and parameter changes over time.
+To model more realistic dynamics, such as recovery or an incubation period, additional compartments (e.g., Exposed or Recovered) and corresponding equations can be added. This can be efficiently handled in Python using tools such as \texttt{scipy.integrate.solve\_ivp}, which is particularly useful for larger models with more compartments and parameter changes over time.
 
 \section{Literature}
 \subsection{General introduction}

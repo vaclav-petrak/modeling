@@ -71,19 +71,18 @@ Traditional models in epidemiology often use systems of ordinary differential eq
 In summary, differential equation models are well-suited for understanding average trends in large, relatively homogeneous populations. ABMs, while more complex, are better suited for situations where individual differences, network structures, or behavior change are important to the dynamics being studied. Choosing between the two approaches depends on the modeling goal, data availability, and the desired level of detail.
 
 \section{Implementation Example}
-The following code demonstrates an agent-based implementation of the SI (Susceptible–Infected) model in MATLAB. Unlike the equation-based approach shown in the sample, this spatial agent-based model tracks individual agents moving in a two-dimensional space, providing a more granular view of disease spread dynamics.
+The following code demonstrates an agent-based implementation of the SI (Susceptible–Infected) model in Python. Unlike the equation-based approach shown in the sample, this spatial agent-based model tracks individual agents moving in a two-dimensional space, providing a more granular view of disease spread dynamics.
 
 The model employs a discrete-time, discrete-space approach where agents move randomly on a grid and can infect others when they occupy the same position. This methodology is particularly useful for studying the effects of spatial heterogeneity and stochastic processes on epidemic spread.
 
 The code is structured into four main components: parameter definition, initialization, simulation loop, and movement function. The first part defines the key parameters that govern the model behavior:
 
 \begin{lstlisting}[caption={Parameteres}]
-% ----- Parameters -----
-area = 100;
-population = 1000;
-initial_infected = 1;
-iterations = 1500;
-infection_probability = 0.5;
+area = 100
+population = 1000
+initial_infected = 1
+iterations = 1500
+infection_probability = 0.5
 \end{lstlisting}
 
 Here, area defines the dimensions of the square spatial domain (100×100 units), population represents the total number of agents, and \texttt{initial\_infected} sets the number of agents that start in the infected state. The iterations parameter determines the simulation duration, while \texttt{infection\_probability} represents the likelihood of disease transmission when a susceptible agent encounters an infected one.
