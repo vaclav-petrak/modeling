@@ -43,6 +43,22 @@
   Multiple ABM runs with identical parameters but different random seeds produce different outbreak sizes. The ODE solution is the deterministic ``average'' trajectory.
 \end{frame}
 
+\begin{frame}{Effect of Infection Radius}
+  \small
+  The parameter $r_{\text{infect}}$ controls how far transmission can reach:
+  \begin{itemize}
+    \item \textbf{Small radius} ($r_{\text{infect}} \approx 1$): Only very close neighbours can transmit --- behaves almost like the original same-cell model. Outbreaks spread slowly and may fizzle out.
+    \pause
+    \item \textbf{Large radius} ($r_{\text{infect}} \geq 5$): Each infected agent threatens many neighbours per step, dramatically accelerating spread.
+    \pause
+    \item \textbf{Interplay with $p_{\text{infect}}$}: A large radius with low base probability can produce similar dynamics to a small radius with high probability --- but the spatial patterns differ.
+  \end{itemize}
+  \vfill
+  \begin{block}{Practical interpretation}
+    $r_{\text{infect}}$ is analogous to the \textbf{range of a cough or aerosol cloud}. Social distancing effectively reduces this radius.
+  \end{block}
+\end{frame}
+
 \begin{frame}{Effect of Population Size}
   \begin{itemize}
     \item With \textbf{small populations}, randomness dominates --- outbreaks may fizzle out even when $R_0 > 1$.
@@ -162,6 +178,7 @@
     \item Simulate the same scenario using the agent-based model with 500 agents. Run 10 different seeds.
     \item Compare the mean ABM outcome with the ODE result. How close are they?
     \item Reduce the population to 50 agents. How does variability change?
+    \item Explore the effect of $r_{\text{infect}}$: compare $r_{\text{infect}} = 1, 3, 5$ while keeping $p_{\text{infect}}$ and $p_{\text{recover}}$ fixed. How does the infection radius affect peak timing and outbreak size?
     \item Advanced: implement a simple vaccination strategy in the ABM and find the minimum vaccination coverage that prevents an outbreak.
   \end{enumerate}
 \end{frame}

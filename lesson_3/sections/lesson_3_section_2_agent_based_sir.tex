@@ -78,19 +78,28 @@
 
 \begin{frame}{Basics of an Agent-Based SIR Model}
 \begin{itemize}
-    \item \textbf{Agents}: Represent individuals in a population.
+    \item \textbf{Agents}: Represent individuals in a population, each with a position on a 2-D grid.
     \item \textbf{States}: Susceptible, Infected, Recovered.
     \pause
     \item \textbf{Rules of Transition}:
     \begin{itemize}
-        \item Susceptible to Infected: Based on proximity to infected agents and a probability of transmission.
-        \item Infected to Recovered: After a certain period or based on individual health dynamics.
+        \item Susceptible $\to$ Infected: Probability depends on \textbf{distance} to nearby infected agents and decays with range.
+        \item Infected $\to$ Recovered: Each step with probability $p_{\text{recover}}$.
     \end{itemize}
         \pause
-    \item \textbf{Simulation}: Runs iterative, updating the state of each agent based on rules, until a steady state is reached or for a set number of steps.
+    \item \textbf{Movement}: Each agent performs a random walk (one step per tick) on a bounded grid.
+    \item \textbf{Simulation}: Iterative loop updating health states and positions until a set number of steps is reached.
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Agent Movement: Random Walk}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{images/abm_random_walk.pdf}
+  \end{center}
+  \small
+  Each agent performs a discrete random walk on a bounded grid. At every step the agent moves one cell in a random cardinal direction. Boundary cells reflect the agent back inward.
+\end{frame}
 
 \begin{frame}{Advantages of ABMs in Epidemic Modeling}
 \begin{itemize}
@@ -108,6 +117,45 @@
 \end{frame}
 
 
+\begin{frame}{Distance-Based Transmission Model}
+\small
+Instead of requiring agents to share the exact same cell, we use a \textbf{distance-dependent} infection probability.
+\pause
+\vfill
+Each infected agent within radius $r_{\text{infect}}$ poses an independent risk. The contribution from one infected neighbour at distance $d$ is:
+\[
+  p_i = p_{\text{infect}} \cdot e^{-d\, /\, r_{\text{infect}}}
+\]
+\pause
+When multiple infected agents are nearby, the combined probability is:
+\[
+  P = 1 - \prod_{i}(1 - p_i)
+\]
+\vfill
+\begin{block}{Two real-world effects captured}
+\begin{itemize}
+  \item \textbf{Distance matters} --- close contacts are far more dangerous than distant ones.
+  \item \textbf{Multiple exposures compound} --- being surrounded by several infected agents is much riskier.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Transmission Probability vs.\ Distance}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{images/abm_transmission_decay.pdf}
+  \end{center}
+  \small
+  The base probability $p_{\text{infect}} = 0.25$ decays exponentially. A larger infection radius means the probability remains significant over longer distances.
+\end{frame}
+
+\begin{frame}{Compounding Risk from Multiple Neighbours}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{images/abm_compound_probability.pdf}
+  \end{center}
+  \small
+  Even if each individual contact carries moderate risk, the combined probability grows quickly with the number of infected neighbours --- especially at close range.
+\end{frame}
+
 \begin{frame}{Simulation Loop in an Agentic SIR Model}
 \footnotesize
 \begin{itemize}
@@ -115,8 +163,8 @@
     \item \textbf{Update States:}
     \begin{itemize}
     \footnotesize
-        \item For each susceptible agent, check proximity to infected agents.
-        \item Use a random draw with the infection probability to transition from susceptible to infected.
+        \item For each susceptible agent, compute the combined infection probability from all infected agents within radius $r_{\text{infect}}$.
+        \item Use a random draw against this probability to transition from susceptible to infected.
         \item For each infected agent, use a random draw with the recovery probability to transition to recovered.
     \end{itemize}
     \item \textbf{Record Results:}
@@ -136,4 +184,37 @@
         \item Ensure that new positions remain within the simulation boundaries.
     \end{itemize}
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Effect of Infection Radius}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{images/abm_infection_radius.pdf}
+  \end{center}
+  \small
+  Larger $r_{\text{infect}}$ dramatically accelerates the epidemic. A very small radius ($\approx 1$) approximates the original same-cell model where outbreaks spread slowly.
+\end{frame}
+
+\begin{frame}{Spatial Snapshots Over Time}
+  \begin{center}
+    \includegraphics[width=\textwidth]{images/abm_spatial_snapshots.pdf}
+  \end{center}
+  \small
+  Infection clusters form around the initial cases, expand as agents wander, and leave a growing ``barrier'' of recovered (blue) agents.
+\end{frame}
+
+\begin{frame}{Visualising Epidemic Dynamics}
+  \begin{itemize}
+    \item \textbf{Epidemic curves}: Time-series plots of S, I, R counts reveal peak timing and outbreak size.
+    \pause
+    \item \textbf{Spatial snapshots}: Scatter plots at selected time steps show how infection clusters form, grow, and merge.
+    \pause
+    \item \textbf{Animation}: A frame-by-frame animation of agent positions coloured by state provides the most complete picture of spatial dynamics.
+    \begin{itemize}
+      \footnotesize
+      \item Reveals how agents wander, how infection fronts propagate, and how the recovered ``barrier'' gradually forms.
+      \item Built with \texttt{matplotlib.animation.FuncAnimation} and rendered inline in Jupyter.
+    \end{itemize}
+    \pause
+    \item \textbf{Parameter exploration}: Varying $p_{\text{infect}}$, $p_{\text{recover}}$, and $r_{\text{infect}}$ shows how each parameter shapes the epidemic.
+  \end{itemize}
 \end{frame}
