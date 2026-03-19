@@ -1,0 +1,97 @@
+\section{Fractals: Mandelbrot and Julia Sets}
+
+\begin{frame}{What Is a Fractal?}
+  \begin{itemize}
+    \item A \textbf{fractal} is a geometric object that exhibits \textbf{self-similarity} at different scales.
+    \item Zooming in reveals structure that resembles the whole.
+    \item Fractals often arise from simple iterative rules applied repeatedly.
+    \item They are intimately connected to chaos: the boundary of the Mandelbrot set, for example, encodes all possible behaviours of a simple quadratic iteration.
+    \pause
+    \item Examples in nature:
+    \begin{itemize}
+      \item Coastlines, mountain ranges
+      \item Branching of trees, blood vessels, lungs
+      \item Snowflakes, lightning bolts
+      \item Romanesco broccoli
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Iteration in the Complex Plane}
+  \begin{itemize}
+    \item Recall: a complex number $c = x + iy$ is a point in the 2D plane.
+    \item We study the iteration:
+    \[
+      z_{n+1} = z_n^2 + c
+    \]
+    \item Starting from $z_0 = 0$, does the sequence $\{z_n\}$ stay bounded or escape to infinity?
+    \item If $|z_n| > 2$ at any point, the sequence will diverge.
+    \pause
+    \item Two key objects arise from this single equation:
+    \begin{itemize}
+      \item \textbf{Mandelbrot set}: fix $z_0 = 0$, vary $c$. Colour by whether $c$ causes divergence.
+      \item \textbf{Julia set}: fix $c$, vary $z_0$. Colour by whether $z_0$ causes divergence.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Mandelbrot Set}
+  \begin{itemize}
+    \item The Mandelbrot set is the set of all complex numbers $c$ for which the iteration $z_{n+1} = z_n^2 + c$ (starting from $z_0 = 0$) does \textbf{not} diverge.
+    \item Points \textbf{inside} the set are coloured black.
+    \item Points \textbf{outside} are coloured by how quickly they escape (the \textbf{escape time}).
+    \pause
+    \item Remarkable properties:
+    \begin{itemize}
+      \item The boundary has \textbf{infinite complexity} --- zooming in reveals ever more detail.
+      \item Small copies of the whole set appear at all scales.
+      \item The area is finite, but the boundary has infinite length.
+      \item The boundary has a fractal dimension $\approx 2$.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Julia Sets}
+  \begin{itemize}
+    \item For a fixed $c$, the \textbf{Julia set} is the boundary between initial values $z_0$ that diverge and those that stay bounded.
+    \item Each value of $c$ produces a different Julia set.
+    \pause
+    \item There is a deep connection between Mandelbrot and Julia sets:
+    \begin{itemize}
+      \item If $c$ is \textbf{inside} the Mandelbrot set, the Julia set is a connected, often beautiful fractal.
+      \item If $c$ is \textbf{outside} the Mandelbrot set, the Julia set is a disconnected dust of points (a \textbf{Cantor set}).
+    \end{itemize}
+    \item The Mandelbrot set is therefore a ``map'' of all possible Julia sets --- it tells us which values of $c$ produce connected fractals.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Connection to Chaos}
+  \begin{itemize}
+    \item The Mandelbrot set and Julia sets arise from the \textbf{same iteration} that produces chaos in the logistic map.
+    \item In fact, the logistic map $X_{N+1} = r\,X_N(1 - X_N)$ is related to $z_{n+1} = z_n^2 + c$ by a change of variables.
+    \pause
+    \item The bifurcation diagram of the logistic map corresponds to a slice through the Mandelbrot set along the real axis.
+    \item The Feigenbaum constant $\delta \approx 4.669$ also governs the scaling of structures in the Mandelbrot set.
+    \item All three topics of this lecture --- the logistic map, the Lorenz system, and fractals --- are manifestations of the same underlying mathematics of \textbf{nonlinear dynamics}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Summary: Chaos in Three Forms}
+  \begin{center}
+    \begin{tabular}{lll}
+      \textbf{System} & \textbf{Type} & \textbf{Key feature} \\
+      \hline
+      Logistic map & Discrete, 1D & Period doubling to chaos \\
+      Lorenz system & Continuous, 3D & Strange attractor \\
+      Mandelbrot set & Complex iteration & Fractal boundary \\
+    \end{tabular}
+  \end{center}
+
+  \vfill
+  All three share:
+  \begin{itemize}
+    \item Sensitivity to initial conditions
+    \item Deterministic yet unpredictable behaviour
+    \item Rich structure from simple rules
+  \end{itemize}
+\end{frame}

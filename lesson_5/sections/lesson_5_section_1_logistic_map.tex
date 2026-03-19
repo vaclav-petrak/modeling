@@ -1,0 +1,106 @@
+\section{The Logistic Map}
+
+\begin{frame}{From Continuous to Discrete Time}
+  \begin{itemize}
+    \item In differential equations, time is a continuous variable $t$.
+    \item In a \textbf{discrete-time model}, time advances in steps: $0, 1, 2, 3, \ldots$
+    \item Such models work well for organisms with \textbf{well-defined breeding seasons} (fish, insects), or for phenomena with natural cycles (heartbeats, annual measurements).
+    \item The governing equation is called a \textbf{difference equation}:
+    \[
+      X_{N+1} = f(X_N)
+    \]
+    \item Simplest example: $X_{N+1} = r\,X_N$ (discrete analogue of Malthusian growth).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Logistic Map}
+  \begin{itemize}
+    \item Consider a population of insects that live one year, lay eggs, and die.
+    \item Resources support a maximum of $K$ individuals.
+    \item Current population $X_N$ uses a fraction $\frac{X_N}{K}$ of resources.
+    \item The unused fraction $1 - \frac{X_N}{K}$ is available for the next generation.
+    \item This gives the \textbf{logistic map}:
+    \[
+      X_{N+1} = r\,X_N\left(1 - \frac{X_N}{K}\right)
+    \]
+    \item Setting $K = 1$ (normalised population):
+    \[
+      X_{N+1} = r\,X_N(1 - X_N)
+    \]
+    \item The parameter $r \in [0,4]$ keeps $X_N$ bounded in $[0,1]$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Historical Context}
+  \begin{itemize}
+    \item The logistic map was popularised by the biologist \textbf{Robert May} in 1976.
+    \item May showed that this deceptively simple equation can produce extraordinarily complex behaviour.
+    \item His paper \textit{``Simple mathematical models with very complicated dynamics''} (Nature, 1976) became one of the most cited papers in mathematical biology.
+    \item The logistic map became a key example in the emerging science of \textbf{chaos theory}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Behaviour for Different Values of $r$}
+\small
+  \begin{itemize}
+    \item $0 < r \leq 1$: Population dies out ($X_N \to 0$).
+    \item $1 < r \leq 3$: Population converges to a \textbf{fixed point} $X^* = 1 - \frac{1}{r}$.
+    \pause
+    \item $3 < r \lesssim 3.449$: Population oscillates between \textbf{two values} (period-2 cycle).
+    \item $3.449 \lesssim r \lesssim 3.544$: Population oscillates between \textbf{four values} (period-4 cycle).
+    \pause
+    \item As $r$ increases further, the period keeps \textbf{doubling}: 8, 16, 32, \ldots
+    \item Beyond $r \approx 3.57$: the system enters \textbf{chaos} --- the sequence never repeats.
+    \item Within the chaotic regime, there are narrow \textbf{windows of periodicity} (e.g.\ period-3 near $r \approx 3.83$).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Cobweb Diagram}
+  \begin{itemize}
+    \item A \textbf{cobweb diagram} is a graphical tool for visualising the iteration $X_{N+1} = f(X_N)$.
+    \item Plot the parabola $y = r\,x(1-x)$ and the diagonal $y = x$.
+    \item Starting from $X_0$:
+    \begin{enumerate}
+      \item Go vertically to the parabola to find $X_1 = f(X_0)$.
+      \item Go horizontally to the diagonal (so $X_1$ becomes the new input).
+      \item Repeat.
+    \end{enumerate}
+    \item Where the cobweb \textbf{spirals inward}, the fixed point is stable.
+    \item Where it \textbf{spirals outward} or bounces irregularly, the system is unstable or chaotic.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Bifurcation Diagram}
+  \begin{itemize}
+    \item The \textbf{bifurcation diagram} summarises all possible long-term behaviours as $r$ varies.
+    \item For each value of $r$, iterate many times to remove transients, then plot the visited values of $X$.
+    \item The diagram reveals:
+    \begin{itemize}
+      \item Single stable branches (fixed points)
+      \item Period-doubling cascades
+      \item Dense chaotic bands
+      \item Windows of order within chaos
+    \end{itemize}
+    \pause
+    \item The ratio between successive bifurcation intervals approaches the \textbf{Feigenbaum constant} $\delta \approx 4.66920$.
+    \item This constant is \textbf{universal} --- it appears in many different systems that undergo period-doubling.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Properties of Chaos}
+  \begin{itemize}
+    \item \textbf{Determinism}: Each state is completely determined by the previous state. There is no randomness --- the system produces its own irregularity.
+    \pause
+    \item \textbf{Sensitivity to initial conditions}: Tiny differences in $X_0$ grow exponentially over time. This is the famous ``butterfly effect.''
+    \pause
+    \item \textbf{Aperiodicity}: The sequence never exactly repeats. If it did, determinism would force it to repeat forever --- making it periodic.
+    \pause
+    \item \textbf{Unpredictability}: Despite being deterministic, long-term prediction is practically impossible because of sensitivity to initial conditions.
+  \end{itemize}
+
+  \vfill
+  \begin{quote}
+    \textit{``Does the flap of a butterfly's wings in Brazil set off a tornado in Texas?''}\\
+    --- Edward Lorenz, 1972
+  \end{quote}
+\end{frame}
