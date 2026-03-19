@@ -1,20 +1,57 @@
 \section{Fractals: Mandelbrot and Julia Sets}
 
 \begin{frame}{What Is a Fractal?}
-  \begin{itemize}
-    \item A \textbf{fractal} is a geometric object that exhibits \textbf{self-similarity} at different scales.
-    \item Zooming in reveals structure that resembles the whole.
-    \item Fractals often arise from simple iterative rules applied repeatedly.
-    \item They are intimately connected to chaos: the boundary of the Mandelbrot set, for example, encodes all possible behaviours of a simple quadratic iteration.
-    \pause
-    \item Examples in nature:
+  \begin{columns}
+    \column{0.55\textwidth}
     \begin{itemize}
-      \item Coastlines, mountain ranges
-      \item Branching of trees, blood vessels, lungs
-      \item Snowflakes, lightning bolts
-      \item Romanesco broccoli
+      \item A \textbf{fractal} is a geometric object that exhibits \textbf{self-similarity} at different scales.
+      \item Zooming in reveals structure that resembles the whole.
+      \item Fractals often arise from simple iterative rules applied repeatedly.
+      \pause
+      \item Examples in nature:
+      \begin{itemize}
+        \item Coastlines, mountain ranges
+        \item Branching of trees, blood vessels, lungs
+        \item Snowflakes, lightning bolts
+      \end{itemize}
     \end{itemize}
-  \end{itemize}
+    \column{0.45\textwidth}
+    \begin{center}
+    % TikZ fractal tree
+    \begin{tikzpicture}[scale=0.8]
+      \pgfmathsetmacro{\branchAngle}{25}
+      \pgfmathsetmacro{\scaleFactor}{0.7}
+      \def\drawTree#1#2#3#4{%
+        \ifnum#4>0
+          \pgfmathsetmacro{\newLen}{#3*\scaleFactor}
+          \pgfmathsetmacro{\leftAngle}{#2+\branchAngle}
+          \pgfmathsetmacro{\rightAngle}{#2-\branchAngle}
+          \pgfmathsetmacro{\thickness}{#4*0.3}
+          \draw[line width=\thickness pt, green!50!black]
+            (#1) -- ++(#2:\newLen) coordinate (left-#4);
+          \draw[line width=\thickness pt, green!50!black]
+            (#1) -- ++(#2-2*\branchAngle:\newLen) coordinate (right-#4);
+        \fi
+      }
+      % Trunk
+      \draw[line width=2.5pt, brown!60!black] (0,0) -- (0,2) coordinate (trunk);
+      % Level 1
+      \draw[line width=2pt, green!50!black] (trunk) -- ++(65:1.4) coordinate (L1a);
+      \draw[line width=2pt, green!50!black] (trunk) -- ++(115:1.4) coordinate (L1b);
+      % Level 2
+      \draw[line width=1.3pt, green!60!black] (L1a) -- ++(50:1) coordinate (L2a);
+      \draw[line width=1.3pt, green!60!black] (L1a) -- ++(80:1) coordinate (L2b);
+      \draw[line width=1.3pt, green!60!black] (L1b) -- ++(100:1) coordinate (L2c);
+      \draw[line width=1.3pt, green!60!black] (L1b) -- ++(130:1) coordinate (L2d);
+      % Level 3
+      \foreach \parent/\angA/\angB in {L2a/40/65, L2b/65/95, L2c/90/115, L2d/115/145}{
+        \draw[line width=0.7pt, green!70!black] (\parent) -- ++(\angA:0.7);
+        \draw[line width=0.7pt, green!70!black] (\parent) -- ++(\angB:0.7);
+      }
+      \node[below, font=\small] at (0,-0.1) {Self-similar branching};
+    \end{tikzpicture}
+    \end{center}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Iteration in the Complex Plane}
@@ -36,33 +73,53 @@
 \end{frame}
 
 \begin{frame}{The Mandelbrot Set}
-  \begin{itemize}
-    \item The Mandelbrot set is the set of all complex numbers $c$ for which the iteration $z_{n+1} = z_n^2 + c$ (starting from $z_0 = 0$) does \textbf{not} diverge.
-    \item Points \textbf{inside} the set are coloured black.
-    \item Points \textbf{outside} are coloured by how quickly they escape (the \textbf{escape time}).
-    \pause
-    \item Remarkable properties:
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/mandelbrot_set.pdf}
+    \end{center}
+    \column{0.5\textwidth}
     \begin{itemize}
-      \item The boundary has \textbf{infinite complexity} --- zooming in reveals ever more detail.
-      \item Small copies of the whole set appear at all scales.
-      \item The area is finite, but the boundary has infinite length.
-      \item The boundary has a fractal dimension $\approx 2$.
+      \item Points \textbf{inside} the set (dark) never escape.
+      \item Points \textbf{outside} are coloured by \textbf{escape time}.
+      \pause
+      \item Remarkable properties:
+      \begin{itemize}
+        \item Infinite boundary complexity
+        \item Small copies at all scales
+        \item Finite area, infinite perimeter
+        \item Fractal dimension $\approx 2$
+      \end{itemize}
     \end{itemize}
-  \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Self-Similarity --- Zooming In}
+  \begin{center}
+    \includegraphics[width=0.95\textwidth]{images/mandelbrot_zoom.pdf}
+  \end{center}
+  \small
+  Zooming in reveals ever more detail that resembles the whole. Small copies of the Mandelbrot set appear everywhere on the boundary.
 \end{frame}
 
 \begin{frame}{Julia Sets}
   \begin{itemize}
     \item For a fixed $c$, the \textbf{Julia set} is the boundary between initial values $z_0$ that diverge and those that stay bounded.
     \item Each value of $c$ produces a different Julia set.
-    \pause
     \item There is a deep connection between Mandelbrot and Julia sets:
     \begin{itemize}
-      \item If $c$ is \textbf{inside} the Mandelbrot set, the Julia set is a connected, often beautiful fractal.
-      \item If $c$ is \textbf{outside} the Mandelbrot set, the Julia set is a disconnected dust of points (a \textbf{Cantor set}).
+      \item If $c$ is \textbf{inside} the Mandelbrot set, the Julia set is a \textbf{connected} fractal.
+      \item If $c$ is \textbf{outside} the Mandelbrot set, the Julia set is a \textbf{disconnected} dust (\textbf{Cantor set}).
     \end{itemize}
-    \item The Mandelbrot set is therefore a ``map'' of all possible Julia sets --- it tells us which values of $c$ produce connected fractals.
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Gallery of Julia Sets}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{images/julia_sets.pdf}
+  \end{center}
+  \small
+  The Mandelbrot set is a ``map'' of all possible Julia sets --- it tells us which values of $c$ produce connected fractals.
 \end{frame}
 
 \begin{frame}{Connection to Chaos}

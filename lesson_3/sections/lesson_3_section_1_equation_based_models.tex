@@ -70,7 +70,7 @@ Basic form of SEIR model
 
 Model used in the Czech Republic at early stages of COVID-19 pandemics
   \begin{center}
-    \includegraphics[scale = 0.4]{lesson_3/images/model.png}
+    \includegraphics[scale = 0.4]{images/model.png}
   \end{center}
 \end{frame}
 
@@ -93,25 +93,44 @@ Model used in the Czech Republic at early stages of COVID-19 pandemics
     \item Infected (I): Individuals who are infected with the disease.
   \end{itemize}
 \vfill
+\begin{columns}[t]
+  \column{0.5\textwidth}
 \textbf{Equations:}
   \begin{align*}
     \frac{dS}{dt} &= -\beta S I \\
     \\
     \frac{dI}{dt} &= \beta S I
   \end{align*}
-
-\vfill
-
+  \column{0.5\textwidth}
 \textbf{Diagram:}
   \begin{center}
 \begin{tikzpicture}
   \node[draw, circle, thick, minimum size=1cm, fill=green!15] (S) {S};
   \node[draw, circle, thick, right=1.5cm of S, minimum size=1cm, fill=red!15] (I) {I};
-
-  \draw[->] (S) -- node[midway, above] {$\beta$IS} (I);; 
+  \draw[->] (S) -- node[midway, above] {$\beta SI$} (I);
 \end{tikzpicture}
   \end{center}
-  
+\end{columns}
+\end{frame}
+
+\begin{frame}{SI Model: Analytical Solution}
+\small
+Since $S + I = N$ (constant population, normalised to 1), we substitute $S = 1 - I$:
+  \begin{align*}
+    \frac{dI}{dt} &= \beta (1 - I) I
+  \end{align*}
+This is the \textbf{logistic equation}. Its analytical solution is:
+  \begin{block}{SI Solution}
+    \[
+      I(t) = \frac{I_0}{I_0 + (1 - I_0)\,e^{-\beta t}}
+    \]
+  \end{block}
+  \vfill
+  \begin{itemize}
+    \item As $t \to \infty$, $I(t) \to 1$ --- \textbf{everyone gets infected eventually}.
+    \item The growth is initially exponential ($\approx I_0 e^{\beta t}$), then saturates.
+    \item The inflection point (fastest growth) occurs when $I = 1/2$.
+  \end{itemize}
 \end{frame}
 
 
@@ -158,10 +177,43 @@ Model used in the Czech Republic at early stages of COVID-19 pandemics
   \node[draw, circle, thick, minimum size=1cm, fill=green!15] (S) {S};
   \node[draw, circle, thick, right=1.5cm of S, minimum size=1cm, fill=red!15] (I) {I};
 
-  \draw[->, bend left] (S) to node[midway, above] {$\beta$IS} (I);
-  \draw[->, bend left] (I) to node[midway, below] {$\gamma$I} (S);
+  \draw[->, bend left] (S) to node[midway, above] {$\beta SI$} (I);
+  \draw[->, bend left] (I) to node[midway, below] {$\gamma I$} (S);
 \end{tikzpicture}
   \end{center}
+\end{frame}
+
+\begin{frame}{SIS Model: Stability Analysis}
+\small
+Substitute $S = 1 - I$ into the $I$ equation:
+  \[
+    \frac{dI}{dt} = \beta (1-I) I - \gamma I = (\beta - \gamma) I - \beta I^2
+  \]
+  \pause
+  \textbf{Equilibria} (set $dI/dt = 0$):
+  \[
+    I^* \bigl[(\beta - \gamma) - \beta I^*\bigr] = 0
+    \quad\Rightarrow\quad
+    I^*_1 = 0,\qquad I^*_2 = 1 - \frac{\gamma}{\beta}
+  \]
+  \pause
+  \textbf{Stability} (linearise around each equilibrium):
+  \begin{itemize}
+    \item \textbf{Disease-free} ($I^* = 0$): stable if $\beta < \gamma$, i.e.\ $R_0 = \beta/\gamma < 1$.
+    \item \textbf{Endemic} ($I^* = 1 - \gamma/\beta$): exists and is stable when $R_0 > 1$.
+  \end{itemize}
+  \vfill
+  \begin{block}{Key insight}
+    In the SIS model, if $R_0 > 1$ the disease persists \textbf{forever} at an endemic level $I^* = 1 - 1/R_0$.
+  \end{block}
+\end{frame}
+
+\begin{frame}{SIS Model: Phase Portrait}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{images/sis_stability.pdf}
+  \end{center}
+  \small
+  Left: $R_0 < 1$ --- disease dies out. Right: $R_0 > 1$ --- endemic equilibrium.
 \end{frame}
 
 \subsection{SI Model with Birth and Death}
@@ -298,11 +350,83 @@ Model used in the Czech Republic at early stages of COVID-19 pandemics
 \begin{itemize}
     \item The number of secondary infections. Not all contacts will become infected and the average number of secondary cases per infectious will be lower than \(R_0\).
     \item \(R_t\) is \textbf{not fixed} and varies over the course of an epidemic due to interventions and immunizations.
-    \item When \(R_t\) falls below 1, the outbreak is under control, leading to a decline in new cases.  \(R_t\) 1 means endemic
+    \item When \(R_t\) falls below 1, the outbreak is under control, leading to a decline in new cases. $R_t = 1$ means endemic.
     \item The calculation of \(R_t\) is  complex  due to changing dynamics.
 \end{itemize}
     \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{Deriving $R_0$ from the SIR Equations}
+\small
+Consider the early phase when $S \approx 1$ (almost everyone susceptible):
+  \[
+    \frac{dI}{dt} = \beta S I - \gamma I \approx (\beta - \gamma)\, I
+  \]
+  \pause
+  \begin{itemize}
+    \item The infected population grows exponentially if $\beta > \gamma$.
+    \item Define $R_0 = \beta / \gamma$. Then:
+  \end{itemize}
+  \[
+    \frac{dI}{dt} \approx \gamma(R_0 - 1)\, I
+  \]
+  \vfill
+  \begin{block}{Epidemic threshold}
+    \[
+      R_0 > 1 \implies \text{epidemic grows} \qquad R_0 < 1 \implies \text{epidemic dies out}
+    \]
+  \end{block}
+\end{frame}
+
+\begin{frame}{Herd Immunity Threshold}
+\small
+The epidemic peak occurs when $dI/dt = 0$:
+  \[
+    \frac{dI}{dt} = \beta S I - \gamma I = I(\beta S - \gamma) = 0
+  \]
+  For $I > 0$, this gives $S^* = \gamma / \beta = 1 / R_0$.
+  \pause
+  \vfill
+  \begin{block}{Herd immunity threshold}
+    The fraction of the population that must be immune to prevent an epidemic:
+    \[
+      p_{\text{herd}} = 1 - \frac{1}{R_0}
+    \]
+  \end{block}
+  \vfill
+  \begin{center}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Disease} & $R_0$ & $p_{\text{herd}}$ \\
+    \midrule
+    Seasonal influenza & 1.3 & 23\% \\
+    COVID-19 (original) & 2.5 & 60\% \\
+    Measles & 12--18 & 92--95\% \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Final Size of the SIR Epidemic}
+\small
+An important result: the \textbf{final size} of the epidemic (total fraction infected) can be found without solving the ODE.
+
+Divide $dS$ by $dR$:
+  \[
+    \frac{dS}{dR} = \frac{-\beta S I}{\gamma I} = -R_0\, S
+    \quad\Rightarrow\quad
+    S(t) = S_0\, e^{-R_0\, R(t)}
+  \]
+  \pause
+  At the end of the epidemic ($t \to \infty$, $I \to 0$, $R_{\infty} = 1 - S_{\infty}$):
+  \begin{block}{Final size equation}
+    \[
+      S_{\infty} = S_0\, e^{-R_0\,(1 - S_{\infty})}
+    \]
+  \end{block}
+  This transcendental equation must be solved numerically, but it tells us that even with $R_0 > 1$, \textbf{not everyone gets infected}.
 \end{frame}
 
 \begin{frame}{Illustration of reproduction number}
@@ -315,20 +439,28 @@ Model used in the Czech Republic at early stages of COVID-19 pandemics
 \end{itemize}
 
 \begin{center}
-        \includegraphics[scale = 0.18]{lesson_3/images/reproductive_number.jpg}
+        \includegraphics[scale = 0.18]{images/reproductive_number.jpg}
 \end{center}
+\end{frame}
+
+\begin{frame}{SIR Dynamics: Effect of $R_0$}
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{images/sir_r0_comparison.pdf}
+  \end{center}
+  \small
+  Higher $R_0$ leads to faster, larger outbreaks with a higher infection peak.
 \end{frame}
 
 \begin{frame}{Progress of epidemic by SIR model}
 \begin{center}
-    \includegraphics[scale = 0.8]{lesson_3/images/sir_model.png}
+    \includegraphics[scale = 0.8]{images/sir_model.png}
 \end{center}
     
 \end{frame}
 
 \begin{frame}{Epidemic in English boarding school and SIR model}
 \begin{center}
-    \includegraphics[scale = 0.3]{lesson_3/images/english_boarding_school.png}
+    \includegraphics[scale = 0.3]{images/english_boarding_school.png}
 \end{center}
     
 \end{frame}
@@ -400,6 +532,31 @@ Model used in the Czech Republic at early stages of COVID-19 pandemics
 
 
 
+
+\begin{frame}{SEIR Model: $R_0$ and Latent Period}
+\small
+The basic reproduction number for the SEIR model is the same as SIR:
+  \[
+    R_0 = \frac{\beta}{\gamma}
+  \]
+  The exposed compartment \textbf{delays} but does not change the total number of secondary infections.
+  \pause
+  \vfill
+  \textbf{Key parameters:}
+  \begin{itemize}
+    \item \textbf{Latent period}: $1/\sigma$ --- average time from exposure to becoming infectious.
+    \item \textbf{Infectious period}: $1/\gamma$ --- average time a person is infectious.
+    \item \textbf{Generation time}: $\approx 1/\sigma + 1/\gamma$ --- time between successive cases.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{SEIR Model: Dynamics}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{images/seir_dynamics.pdf}
+  \end{center}
+  \small
+  SEIR dynamics with $R_0 = 5$, latent period $= 5$ days. The exposed compartment creates a visible delay between the drop in $S$ and the rise in $I$.
+\end{frame}
 
 \begin{frame}
   \frametitle{Applications Beyond Disease Modeling}

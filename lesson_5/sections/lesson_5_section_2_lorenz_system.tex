@@ -32,29 +32,50 @@
 \end{frame}
 
 \begin{frame}{The Strange Attractor}
-  \begin{itemize}
-    \item For the classical parameters, all trajectories are eventually attracted to a bounded region of phase space --- the \textbf{Lorenz attractor}.
-    \item The attractor has a butterfly-like shape with two ``wings''.
-    \item Trajectories circle one wing, then unpredictably switch to the other, and back again.
-    \pause
-    \item The attractor is \textbf{strange}:
+  \begin{columns}
+    \column{0.55\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/lorenz_attractor_3d.pdf}
+    \end{center}
+    \column{0.45\textwidth}
     \begin{itemize}
-      \item It has a \textbf{fractal structure} --- self-similar at different scales.
-      \item Nearby trajectories \textbf{diverge exponentially}, yet all stay on the attractor.
-      \item The attractor has \textbf{zero volume} but infinite length.
+      \item The attractor has a butterfly-like shape with two ``wings''.
+      \item Trajectories circle one wing, then unpredictably switch to the other.
+      \pause
+      \item It is \textbf{strange}:
+      \begin{itemize}
+        \item \textbf{Fractal structure}
+        \item Nearby trajectories \textbf{diverge exponentially}
+        \item \textbf{Zero volume} but infinite length
+      \end{itemize}
     \end{itemize}
-  \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{2D Projections of the Attractor}
+  \begin{center}
+    \includegraphics[width=0.95\textwidth]{images/lorenz_projections.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Time Series of $x(t)$}
+  The $x$ component switches unpredictably between positive and negative values --- corresponding to the two wings of the attractor.
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{images/lorenz_timeseries.pdf}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Sensitivity to Initial Conditions}
   \begin{itemize}
-    \item Start two simulations with initial conditions differing by $10^{-10}$.
+    \item Start two simulations with initial conditions differing by $10^{-9}$.
     \item For a short time, the trajectories look identical.
-    \item After a critical time, they diverge completely and trace different paths around the attractor.
-    \pause
-    \item This is the practical meaning of chaos: \textbf{deterministic but unpredictable}.
-    \item The rate of divergence is measured by the \textbf{Lyapunov exponent}. A positive Lyapunov exponent is the mathematical signature of chaos.
+    \item After a critical time, they diverge completely.
   \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.82\textwidth]{images/lorenz_sensitivity.pdf}
+  \end{center}
+  \small
+  \textbf{Deterministic but unpredictable.} The rate of divergence is measured by the \textbf{Lyapunov exponent}.
 \end{frame}
 
 \begin{frame}{Why Does This Matter?}

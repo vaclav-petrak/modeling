@@ -21,6 +21,11 @@
 slprj/
 *.slxc
 
+# --- Python Virtual Environments ---
+.venv/
+__pycache__/
+*.pyc
+
 # --- OS / IDE Specific ---
 .DS_Store
 Thumbs.db
