@@ -411,6 +411,58 @@ footer {
 }
 
 
+/* --- LESSON MATERIALS STRUCTURE --- */
+.presentation-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.8rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 1.25rem 0 0.5rem 0;
+    transition: background 0.2s;
+}
+
+.presentation-btn:hover {
+    background: var(--color-accent);
+    color: #fff;
+}
+
+.presentation-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.presentation-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-left: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.materials-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    font-weight: 700;
+    margin: 1rem 0 0.4rem 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+}
+
 /* --- ARTICLE / PROJECT PAGE STYLES --- */
 .article-container {
     max-width: 800px;

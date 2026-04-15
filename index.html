@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modelling & Simulation</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
@@ -17,26 +17,25 @@
     <header>
         <div class="container">
             <div class="header-top">
-                <span class="course-meta">Spring 2026 // Kladno Campus</span>
+                <span class="course-meta">Summer Semester 2025/26</span>
                 <nav>
                     <ul>
                         <li><a href="#schedule">Modules</a></li>
                         <li><a href="#projects">Projects</a></li>
-                        <li><a href="#grading">Grading</a></li>
                         <li><a href="https://github.com/your-username/course-repo" target="_blank">GitHub</a></li>
                     </ul>
                 </nav>
             </div>
             <h1 class="hero-title">Modelling & Simulation</h1>
             <p class="hero-subtitle">From discrete difference equations to chaos theory. A computational approach to understanding complex physical and biological systems using Python.</p>
-            
+
         </div>
     </header>
 
     <main class="container">
 
         <section id="logistics">
-            <h2>Lecrure & Links</h2>
+            <h2>Lecturer & Contact</h2>
             <div class="contact-grid">
                 <div class="contact-card">
                     <div class="contact-role">LECTURER</div>
@@ -45,7 +44,7 @@
                         📧 vaclav.petrak@fbmi.cvut.cz<br>
                         📞 +420 725 878 390<br>
                         🏢 Office B724<br>
-                        🕒 Consultations: Upon requst
+                        🕒 Consultations: Upon request
                     </div>
                 </div>
             </div>
@@ -61,27 +60,35 @@
             <span class="date-badge">February 20 • 9:00</span>
         </div>
         <h3>Discrete Dynamics</h3>
-        <p>Introduction to modeling. We explore simple iterative maps and population growth models.</p>
+        <p>Introduction to modeling and simulation as a scientific tool. We explore simple iterative maps and population growth — from exponential Malthusian growth to density-dependent logistic dynamics and age-structured Leslie matrices. Emphasis on translating biological assumptions into difference equations.</p>
+
+        <a href="./lesson_1/lesson_1_populations.pdf" class="presentation-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5l-1 2H8v2h8v-2h-1l-1-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11H6V6h12v8z"/></svg>
+            Lecture 1 Slides
+            <span class="presentation-label">PDF</span>
+        </a>
+
+        <div class="materials-label">Notebooks</div>
         <ul class="topic-list">
-            
-            <a href="""><li>Python Primer</li></a>
-            <a href="https://colab.research.google.com/drive/1ECacXN1sv_-V-QPRaneKkV_8C38TdVYr?usp=share_link"><li>Fibonacci Sequence: Coding review</li></a>
-            <a href="https://colab.research.google.com/drive/1RfOvSI-qzd1ThDi9Z4oRh0bGibqDdBfs?usp=sharing"><li>Malthusian Growth (Explicit vs Numerical)</li></a>
-            <a href="https://colab.research.google.com/drive/1d29WRBm34q_z6fHDR_GWXi3UJzDkdjou?usp=share_link"><li>Logistic Growth Models</li></a>
-            <a href="https://github.com/vaclav-petrak/modeling/blob/main/lesson_1/other_resources/population_models.xlsx"><li>Population Models in Excel</li></a>
-            <a href="https://colab.research.google.com/drive/1zXfGsa_0Bpch2rVn5elsq1Jq4UckvUE_?usp=share_link"><li>Leslie Matrix Model</li></a>
+            <li>Python Primer</li>
+            <li><a href="https://colab.research.google.com/drive/1ECacXN1sv_-V-QPRaneKkV_8C38TdVYr?usp=share_link">Fibonacci Sequence: Coding Review</a></li>
+            <li><a href="https://colab.research.google.com/drive/1RfOvSI-qzd1ThDi9Z4oRh0bGibqDdBfs?usp=sharing">Malthusian Growth (Explicit vs. Numerical)</a></li>
+            <li><a href="https://colab.research.google.com/drive/1d29WRBm34q_z6fHDR_GWXi3UJzDkdjou?usp=share_link">Logistic Growth Models</a></li>
+            <li><a href="https://colab.research.google.com/drive/1zXfGsa_0Bpch2rVn5elsq1Jq4UckvUE_?usp=share_link">Leslie Matrix Model</a></li>
         </ul>
-        
 
-        <a href="./lesson_1/lesson_1_populations.pdf">Presentation: Lecture 1</a>
+        <div class="materials-label">Resources</div>
+        <ul class="topic-list">
+            <li><a href="https://github.com/vaclav-petrak/modeling/blob/main/lesson_1/other_resources/population_models.xlsx">Population Models in Excel</a></li>
+        </ul>
 
-
+        <div class="materials-label">Capstone Project Lab</div>
         <div class="project-lab-box">
             <div class="lab-title">
                 <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                Project Lab: Topic selection  and grading info
+                Topic Selection &amp; Grading Info
             </div>
-            <p>We will introduce topics for the final project and project requirements</p>
+            <p>We will introduce topics for the final project and project requirements.</p>
         </div>
     </div>
 
@@ -91,15 +98,24 @@
             <span class="date-badge">March 6 • 9:00</span>
         </div>
         <h3>System Dynamics</h3>
-        <p>Interacting populations and feedback loops. Introduction to phase space analysis.</p>
+        <p>Interacting populations and the feedback loops that govern them. We derive the Lotka-Volterra predator-prey equations from first principles and analyze their behavior through phase-plane portraits and numerical integration. Includes a side-by-side comparison with an agent-based implementation.</p>
+
+        <a href="./lesson_2/lesson_2_predator_prey.pdf" class="presentation-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5l-1 2H8v2h8v-2h-1l-1-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11H6V6h12v8z"/></svg>
+            Lecture 2 Slides
+            <span class="presentation-label">PDF</span>
+        </a>
+
+        <div class="materials-label">Notebooks</div>
         <ul class="topic-list">
             <li><a href="https://colab.research.google.com/drive/16UfyczNQV7qL9n72oSA-280nbhStMczY?usp=share_link">Lotka-Volterra Equations</a></li>
-            <li><a href="./lesson_2/code/agent_predator_prey.html">Agentic Predator-Prey Model (web)</a></li>
-            <li><a href="./lesson_2/code/lotka_volterra.html">Lotka-Volterra Equations (web)</a></li>
         </ul>
 
-        <a href="./lesson_2/lesson_2_predator_prey.pdf">Presentation: Lecture 2</a>
- 
+        <div class="materials-label">Interactive Demos</div>
+        <ul class="topic-list">
+            <li><a href="./lesson_2/code/agent_predator_prey.html">Agent-Based Predator-Prey (web)</a></li>
+            <li><a href="./lesson_2/code/lotka_volterra.html">Lotka-Volterra Phase Plane (web)</a></li>
+        </ul>
     </div>
 
     <div class="card">
@@ -108,19 +124,26 @@
             <span class="date-badge">March 20 • 9:00</span>
         </div>
         <h3>Epidemiology & Agents</h3>
-        <p>Comparing equation-based models with agent-based simulations (ABM).</p>
+        <p>Two complementary paradigms for epidemic modeling. We construct both an equation-based compartmental SIR model and an agent-based simulation, then compare their predictions and discuss when each approach is appropriate. Central theme: same phenomenon, different levels of abstraction.</p>
+
+        <a href="./lesson_3/lesson_3_epidemics.pdf" class="presentation-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5l-1 2H8v2h8v-2h-1l-1-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11H6V6h12v8z"/></svg>
+            Lecture 3 Slides
+            <span class="presentation-label">PDF</span>
+        </a>
+
+        <div class="materials-label">Notebooks</div>
         <ul class="topic-list">
             <li><a href="https://colab.research.google.com/drive/1LLnTBB7mbgiVbWfmblRvioq5oPmF2tSW?usp=sharing">Section 1: Equation-Based SIR Model</a></li>
             <li><a href="https://colab.research.google.com/drive/1cHVAG91PwS-mQDSTQjEhfc5scz2CvL69?usp=sharing">Section 2: Agent-Based SIR Model</a></li>
             <li><a href="https://colab.research.google.com/drive/1akbcd-IsM9kA_OrOqMalIdHig8K2qgH1?usp=sharing">Section 3: Comparative Analysis</a></li>
         </ul>
 
-        <a href="./lesson_3/lesson_3_epidemics.pdf">Presentation: Lecture 3</a>
-
+        <div class="materials-label">Capstone Project Lab</div>
         <div class="project-lab-box">
             <div class="lab-title">
                 <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                Project Lab: Proposals
+                Project Proposals
             </div>
             <p><strong>DUE:</strong> Finalize project proposals and initial Python class structure.</p>
         </div>
@@ -132,19 +155,26 @@
             <span class="date-badge">April 17 • 9:00</span>
         </div>
         <h3>Cellular Automata</h3>
-        <p>Discrete spatial models. From Conway's Game of Life to forest fires and elementary CA.</p>
+        <p>Discrete spatial models where simple local rules generate surprising global complexity. We implement Conway's Game of Life, the Drossel-Schwabl forest fire model, and Wolfram's elementary CA, exploring how structure and pattern emerge from minimal rule sets.</p>
+
+        <a href="./lesson_4/lesson_4_cellular_automata.pdf" class="presentation-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5l-1 2H8v2h8v-2h-1l-1-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11H6V6h12v8z"/></svg>
+            Lecture 4 Slides
+            <span class="presentation-label">PDF</span>
+        </a>
+
+        <div class="materials-label">Notebooks</div>
         <ul class="topic-list">
             <li><a href="#">Section 1: Conway's Game of Life</a></li>
             <li><a href="#">Section 2: Forest Fire Model</a></li>
             <li><a href="#">Section 3: Elementary Cellular Automata</a></li>
         </ul>
 
-        <a href="./lesson_4/lesson_4_cellular_automata.pdf">Presentation: Lecture 4</a>
-
+        <div class="materials-label">Capstone Project Lab</div>
         <div class="project-lab-box">
             <div class="lab-title">
                 <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                Project Lab: Progress Check
+                Progress Check
             </div>
             <p>Review project implementation progress. Discuss modelling challenges.</p>
         </div>
@@ -156,14 +186,20 @@
             <span class="date-badge">April 17 • 9:00</span>
         </div>
         <h3>Chaos & Fractals</h3>
-        <p>Deterministic chaos, sensitivity to initial conditions, bifurcation diagrams, and the Mandelbrot set.</p>
-        <ul class="topic-list">
-            <li><a href="#">Logistic Map & Bifurcation Diagram</a></li>
-            <li><a href="#">Lorenz Attractor</a></li>
-            <li><a href="#">Mandelbrot & Julia Sets</a></li>
-        </ul>
+        <p>Deterministic systems that are practically unpredictable. We investigate the logistic map's route to chaos through bifurcation diagrams, visualize the strange Lorenz attractor, and explore self-similar fractal geometry via the Mandelbrot and Julia sets.</p>
 
-        <a href="./lesson_5/lesson_5_chaos.pdf">Presentation: Lecture 5</a>
+        <a href="./lesson_5/lesson_5_chaos.pdf" class="presentation-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5l-1 2H8v2h8v-2h-1l-1-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11H6V6h12v8z"/></svg>
+            Lecture 5 Slides
+            <span class="presentation-label">PDF</span>
+        </a>
+
+        <div class="materials-label">Notebooks</div>
+        <ul class="topic-list">
+            <li><a href="#">Section 1: The Logistic Map</a></li>
+            <li><a href="#">Section 2: The Lorenz System</a></li>
+            <li><a href="#">Section 3: Fractals — Mandelbrot &amp; Julia Sets</a></li>
+        </ul>
     </div>
 
     <div class="card">
@@ -172,15 +208,22 @@
             <span class="date-badge">May 8 • 9:00</span>
         </div>
         <h3>Synthesis: Choosing, Validating & Communicating Models</h3>
-        <p>Model taxonomy and decision framework. Validation, sensitivity analysis, and common pitfalls. Communicating results effectively.</p>
+        <p>A capstone review of the modeling toolkit assembled across the course. We survey a formal model taxonomy, practice validation and sensitivity analysis on existing models, and discuss strategies for communicating simulation results clearly, honestly, and convincingly.</p>
+
+        <a href="./lesson_6/lesson_6.pdf" class="presentation-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5l-1 2H8v2h8v-2h-1l-1-2h5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1 11H6V6h12v8z"/></svg>
+            Lecture 6 Slides
+            <span class="presentation-label">PDF</span>
+        </a>
+
+        <div class="materials-label">Topics</div>
         <ul class="topic-list">
-            <li>Model Taxonomy & Decision Framework</li>
-            <li>Validation, Sensitivity & Common Pitfalls</li>
-            <li>Communicating Results & Project Preparation</li>
+            <li>Model Taxonomy &amp; Decision Framework</li>
+            <li>Validation, Sensitivity &amp; Common Pitfalls</li>
+            <li>Communicating Results &amp; Project Preparation</li>
         </ul>
 
-        <a href="./lesson_6/lesson_6.pdf">Presentation: Lecture 6</a>
-
+        <div class="materials-label">Capstone Project Lab</div>
         <div class="project-lab-box">
             <div class="lab-title">
                 <svg class="lab-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -193,12 +236,12 @@
 </div>
         </section>
 
-<section id="projects">
-            <h2>Final Project Themes</h2>
+        <section id="projects">
+            <h2>Capstone Project Themes</h2>
             <p style="margin-bottom: 2rem;">Students will select one of the following domains for their capstone simulation project. Project proposals are due by <strong>Mar 24</strong>.</p>
-            
+
             <div class="project-grid">
-                
+
                 <a href="web/projects/technological_diffusion.html" class="project-card">
                     <div class="project-img-wrapper">
                         <img src="web/images/technological_diffusion.png" alt="Technological Diffusion">
@@ -352,13 +395,6 @@
             </div>
         </section>
 
-        <section id="grading" style="margin-top: 4rem;">
-            <h2>Grading & Resources</h2>
-            <div class="card" style="border-left: 4px solid var(--color-primary);">
-                <p><strong>Assessment:</strong> Grades are based on weekly Python notebook submissions and the final capstone project. See the <a href="other_documents/grading.tex">grading policy</a>.</p>
-                <p><strong>Literature:</strong> References for this course include <em>Volterra (1926)</em> and <em>Chattopadhyay (2003)</em>. PDFs available in the repo.</p>
-            </div>
-        </section>
 
     </main>
 
